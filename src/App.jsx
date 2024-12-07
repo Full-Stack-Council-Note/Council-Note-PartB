@@ -1,20 +1,46 @@
-//import { useState } from 'react'
-import Header from "./components/Header";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { CssBaseline, GlobalStyles } from '@mui/material/';
+//import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
 
-import './App.css'
+import CNtheme from './styles/theme';
+import Navbar from './components/Navbar'; // Import Navbar
+//import Header from "./components/Header";
+import Home from './pages/Home';
+import Register from './components/Register';
+import Login from './components/Login';
+//import MyProfile from './pages/MyProfile';
+//import SearchUsers from './pages/SearchUsers';
+//import Problems from './pages/Problems';
+//import Notices from './pages/Notices';
+//import Redirect from './components/Redirect';
+//import ProblemForm from './components/ProblemForm';
+//import NoticeForm from './components/NoticeForm';
+//import UpdateUser from './components/UpdateUser';
 
-function App() {
-  
-
+const App = () => {
   return (
-    <div>
-      <Header />
-     </div>    
-    
-     
+    <Router>
+      {/* Render Navbar on all pages */}
+      <ThemeProvider theme={CNtheme}>
+      {/* CssBaseline is used to remove any default CSS styling */}
+      <CssBaseline />
+      {/* Overrides the background colour and replaces it with theme colour so all pages have theming */}
+      <GlobalStyles styles={{ html: { backgroundColor: CNtheme.palette.background.default } }} />
+      
+      <Navbar />
+      
+      {/* The Routes are defined here */}
+      
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/auth/register" element={<Register />} />
+          <Route path="/auth/login" element={<Login />} />
+        </Routes>
+        </ThemeProvider>
+      
+    </Router>
+  );
+};
 
-    
-  )
-}
-
-export default App
+export default App;

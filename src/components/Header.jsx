@@ -1,4 +1,3 @@
-//import './Header.css';
 import CNLogo from '/CN-logo.svg'
 
 const styles = {
@@ -13,7 +12,7 @@ const styles = {
     fontSize: '80px',
     paddingLeft: '25px',
     paddingRight: '25px',
-    marginTop:'1px',
+    marginTop:'0px',
     color: 'rgb(255, 230, 10)',
     flex: 'auto'
       
@@ -25,7 +24,7 @@ const styles = {
     return (
      <div>
       <header style={styles.headerStyle} className="header"> 
-        <h1 style={styles.headingStyle}><img src={CNLogo} alt="CN logo" width='80px' height='80px'/> CouncilNote</h1>     
+        <h1 style={styles.headingStyle}><img src={CNLogo} alt="CN logo" width='90px' height='90px'/> CouncilNote</h1>     
       </header>
       </div>   
     );

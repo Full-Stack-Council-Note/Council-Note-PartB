@@ -1,16 +1,4 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color:#00116e;
-  background-color: #fff;
-  display: flexbox;
-  justify-content: center;
-  
 
-/* modified from CSS HSL https://coolors.co/336699-86bbd8-2f4858-9ee493-daf7dc*/
---lapis-lazuli: rgb(4, 1, 153);
---carolina-blue: rgb(139, 212, 252);
---charcoal: rgb(69, 91, 104);
---light-green: rgb(101, 245, 79);
---nyanza: rgb(255, 235, 55);
-
+body {
+  background-color:#50C878
 }
