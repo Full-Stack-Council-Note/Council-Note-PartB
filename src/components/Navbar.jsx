@@ -4,8 +4,8 @@ import { AppBar, Box, Toolbar, Typography, IconButton, Menu, MenuItem, Container
 import MenuIcon from '@mui/icons-material/Menu';
 import React from "react";
 
-
-const pages = ['Home', 'Problems', 'Notices', 'Profile', 'SearchUsers'];
+                                                            //add login or Log In?
+const pages = ['Home', 'Problems', 'Notices', 'MyProfile', 'SearchUsers', 'Login'];
 const reversedPages = [...pages].reverse(); 
 const settings = ['Logout']
 
@@ -45,17 +45,17 @@ export default function Navbar() {
   };
 
   const handleNavButtonClick = (navButton) => {
-    if (navButton === 'Create Account') {
-      navigate('/auth/register');
-    } else if (navButton === 'Log In') {
-      navigate('/auth/login');
+    if (navButton === 'Login') {
+      navigate('/auth/');
+    } else if (navButton === 'Home') {
+      navigate('/home');
     }
   }
 
   const handleSettingsClick = (setting) => {
     if (setting === 'Logout') {
       localStorage.removeItem('jwt');
-      navigate('/auth/login');
+      navigate('/auth/logout');
     } else  {
       navigate('/home'); 
     }
@@ -68,7 +68,9 @@ export default function Navbar() {
     return path.toLowerCase().replace('é', 'e').replace('-', ' '); // Replace dashes with spaces and handle special characters
   };
 
-  const navButton = location.pathname === 'auth/login' ? 'Create Account' : 'Log In';
+  //const navButton = location.pathname === '/auth/' ? : 'Home';
+    const navButton = location.pathname === '/auth/' ? 'Login' : 'Home';
+  //const navButton = location.pathname === '/auth/' ? 'Home' : 'Login';
 
   const currentPage = getCurrentPage();
 
