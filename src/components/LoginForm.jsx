@@ -24,7 +24,7 @@ const Login = () => {
                                   //or users?
             localStorage.setItem("users", JSON.stringify(res.data.useParams));
             console.log("res", res.data.users._id);
-            navigate(`/users/${res.data.users._id}/Profile`);
+            navigate(`/users/${res.data.users._id}`);
         } catch (err) {
             console.log(err.response.data.msg);
         }

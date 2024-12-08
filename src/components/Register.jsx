@@ -18,7 +18,7 @@ const Register = () => {
             await axios.post("http://localhost:5173/auth/register", data, {
                 withCredentials: true,
             });
-            navigate("/auth/login");
+            navigate("/auth/");
         } catch (err) {
             console.log(err.response.data.msg);
         }
@@ -72,7 +72,7 @@ const Register = () => {
             </Button>
             <Typography variant="body1" paragraph>
              Already have an account?{' '}
-            <Link component={Link} to="/auth/login" underline="hover">
+            <Link component={Link} to="/auth/" underline="hover">
              Login here...
              </Link>
              </Typography>

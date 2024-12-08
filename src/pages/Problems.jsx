@@ -26,7 +26,7 @@ import {
 const Problems = () => {
     const { id } = useParams();
     const { search } = useLocation();
-    const user = new URLSearchParams(search).get("user/:id");
+    const user = new URLSearchParams(search).get("users/:id");
     const [problems, setProblems] = useState(null);
     const [newComment, setNewComment] = useState("");
     const [comments, setComments] = useState([]);
@@ -48,6 +48,6 @@ const Problems = () => {
             }
         };
 
-        fetchArticle();
+        fetchProblems();
     });
 }
