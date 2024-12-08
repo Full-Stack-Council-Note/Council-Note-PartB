@@ -22,9 +22,9 @@ const Login = () => {
             const res = await axios.post("http://localhost:5173/auth/login", data);
             localStorage.setItem("token", res.data.access_token);
                                   //or users?
-            localStorage.setItem("user", JSON.stringify(res.data.user));
-            console.log("res", res.data.user._id);
-            navigate(`/users/${res.data.user._id}`);
+            localStorage.setItem("users", JSON.stringify(res.data.useParams));
+            console.log("res", res.data.users._id);
+            navigate(`/users/${res.data.users._id}/Profile`);
         } catch (err) {
             console.log(err.response.data.msg);
         }
@@ -59,10 +59,11 @@ const Login = () => {
             {errors.password && (
                 <Typography color="error">Password is required</Typography>
             )}
-
+           
             <Button type="submit" variant="contained" color="secondary" fullWidth>
                 Login
             </Button>
+    
             <Typography variant="body1" paragraph>
              Don't have an account?{' '}
             <Link component={Link} to="/home" underline="hover">

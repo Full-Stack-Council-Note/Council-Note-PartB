@@ -44,7 +44,7 @@ const MyProfile = () => {
         const fetchUser = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:5173/users/${id}`,
+                    `http://localhost:5173/users/${id}/MyProfile`,
                     {
                         headers: {
                             Authorization:

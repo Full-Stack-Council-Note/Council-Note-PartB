@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from "react";
 
 
-const pages = ['Home', 'Problems', 'Notices', 'MyProfile', 'SearchUsers'];
+const pages = ['Home', 'Problems', 'Notices', 'Profile', 'SearchUsers'];
 const reversedPages = [...pages].reverse(); 
 const settings = ['Logout']
 
@@ -135,6 +135,25 @@ export default function Navbar() {
           noWrap
           component={Link}
           to="/notices"
+          sx={{
+            mr: 2,
+            display: { xs: 'none', md: 'flex' },
+            fontFamily: "Segoe UI",
+            fontWeight: 700,
+            letterSpacing: '.3rem',
+            color: '#FFD700',
+            textDecoration: 'none',
+            backgroundColor:'#191970',
+            
+          }}
+        >
+          </Typography>
+         <Typography
+          
+          variant="h6"
+          noWrap
+          component={Link}
+          to="/users/:id/MyProfile"
           sx={{
             mr: 2,
             display: { xs: 'none', md: 'flex' },
