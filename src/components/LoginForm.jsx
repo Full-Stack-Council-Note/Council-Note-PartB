@@ -2,7 +2,12 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
 //import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+//import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import { Container } from "@mui/system";
+
 
 const Login = () => {
     const {
@@ -31,8 +36,8 @@ const Login = () => {
             onSubmit={handleSubmit(onSubmit)}
             sx={{ maxWidth: 400, margin: "auto" }}
         >
-            <Typography variant="h4" gutterBottom>
-                Login
+            <Typography variant="h5" textAlign= "center" gutterBottom>
+                Login:
             </Typography>
             <TextField
                 {...register("email", { required: true })}
@@ -55,14 +60,14 @@ const Login = () => {
                 <Typography color="error">Password is required</Typography>
             )}
 
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <Button type="submit" variant="contained" color="secondary" fullWidth>
                 Login
             </Button>
             <Typography variant="body1" paragraph>
              Don't have an account?{' '}
-            <MuiLink component={ReactLink} to="/auth/register" underline="hover">
+            <Link component={Link} to="/home" underline="hover">
              Create an account here...
-             </MuiLink>
+             </Link>
              </Typography>
         </Box>
     );

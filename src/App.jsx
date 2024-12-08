@@ -8,8 +8,8 @@ import Navbar from './components/Navbar'; // Import Navbar
 //import Header from "./components/Header";
 import Home from './pages/Home';
 import Register from './components/Register';
-import Login from './components/Login';
-//import MyProfile from './pages/MyProfile';
+import Login from './pages/Login';
+import MyProfile from './pages/MyProfile';
 //import SearchUsers from './pages/SearchUsers';
 //import Problems from './pages/Problems';
 //import Notices from './pages/Notices';
@@ -36,6 +36,8 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/auth/register" element={<Register />} />
           <Route path="/auth/login" element={<Login />} />
+          <Route path="/users/:id" element={<MyProfile />} />
+       
         </Routes>
         </ThemeProvider>
       

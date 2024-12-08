@@ -2,7 +2,7 @@ import { Box, Button, MenuItem, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Register = () => {
     const {
@@ -30,9 +30,7 @@ const Register = () => {
             onSubmit={handleSubmit(onSubmit)}
             sx={{ maxWidth: 400, margin: "auto" }}
         >
-            <Typography variant="h4" gutterBottom>
-                Create Account
-            </Typography>
+
             <TextField
                 {...register("fullname", { required: true })}
                 label="Full Name"
@@ -59,6 +57,7 @@ const Register = () => {
                 fullWidth
                 margin="normal"
                 type="password"
+                
             />
             {errors.password && (
                 <Typography color="error">
@@ -67,13 +66,15 @@ const Register = () => {
             )}
 
             <Button type="submit" variant="contained" color="primary" fullWidth>
+                <Typography color="secondary">
                 Create Account
+                </Typography>
             </Button>
             <Typography variant="body1" paragraph>
              Already have an account?{' '}
-            <MuiLink component={ReactLink} to="/auth/login" underline="hover">
+            <Link component={Link} to="/auth/login" underline="hover">
              Login here...
-             </MuiLink>
+             </Link>
              </Typography>
         </Box>
     );

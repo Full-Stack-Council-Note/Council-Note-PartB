@@ -18,7 +18,7 @@ const CNtheme = createTheme({
       contrastText: '#FFD700',
     },
     secondary: {
-      main: '#0000CD',
+      main: '#00008B',
       light: '#FFD700',
       contrastText: '#FFD700',
     },
@@ -35,8 +35,8 @@ const CNtheme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-root': {
-            backgroundColor: '#0000FF',
-            borderRadius: 0, 
+            backgroundColor: '#fff',
+            borderRadius: 4,
           },
         },
       },
