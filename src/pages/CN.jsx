@@ -8,7 +8,7 @@ import { Typography } from "@mui/material";
 import CNtheme from '../styles/theme';
 import Register from "../components/Register"
 
-const Home = () => {
+const CN = () => {
   return (
 
     <ThemeProvider theme={CNtheme}>
@@ -23,6 +23,6 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CN;
 
 

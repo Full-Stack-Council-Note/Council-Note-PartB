@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from "react";
 
                                                             //add login or Log In?
-const pages = ['Home', 'Problems', 'Notices', 'MyProfile', 'SearchUsers', 'Login'];
+const pages = ['CN', 'Problems', 'Notices', 'MyProfile', 'SearchUsers'];
 const reversedPages = [...pages].reverse(); 
 const settings = ['Logout']
 
@@ -13,30 +13,30 @@ import appLogo from '../assets/CN-logoPNG.png';
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  //const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-
+//or access_token?  access_token
   const jwt = localStorage.getItem('jwt');
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  //const handleOpenUserMenu = (event) => {
+   // setAnchorElUser(event.currentTarget);
+  //};
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  //const handleCloseUserMenu = () => {
+  //  setAnchorElUser(null);
+  //};
 
   const handleNavClick = (page) => {
-    if (page === 'Home') {
-      navigate('/home'); 
+    if (page === 'CN') {
+      navigate('/?redirect=cn'); 
     } 
     else {
       navigate('/?redirect=' + page.toLowerCase().replace('é', 'e')); 
@@ -46,9 +46,8 @@ export default function Navbar() {
 
   const handleNavButtonClick = (navButton) => {
     if (navButton === 'Login') {
-      navigate('/auth/');
-    } else if (navButton === 'Home') {
-      navigate('/home');
+     return  navigate('/auth/');
+    
     }
   }
 
@@ -57,20 +56,18 @@ export default function Navbar() {
       localStorage.removeItem('jwt');
       navigate('/auth/logout');
     } else  {
-      navigate('/home'); 
+      navigate('/cn'); 
     }
-    handleCloseUserMenu();
+   // handleCloseUserMenu();
   };
-
+  //handleSettingsClick()
   const getCurrentPage = () => {
     const path = location.pathname.substring(1); // Remove leading '/'
-    if (path === '') return 'home';
+    if (path === '') return 'cn';
     return path.toLowerCase().replace('é', 'e').replace('-', ' '); // Replace dashes with spaces and handle special characters
   };
-
-  //const navButton = location.pathname === '/auth/' ? : 'Home';
-    const navButton = location.pathname === '/auth/' ? 'Login' : 'Home';
-  //const navButton = location.pathname === '/auth/' ? 'Home' : 'Login';
+   const navButton = location.pathname === '/auth/'? 'Login':'Login';
+  
 
   const currentPage = getCurrentPage();
 
@@ -89,7 +86,7 @@ export default function Navbar() {
             variant="h6"
             noWrap
             component={Link}
-            to="/home"
+            to="/cn"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },

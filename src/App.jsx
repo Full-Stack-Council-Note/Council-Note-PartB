@@ -6,10 +6,10 @@ import { ThemeProvider } from '@mui/material/styles';
 import CNtheme from './styles/theme';
 import Navbar from './components/Navbar'; // Import Navbar
 //import Header from "./components/Header";
-import Home from './pages/Home';
-import Register from './components/Register';
+import CN from './pages/CN';
+//import Register from './components/Register';
 import Login from './pages/Login';
-import LoginForm from './components/LoginForm';
+//import LoginForm from './components/LoginForm';
 import MyProfile from './pages/MyProfile';
 //import SearchUsers from './pages/SearchUsers';
 //import Problems from './pages/Problems';
@@ -34,10 +34,10 @@ const App = () => {
       {/* The Routes are defined here */}
       
         <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/auth/register" element={<Register />} />
+          <Route path="/cn" element={<CN />} />
+          
           <Route path="/auth/" element={<Login />} />
-          <Route path="/auth/login" element={<LoginForm />} />
+        
           <Route path="/users/:id/" element={<MyProfile />} />
        
         </Routes>

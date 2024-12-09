@@ -1,35 +1,79 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
 //import React from "react";
+import { useState } from 'react';
 import { useForm } from "react-hook-form";
 
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 //import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { Container } from "@mui/system";
+//import { Container } from "@mui/system";
+//import { useState } from 'react';
 
+// Custom hook to manage error state
+function useError() {
+  const [error, setError] = useState('');
 
-const Login = () => {
+  const clearError = () => setError('');
+  
+  return {
+    error,
+    setError,
+    clearError,
+  };
+}
+
+//export default useError;
+//http://localhost:5173/auth/login
+
+const LoginForm = () => {
     const {
-        register,
+       
         handleSubmit,
-        formState: { errors },
+        //formState: { error },
     } = useForm();
+    
     const navigate = useNavigate();
-
+    const url = import.meta.env.REACT_APP_ENDPOINT
+    //const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+  
+    // Add the useLoading and useError hooks
+    //const { isLoading, setIsLoading } = useLoading();
+    const { error, setError, clearError } = useError();
+  
+    // Add the handleSubmit function
     const onSubmit = async (data) => {
-        try {
-            const res = await axios.post("http://localhost:5173/auth/login", data);
-            localStorage.setItem("token", res.data.access_token);
-                                  //or users?
-            localStorage.setItem("users", JSON.stringify(res.data.useParams));
-            console.log("res", res.data.users._id);
-            navigate(`/users/${res.data.users._id}`);
-        } catch (err) {
-            console.log(err.response.data.msg);
+      //event.preventDefault();
+      clearError();
+  
+      try {
+        const res = await axios.post(`${url}/auth/login`, data);
+        localStorage.setItem("token", res.data.access_token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        console.log("res", res.data.user._id);
+        navigate(`/users/${res.data.user._id}`);
+  
+        //const { token } = response.data;
+        //const { jwt } = response.data;
+        if (!password) {
+            setError('Please enter a password');
+            return;
+          }
+  
+      } catch (error) {
+        // Check if the error has a response and a message from the server
+        if (error.res && error.res.data && error.res.data.message) {
+          setError(`Error: ${error.res.data.message}`);
+        } else {
+          setError('An error occurred while reaching the database, please try again.');
         }
+      } 
     };
-
+  
+// const jwt = localStorage.getItem('jwt');
+// const jwt = localStorage.setItem('jwt');
     return (
         <Box
             component="form"
@@ -40,23 +84,27 @@ const Login = () => {
                 Login:
             </Typography>
             <TextField
-                {...register("email", { required: true })}
+    
                 label="Email"
+                value={email}
                 variant="outlined"
                 fullWidth
                 margin="normal"
+                onChange={(e) => setEmail(e.target.value)}
             />
-            {errors.email && <Typography color="error">Email is required</Typography>}
+            {error.email && <Typography color="error">Email is required</Typography>}
 
             <TextField
-                {...register("password", { required: true })}
+                
                 label="Password"
+                value={password}
                 variant="outlined"
                 fullWidth
                 margin="normal"
                 type="password"
+                onChange={(e) => setPassword(e.target.value)}
             />
-            {errors.password && (
+            {error.password && (
                 <Typography color="error">Password is required</Typography>
             )}
            
@@ -74,4 +122,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginForm;
