@@ -27,7 +27,8 @@ const Register = () => {
         formState: { errors },
     } = useForm();
     const navigate = useNavigate();
-    const url = import.meta.env.REACT_APP_ENDPOINT
+    //const url = 
+    import.meta.env.REACT_APP_ENDPOINT
     
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
@@ -37,10 +38,15 @@ const Register = () => {
     const onSubmit = async (data) => {
         clearError();
         try {
-            await axios.post(`${url}/auth/register`, data, {
-                withCredentials: true,
+            const response = await axios.post("http://localhost:5173/auth/register", {
+                //withCredentials: true,
+                fullname,
+                email,
+                password
             });
-            localStorage.setItem('token', JSON.stringify(data.access_token))
+            const { jwt } = response.data;
+            localStorage.setItem('jwt', jwt);
+            //localStorage.setItem('access_token', JSON.stringify(response.data.access_token))
             //localStorage.setItem('token', JSON.stringify(data.data.token))
             navigate("/auth/");
             if (!password) {

@@ -26,7 +26,7 @@ function useError() {
 //export default useError;
 //http://localhost:5173/auth/login
 
-const LoginForm = () => {
+const LoginFm = () => {
     const {
        
         handleSubmit,
@@ -34,7 +34,7 @@ const LoginForm = () => {
     } = useForm();
     
     const navigate = useNavigate();
-    const url = import.meta.env.REACT_APP_ENDPOINT
+    import.meta.env.REACT_APP_ENDPOINT
     //const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -49,7 +49,7 @@ const LoginForm = () => {
       clearError();
   
       try {
-        const res = await axios.post(`${url}/auth/login`, data);
+        const res = await axios.post("http://localhost:5173/auth/loginfm", {email, password});
         localStorage.setItem("token", res.data.access_token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         console.log("res", res.data.user._id);
@@ -114,7 +114,7 @@ const LoginForm = () => {
     
             <Typography variant="body1" paragraph>
              Don't have an account?{' '}
-            <Link component={Link} to="/home" underline="hover">
+            <Link component={Link} to="/cn" underline="hover">
              Create an account here...
              </Link>
              </Typography>
@@ -122,4 +122,4 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default LoginFm;

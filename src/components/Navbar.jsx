@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from "react";
 
                                                             //add login or Log In?
-const pages = ['CN', 'Problems', 'Notices', 'MyProfile', 'SearchUsers'];
+const pages = ['Problems', 'Notices', 'MyProfile', 'SearchUsers'];
 const reversedPages = [...pages].reverse(); 
 const settings = ['Logout']
 

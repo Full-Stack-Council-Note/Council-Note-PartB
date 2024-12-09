@@ -7,9 +7,9 @@ import CNtheme from './styles/theme';
 import Navbar from './components/Navbar'; // Import Navbar
 //import Header from "./components/Header";
 import CN from './pages/CN';
-//import Register from './components/Register';
-import Login from './pages/Login';
-//import LoginForm from './components/LoginForm';
+import Register from './components/Register';
+import Login  from './pages/Login';
+import LoginFm from './components/LoginFm';
 import MyProfile from './pages/MyProfile';
 //import SearchUsers from './pages/SearchUsers';
 //import Problems from './pages/Problems';
@@ -37,7 +37,7 @@ const App = () => {
           <Route path="/cn" element={<CN />} />
           
           <Route path="/auth/" element={<Login />} />
-        
+          
           <Route path="/users/:id/" element={<MyProfile />} />
        
         </Routes>

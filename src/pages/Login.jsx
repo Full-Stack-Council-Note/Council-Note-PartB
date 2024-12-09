@@ -5,7 +5,7 @@ import { Container } from "@mui/system";
 import { Typography } from "@mui/material";
 
 import CNtheme from '../styles/theme';
-import LoginForm from "../components/LoginForm"
+import LoginFm from "../components/LoginFm"
 
 
 const Login = () => {
@@ -17,7 +17,7 @@ const Login = () => {
         <Typography variant="h4" textAlign= "center" color="secondary" paddingTop="90px">
          Welcome to CouncilNote
         </Typography>
-         <LoginForm />
+         <LoginFm />
         </Container>  
       </ThemeProvider>
     );
