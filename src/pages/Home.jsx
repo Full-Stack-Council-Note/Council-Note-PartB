@@ -4,11 +4,11 @@ import { CssBaseline, GlobalStyles } from '@mui/material/';
 import { ThemeProvider } from '@mui/material/styles';
 import { Container } from "@mui/system";
 import { Typography } from "@mui/material";
-
+import { Link, useNavigate } from 'react-router-dom';
 import CNtheme from '../styles/theme';
 import Register from "../components/Register"
 
-const CN = () => {
+const Home = () => {
   return (
 
     <ThemeProvider theme={CNtheme}>
@@ -18,11 +18,17 @@ const CN = () => {
        Welcome to CouncilNote
       </Typography>
        <Register />
+       <Typography variant="body1" textAlign= "center" paragraph>
+             Already have an account?{' '}
+            <Link component={Link} to="/auth/login" underline="hover">
+             Login here...
+             </Link>
+        </Typography>
       </Container>  
     </ThemeProvider>
   );
 };
 
-export default CN;
+export default Home;
 
 

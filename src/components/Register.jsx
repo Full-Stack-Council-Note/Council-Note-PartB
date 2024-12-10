@@ -1,122 +1,90 @@
-import { Box, Button, MenuItem, TextField, Typography } from "@mui/material";
+import { Container, Typography, TextField, Button, Box, Snackbar } from '@mui/material';
 import axios from "axios";
 //import React from "react";
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 //const url = process.env.REACT_APP_ENDPOINT
-
-
-function useError() {
-    const [error, setError] = useState('');
-  
-    const clearError = () => setError('');
-    
-    return {
-      error,
-      setError,
-      clearError,
-    };
-  }
+import.meta.env.REACT_APP_ENDPOINT
 
 const Register = () => {
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm();
-    const navigate = useNavigate();
-    //const url = 
-    import.meta.env.REACT_APP_ENDPOINT
-    
-    const [fullname, setFullname] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const { error, setError, clearError } = useError();
+  const [formData, setFormData] = useState({
+    fullname: '',
+    email: '',
+    password: '',
+  });
+  const [error, setError] = useState('');
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const navigate = useNavigate();
 
-    const onSubmit = async (data) => {
-        clearError();
-        try {
-            const response = await axios.post("http://localhost:5173/auth/register", {
-                //withCredentials: true,
-                fullname,
-                email,
-                password
-            });
-            const { jwt } = response.data;
-            localStorage.setItem('jwt', jwt);
-            //localStorage.setItem('access_token', JSON.stringify(response.data.access_token))
-            //localStorage.setItem('token', JSON.stringify(data.data.token))
-            navigate("/auth/");
-            if (!password) {
-                setError('Please enter a password');
-                return;
-              }
-        } catch (err) {
-            console.log(err.response.data.msg);
-        }
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    return (
-        <Box
-            component="form"
-            onSubmit={handleSubmit(onSubmit)}
-            sx={{ maxWidth: 400, margin: "auto" }}
-        >
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-            <TextField
-                {...register("fullname", { required: true })}
-                label="Full Name"
-                value={fullname}
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                onChange={(e) => setFullname(e.target.value)}
-            />
-            {error.fullname && 
-                <Typography color="error">Full Name is required</Typography>}
+    try {
+      const response = await axios.post('http://localhost:4173/auth/register', formData);
+      navigate("auth/login");
+      setOpenSnackbar(true);
+    } catch (err) {
+      setError(err.response ? err.response.data.message : 'Server Error');
+    }
+  };
 
-            <TextField
-                {...register("email", { required: true })}
-                label="Email"
-                value={email}
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            {error.email && <Typography color="error">Email is required</Typography>}
+  return (
+    <Container maxWidth="sm">
+      <Typography variant="h5" textAlign= "center" gutterBottom>
+        Create an account:
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="Fullname"
+          name="fullname"
+          value={formData.fullname}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          required
+        />
+        <TextField
+          label="Email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          required
+        />
+        <TextField
+          label="Password"
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
+          required
+        />
+           {error && <Typography color="error">{error}</Typography>}
 
-            <TextField
-                {...register("password", { required: true, minLength: 6 })}
-                label="Password"
-                value={password}
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            {error.password && (
-                <Typography color="error">
-                    Password must be at least 6 characters
-                </Typography>
-            )}
-
-            <Button type="submit" variant="contained" color="primary" fullWidth>
-                <Typography color="secondary">
+            <Button type="submit" variant="contained" color="secondary" fullWidth>
+                <Typography color="primary">
                 Create Account
                 </Typography>
             </Button>
-            <Typography variant="body1" paragraph>
-             Already have an account?{' '}
-            <Link component={Link} to="/auth/" underline="hover">
-             Login here...
-             </Link>
-             </Typography>
-        </Box>
-    );
+      </form>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        message="Your account created successfully"
+        onClose={() => setOpenSnackbar(false)}
+      />
+    </Container>
+  );
 };
+
 
 export default Register;

@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from "react";
 
                                                             //add login or Log In?
-const pages = ['Problems', 'Notices', 'MyProfile', 'SearchUsers'];
+const pages = ['Problems', 'Notices', 'CNProfile', 'SearchPeople'];
 const reversedPages = [...pages].reverse(); 
 const settings = ['Logout']
 
@@ -35,18 +35,25 @@ export default function Navbar() {
   //};
 
   const handleNavClick = (page) => {
-    if (page === 'CN') {
-      navigate('/?redirect=cn'); 
-    } 
-    else {
-      navigate('/?redirect=' + page.toLowerCase().replace('é', 'e')); 
+    if (page === 'Home') {
+      navigate('/home'); 
     }
+    else if (page === 'CNProfile') {
+      navigate('/users/:id/cnprofile'); 
+    }
+    else if (page === 'SearchPeople') {
+      navigate('/users/searchpeople'); 
+    }
+    else {
+      navigate('/' + page.toLowerCase().replace('é', 'e')); 
+    }
+
     handleCloseNavMenu();
   };
 
   const handleNavButtonClick = (navButton) => {
     if (navButton === 'Login') {
-     return  navigate('/auth/');
+     return  navigate('/auth/login');
     
     }
   }
@@ -56,7 +63,7 @@ export default function Navbar() {
       localStorage.removeItem('jwt');
       navigate('/auth/logout');
     } else  {
-      navigate('/cn'); 
+      navigate('/home'); 
     }
    // handleCloseUserMenu();
   };
@@ -66,7 +73,7 @@ export default function Navbar() {
     if (path === '') return 'cn';
     return path.toLowerCase().replace('é', 'e').replace('-', ' '); // Replace dashes with spaces and handle special characters
   };
-   const navButton = location.pathname === '/auth/'? 'Login':'Login';
+   const navButton = location.pathname === '/auth/login'? 'Login':'Login';
   
 
   const currentPage = getCurrentPage();
@@ -86,7 +93,7 @@ export default function Navbar() {
             variant="h6"
             noWrap
             component={Link}
-            to="/cn"
+            to="/home"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -95,11 +102,11 @@ export default function Navbar() {
               letterSpacing: '.3rem',
               color: '#FFD700',
               textDecoration: 'none',
-              backgroundColor:'rgb(4, 1, 153)',
+              backgroundcolor:'#191970',
               
             }}
           >  
-           <img src={appLogo} alt="CN-Logo" height={50} sx={{ flexGrow: 1 }}/> 
+           <img src={appLogo} alt="CN-Logo" height={60} width={60} sx={{ flexGrow: 1 }}/> 
           </Typography>
           
             <Typography  variant="h4" component="div" sx={{ flexGrow: 1 }}>
@@ -121,7 +128,7 @@ export default function Navbar() {
               letterSpacing: '.3rem',
               color: '#FFD700',
               textDecoration: 'none',
-              backgroundColor:'#191970',
+              backgroundcolor:'#191970',
               
             }}
           >
@@ -142,7 +149,7 @@ export default function Navbar() {
             letterSpacing: '.3rem',
             color: '#FFD700',
             textDecoration: 'none',
-            backgroundColor:'#191970',
+            backgroundcolor:'#191970',
             
           }}
         >
@@ -152,7 +159,7 @@ export default function Navbar() {
           variant="h6"
           noWrap
           component={Link}
-          to="/users/:id/"
+          to="/users/:id/cnprofile"
           sx={{
             mr: 2,
             display: { xs: 'none', md: 'flex' },
@@ -161,7 +168,27 @@ export default function Navbar() {
             letterSpacing: '.3rem',
             color: '#FFD700',
             textDecoration: 'none',
-            backgroundColor:'#191970',
+            backgroundcolor:'#191970',
+            
+          }}
+        >
+          
+        </Typography>
+        <Typography
+          
+          variant="h6"
+          noWrap
+          component={Link}
+          to="/users/searchpeople"
+          sx={{
+            mr: 2,
+            display: { xs: 'none', md: 'flex' },
+            fontFamily: "Segoe UI",
+            fontWeight: 700,
+            letterSpacing: '.3rem',
+            color: '#FFD700',
+            textDecoration: 'none',
+            backgroundcolor:'#191970',
             
           }}
         >
@@ -178,7 +205,7 @@ export default function Navbar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color='#FFD700'
-              backgroundColor='#191970'
+              backgroundcolor='#191970'
               variant="'outlined"
             >
               <MenuIcon />
@@ -219,6 +246,7 @@ export default function Navbar() {
           {jwt && (<Typography
             variant="h5"
             noWrap
+            onClick={handleSettingsClick}
             component={Link}
             to="auth/logout"
             sx={{
@@ -235,13 +263,14 @@ export default function Navbar() {
           <Box sx={{ flexDirection: 'row-reverse', mr: 3, flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
             {reversedPages.map((page) => (
               <Button
+               variant="outlined"
                 key={page}
                 onClick={() => handleNavClick(page)}
                 sx={{
                   my: 2,
-                  color: currentPage === page.toLowerCase().replace('é', 'e') ? 'primary.main' : '#FFD700', // Highlight the current page
+                  color: currentPage === page.toLowerCase().replace('é', 'e') ? '#7CFC00' : '#FFD700', // Highlight the current page
                   display: 'block',
-                  '&:hover': { color: '	#FFD700', backgroundColor: '#191970' },
+                  '&:hover': { color: '#FFD700', backgroundcolor: '#191970' },
                 }}
               >
                 {page}
@@ -255,7 +284,7 @@ export default function Navbar() {
           onClick={() => handleNavButtonClick(navButton)}
           sx={{
             display: 'block',
-            '&:hover': { color: '#50C878', backgroundColor: '#191970' },
+            '&:hover': { color: '#7CFC00', backgroundcolor: '#ADD8E6' },
             width: { xs: '30%', md: '12%' },
           }}
           >

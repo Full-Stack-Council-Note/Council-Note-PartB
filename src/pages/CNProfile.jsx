@@ -3,10 +3,7 @@ import {
     Email,
     LocationOn,
     People,
-    PersonAdd,
-    PersonRemove,
-    Phone,
-    Web
+   
 } from "@mui/icons-material";
 import {
     Avatar,
@@ -16,7 +13,8 @@ import {
     Grid,
     IconButton,
     Paper,
-    Typography
+    Typography,
+    CircularProgress
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import axios from "axios";
@@ -33,18 +31,20 @@ const ProfileContainer = styled(Box)(
         boxShadow: theme.shadows[3],
     }));
 
-const MyProfile = () => {
-    const { id } = useParams();
-    const [user, setUser] = useState(null);
-    const [problemslist, setproblemslist] = useState(false);
-    const [noticeslist, setnoticeslist] = useState(false);
+const CNProfile = () => {
+    const { _id } = useParams();
+    const [user, setUser] = useState(true);
+    const [problemslist, setproblemslist] = useState([]);
+    const [noticeslist, setnoticeslist] = useState([]);
+    const [loading, setLoading] = useState(true);
     const token = localStorage.getItem("token");
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:5173/users/${id}/MyProfile`,
+                                             //or id ?
+                    `http://localhost:5173/users/${_id}/cnprofile`,
                     {
                         headers: {
                             Authorization:
@@ -69,14 +69,16 @@ const MyProfile = () => {
                             setproblemslist(
                         res.data.user?.notices.includes(
                             NoticeTitle));
-            }
-            catch (err) {
-                console.log(err.response.data.msg);
-            }
+                } catch (error) {
+                 console.error('Error fetching posts:', error);
+                setLoading(false);
+                }
         };
 
         fetchUser();
-    }, [id]);
+    }, [_id]);
+
+    if (loading) return (<CircularProgress />);
 
     return user ? (
         <ProfileContainer>
@@ -87,9 +89,8 @@ const MyProfile = () => {
                     sx={{ width: 100, height: 100 }} />
                 </Grid>
                 <Grid item>
-                    <Typography variant="h5">{user?.fullname}</Typography>
+                    <Typography variant="h5"><People /> {user?.fullname}</Typography>
     
-
                 </Grid>
             </Grid>
 
@@ -122,9 +123,9 @@ const MyProfile = () => {
             <Divider sx={{ my: 3 }} />
 
   
-                     </ProfileContainer>
+        </ProfileContainer>
                 ) : (
-                <Typography>Loading...</Typography>);
-        };
+        <Typography>Loading...</Typography>);
+    };
 
-export default MyProfile;
+export default CNProfile;

@@ -11,14 +11,15 @@ const CNtheme = createTheme({
       'Helvetica Neue',
       'Arial',
     ].join(','),
-  },
+  },               
   palette: {
     primary: {
       main: '#FFD700',
+    
       contrastText: '#FFD700',
     },
     secondary: {
-      main: '#00008B',
+      main: '#000080',
       light: '#FFD700',
       contrastText: '#FFD700',
     },
@@ -26,8 +27,8 @@ const CNtheme = createTheme({
       default: '#50C878',
     },
     action: {
-      shadow: '#FF7070',
-      hover: '#191970',
+      shadow: '#000080',
+      hover: '#000080',
     },
   },
   components: {
@@ -53,10 +54,10 @@ const CNtheme = createTheme({
       styleOverrides: {
         root: {
           textDecoration: 'none',
-          color: '#0000FF',
+          color: '#FFFF00',
           '&:hover': {
             textDecoration: 'none',
-            color: '#0000CD',
+            color: '#FFD700',
           },
         },
       },

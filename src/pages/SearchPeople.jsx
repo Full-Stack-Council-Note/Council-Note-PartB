@@ -11,14 +11,14 @@ import {
 } from "react-router-dom";
 import.meta.env.REACT_APP_ENDPOINT
 import CNtheme from '../styles/theme';
-const Notices = () => {
+const SearchUsers = () => {
     return (
   
       <ThemeProvider theme={CNtheme}>
        <CssBaseline />
         <Container>
         <Typography variant="h4" textAlign= "center" color="secondary" paddingTop="90px">
-         Notices:
+        SearchUsers:
         </Typography>
     
         </Container>  
@@ -26,4 +26,4 @@ const Notices = () => {
     );
   };
   
-  export default Notices;
+  export default SearchUsers;
