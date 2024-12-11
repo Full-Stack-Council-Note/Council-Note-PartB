@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from "react";
 
                                                             //add login or Log In?
-const pages = ['Problems', 'Notices', 'CNProfile', 'SearchPeople'];
+const pages = ['Problems', 'Notices', 'Profile', 'SearchPeople'];
 const reversedPages = [...pages].reverse(); 
 const settings = ['Logout']
 
@@ -36,10 +36,10 @@ export default function Navbar() {
 
   const handleNavClick = (page) => {
     if (page === 'Home') {
-      navigate('/home'); 
+      navigate('/'); 
     }
-    else if (page === 'CNProfile') {
-      navigate('/users/:id/cnprofile'); 
+    else if (page === 'Profile') {
+      navigate('/users/:id/profile'); 
     }
     else if (page === 'SearchPeople') {
       navigate('/users/searchpeople'); 
@@ -93,7 +93,7 @@ export default function Navbar() {
             variant="h6"
             noWrap
             component={Link}
-            to="/home"
+            to="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },

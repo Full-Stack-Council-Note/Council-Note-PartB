@@ -8,25 +8,28 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import.meta.env.REACT_APP_ENDPOINT
 
 const Register = () => {
-  const [formData, setFormData] = useState({
+  const [data, setData] = useState({
     fullname: '',
     email: '',
     password: '',
   });
   const [error, setError] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [token, setToken] = useState(true);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setData({ ...data, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:4173/auth/register', formData);
+      const response = axios.post('http://localhost:8080/auth/register', data);
+      setToken(response.data.token);
+      console.log('User account created successfully', response.data);
       navigate("auth/login");
       setOpenSnackbar(true);
     } catch (err) {
@@ -43,29 +46,32 @@ const Register = () => {
         <TextField
           label="Fullname"
           name="fullname"
-          value={formData.fullname}
+          value={data.fullname}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          color="secondary"
           required
         />
         <TextField
           label="Email"
           name="email"
-          value={formData.email}
+          value={data.email}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          color="secondary"
           required
         />
         <TextField
           label="Password"
           type="password"
           name="password"
-          value={formData.password}
+          value={data.password}
           onChange={handleChange}
           fullWidth
           margin="normal"
+          color="secondary"
           required
         />
            {error && <Typography color="error">{error}</Typography>}

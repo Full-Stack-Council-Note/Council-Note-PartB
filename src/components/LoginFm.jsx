@@ -12,22 +12,22 @@ import.meta.env.REACT_APP_ENDPOINT
 //http://localhost:5173/auth/login
 // Custom hook to manage error state
 const LoginFm = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [data, setData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [authToken, setAuthToken] = useState(null);
+  //const [token, setToken] = useState(true);
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setData({ ...data, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:4173/auth/login', formData);
-      setAuthToken(response.data.token);
+      const response = await axios.post('http://localhost:8080/auth/loginfm', data);
+      //setToken(response.data.token);
       navigate("/problems");
       setOpenSnackbar(true);
     } catch (err) {
@@ -44,7 +44,7 @@ const LoginFm = () => {
         <TextField
           label="Email"
           name="email"
-          value={formData.email}
+          value={data.email}
           onChange={handleChange}
           fullWidth
           color="secondary"
@@ -55,7 +55,7 @@ const LoginFm = () => {
           label="Password"
           type="password"
           name="password"
-          value={formData.password}
+          value={data.password}
           onChange={handleChange}
           fullWidth
           color="secondary"
@@ -69,13 +69,7 @@ const LoginFm = () => {
           </Typography>
         </Button>
       </form>
-      {authToken && (
-        <Box sx={{ mt: 3 }}>
-          <Typography variant="body1" color="secondary">
-            Logged in successfully! Token: {authToken}
-          </Typography>
-        </Box>
-      )}
+
       <Snackbar
         open={openSnackbar}
         autoHideDuration={6000}

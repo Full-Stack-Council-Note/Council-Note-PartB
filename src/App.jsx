@@ -10,7 +10,7 @@ import Home from './pages/Home';
 //import Register from './components/Register';
 import Login  from './pages/Login';
 //import LoginFm from './components/LoginFm';
-import CNProfile from './pages/CNProfile';
+import Profile from './pages/Profile';
 import SearchPeople from './pages/SearchPeople';
 import Problems from './pages/Problems';
 import Notices from './pages/Notices';
@@ -34,11 +34,11 @@ const App = () => {
       {/* The Routes are defined here */}
       
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/auth/login" element={<Login />} />
           <Route path="/problems" element={<Problems />} />
           <Route path="/notices" element={<Notices />} />
-          <Route path="/users/:id/cnprofile" element={<CNProfile />} />
+          <Route path="/users/:id/profile" element={<Profile />} />
           <Route path="/users/searchpeople" element={<SearchPeople />} />
         </Routes>
         </ThemeProvider>
@@ -47,7 +47,4 @@ const App = () => {
   );
 };
 export default App;
-// I originally called CNProfile MyProfile but was trying to organise the routes to work
-//and the intention is/was to have users look up other user profiles, ie. via /users/:id/
-//which worked in the backend on Insomnia, so I called it a more general term like CNProfile but
-//doesn't quite make sense
+

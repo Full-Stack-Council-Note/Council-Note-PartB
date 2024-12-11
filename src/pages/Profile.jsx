@@ -31,7 +31,7 @@ const ProfileContainer = styled(Box)(
         boxShadow: theme.shadows[3],
     }));
 
-const CNProfile = () => {
+const Profile = () => {
     const { _id } = useParams();
     const [user, setUser] = useState(true);
     const [problemslist, setproblemslist] = useState([]);
@@ -44,7 +44,7 @@ const CNProfile = () => {
             try {
                 const res = await axios.get(
                                              //or id ?
-                    `http://localhost:5173/users/${_id}/cnprofile`,
+                    `http://localhost:8080/users/${_id}/profile`,
                     {
                         headers: {
                             Authorization:
@@ -128,4 +128,4 @@ const CNProfile = () => {
         <Typography>Loading...</Typography>);
     };
 
-export default CNProfile;
+export default Profile;
