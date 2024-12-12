@@ -29,7 +29,7 @@ const LoginFm = () => {
     try {
       const response = await axios.post('http://localhost:8080/auth/loginfm', data);
       //setToken(response.data.token);
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("token", response.data.token);
       navigate("/problems");
       setOpenSnackbar(true);
     } catch (err) {

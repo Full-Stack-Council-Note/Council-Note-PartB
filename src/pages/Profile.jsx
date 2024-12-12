@@ -79,6 +79,7 @@ const Profile = () => {
     }, [_id]);
 
     //this bit needed?
+    const [profilephoto, setprofilephoto] = useState(true)
     const [updateuser, setUpdateUser] = useState({ about: '', profilephoto});
 
     const handleInputChange = (e) => {

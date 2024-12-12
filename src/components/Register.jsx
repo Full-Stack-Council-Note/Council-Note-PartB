@@ -15,7 +15,7 @@ const Register = () => {
   });
   const [error, setError] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [token, setToken] = useState(true);
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -28,7 +28,7 @@ const Register = () => {
 
     try {
       const response = axios.post('http://localhost:8080/auth/register', data);
-      setToken(response.data.token);
+      localStorage.setItem("token", response.data.token);
       console.log('User account created successfully', response.data);
       navigate("auth/login");
       setOpenSnackbar(true);

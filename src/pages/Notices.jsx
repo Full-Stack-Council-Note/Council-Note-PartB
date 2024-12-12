@@ -15,8 +15,12 @@ export default function Problems() {
     //const { search } = useLocation();
    
     const [notices, setNotices] = useState([]);
-    const [newNotice, setNewNotice] = useState({ NoticeTitle: '', NoticeDescription: '', user, DateAdded, NoticePhoto, NoticeComments });
+    const [DateAdded, setDateAdded]= useState(true)
+    const [user, setUser] = useState(true);
+    const [NoticePhoto, setNoticePhoto] = useState(true)
     const [NoticeComments, setNoticeComments] = useState([]);
+    const [newNotice, setNewNotice] = useState({ NoticeTitle: '', NoticeDescription: '', user, DateAdded, NoticePhoto, NoticeComments });
+
     const [newNoticeComments, setNewNoticeComments] = useState({content:"", user, DateAdded});
     
     const [loading, setLoading] = useState(true);
@@ -101,7 +105,7 @@ const handleInputChange = (e) => {
                 {notices.NoticeDescription}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {notices.user}
+                {notices.user._id}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
                 {notices.DateAdded}

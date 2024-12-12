@@ -20,7 +20,7 @@ const Login = () => {
          <LoginFm />
          <Typography variant="body1" textAlign= "center" paragraph>
              Don't have an account?{' '}
-            <Link component={Link} to="/cn" underline="hover">
+            <Link component={Link} to="/" underline="hover">
              Create an account here...
              </Link>
           </Typography>

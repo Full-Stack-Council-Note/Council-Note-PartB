@@ -18,14 +18,15 @@ export default function Problems() {
    
     const [problems, setProblems] = useState([]);
     //const [UrgentOrSoon, setUrgentOrSoon] = useState('Urgent', 'Soon');
-    const [IsResolved, setIsResolved]=useState(false);
+    const [DateAdded, setDateAdded]= useState(true)
+    const [user, setUser] = useState(true);
+    const [IsResolved, setIsResolved]= useState(false);
+    const [problemphoto, setproblemhoto] = useState(true)
+    const [ProblemComments, setProblemComments] = useState([]);
     const [newProblem, setNewProblem] = useState({ problemtitle: '', problemdescription: '', user, DateAdded, UrgentOrSoon: '', IsResolved, problemphoto, ProblemComments });
    
-
-    const [ProblemComments, setProblemComments] = useState([]);
     const [newProblemComments, setNewProblemComments] = useState({content:"", user, DateAdded});
 
-   
     const [loading, setLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [search, setSearch] = useState('');
@@ -109,7 +110,7 @@ const handleInputChange = (e) => {
                 {problems.problemdescription}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.user}
+                {problems.user._id}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
                 {problems.DateAdded}
