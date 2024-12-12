@@ -19,21 +19,22 @@ export default function Problems() {
     const [problems, setProblems] = useState([]);
     //const [UrgentOrSoon, setUrgentOrSoon] = useState('Urgent', 'Soon');
     const [IsResolved, setIsResolved]=useState(false);
-    const [newProblem, setNewProblem] = useState({ problemtitle: '', problemdescription: '', UrgentOrSoon: '', IsResolved });
+    const [newProblem, setNewProblem] = useState({ problemtitle: '', problemdescription: '', user, DateAdded, UrgentOrSoon: '', IsResolved, problemphoto, ProblemComments });
    
-    const [newComment, setNewComment] = useState({content:""});
-    const [comments, setComments] = useState([]);
+
+    const [ProblemComments, setProblemComments] = useState([]);
+    const [newProblemComments, setNewProblemComments] = useState({content:"", user, DateAdded});
+
+   
     const [loading, setLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [totalPosts, setTotalPosts] = useState(0);
-    const postsPerPage = 5;
+    const postsPerPage = 10;
     const problemsSearch = new URLSearchParams(search).get("problems/filter");
     
-    
-
     //const Problems = ({ problems }) => {
       // Ensure problems is always an array (even if it’s empty)
     const safeProblems = problems || [];
@@ -46,9 +47,10 @@ export default function Problems() {
       });
       
       //setUrgentOrSoon(response.data.UrgentOrSoon);
-      setIsResolved
 
       setProblems(response.data.problems);
+      setProblemComments(response.data.ProblemComments)
+      // or? setNoticeComments(response.data.notices.NoticeComments)
       setTotalPosts(response.data.totalPosts);
       setTotalPages(response.data.totalPages);
       setLoading(false);
@@ -71,15 +73,16 @@ const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewProblem({ ...newProblem, [name]: value });
     setIsResolved(e.target.checked);
+    setNewProblemComments({ ... newProblemComments, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    axios.post('http://localhost:8080/problems', newProblem)
+    axios.post('http://localhost:8080/problems/addProblem', newProblem)
       .then((response) => {
         setProblems([...problems, response.data]);
-        setNewProblem({ problemtitle: '', problemdescription: '', UrgentOrSoon: '', IsResolved });
+        setNewProblem({ problemtitle: '', problemdescription: '', UrgentOrSoon: '', IsResolved, problemphoto });
         setIsSubmitting(false);
       })
       .catch((error) => {
@@ -106,14 +109,20 @@ const handleInputChange = (e) => {
                 {problems.problemdescription}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
+                {problems.user}
+              </Typography>
+              <Typography variant="body1" sx={{ marginTop: 1 }}>
+                {problems.DateAdded}
+              </Typography>
+              <Typography variant="body1" sx={{ marginTop: 1 }}>
                 {problems.UrgentOrSoon}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
                 {problems.IsResolved}
               </Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.DateAdded}
-              </Typography>
+              <Box mt={1} sx={{ bgcolor: '#DCDCDC', borderRadius: 3 }}>
+                {problems.problemphoto}
+              </Box>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
                 {problems.ProblemComments}
               </Typography>
@@ -129,7 +138,7 @@ const handleInputChange = (e) => {
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
-            label="Enter a Problem Title"
+            label="Enter a title for the Problem"
             name="problemtitle"
             value={newProblem.problemtitle}
             onChange={handleInputChange}
@@ -140,7 +149,7 @@ const handleInputChange = (e) => {
             required
           />
           <TextField
-            label="Enter a Problem Description"
+            label="Enter a description of Problem"
             name="problemdescription"
             value={newProblem.problemdescription}
             onChange={handleInputChange}
@@ -189,7 +198,14 @@ const handleInputChange = (e) => {
             sx={{ mx: 1, bgcolor: '#fff', width: 400 }}
             margin="normal"
             />
-          <Button sx={{ mr: 1, mx: 1, height: 65, width: 400 }} variant="contained" color="primary" type="submit">
+          <Button 
+           sx={{ mr: 1, mx: 1, height: 65, width: 400 }} 
+           variant="contained" 
+           color="primary" 
+           type="submit"
+           value={newProblem.problemphoto}
+           onChange={handleInputChange}
+           >
           <Typography color="secondary">
            Upload Photo
           </Typography>          

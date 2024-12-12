@@ -16,6 +16,7 @@ const LoginFm = () => {
   const [error, setError] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
   //const [token, setToken] = useState(true);
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +29,7 @@ const LoginFm = () => {
     try {
       const response = await axios.post('http://localhost:8080/auth/loginfm', data);
       //setToken(response.data.token);
+      localStorage.setItem("token", res.data.token);
       navigate("/problems");
       setOpenSnackbar(true);
     } catch (err) {
