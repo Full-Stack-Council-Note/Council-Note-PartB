@@ -76,7 +76,7 @@ I later on renamed "access_token" as "token" in the AuthCtrl so it might match/w
 
 ![CN-updateproblem-insomnia](./src/assets/CN-updateproblem-insomnia.png)
 
-I late put Urgent and Soon as UrgentOrSoon and like this in the Problem model: {type: String, enum: ['Urgent', 'Soon','N/A'], default: 'N/A'}, 
+I later put Urgent and Soon as UrgentOrSoon and like this in the Problem model: {type: String, enum: ['Urgent', 'Soon','N/A'], default: 'N/A'}, 
 
 ![CN-deleteProblem-insomnia](./src/assets/CN-deleteProblem-insomnia.png)
 
@@ -103,6 +103,8 @@ I late put Urgent and Soon as UrgentOrSoon and like this in the Problem model: {
 ![CN-UserFullnameTest3](./src/assets/CN-UserFullnameTest3.png)
 
 User fullname didn't show on this occasion when adding then getting a notice on Insomnia.
+
+![CN-noticeAdded-test](./src/assets/CN-noticeAdded-test.png)
 
 ![CN-addCommentNoticesTest](./src/assets/CN-addCommentNoticesTest.png)
 
