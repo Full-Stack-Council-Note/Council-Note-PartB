@@ -44,6 +44,8 @@ I mainly used Insomnia, Jest and MongoDB Compass to test the backend, checking i
 
 ![CN-UserUpdate-insomnia](./src/assets/CN-UserUpdate-insomnia.png)
 
+![MongoDB-users](./src/assets/MongoDB-users.png)
+
 #### Auth:
 
 ![authCtrl](./src/assets/authCtrl.png)
