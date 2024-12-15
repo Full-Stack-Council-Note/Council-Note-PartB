@@ -44,6 +44,8 @@ I mainly used Insomnia, Jest and MongoDB Compass to test the backend, checking i
 
 ![CN-UserUpdate-insomnia](./src/assets/CN-UserUpdate-insomnia.png)
 
+![CN-deleteUser-insomnia](./src/assets/CN-deleteUser-insomnia.png)
+
 ![MongoDB-users](./src/assets/MongoDB-users.png)
 
 #### Auth:
@@ -76,6 +78,8 @@ I later on renamed "access_token" as "token" in the AuthCtrl so it might match/w
 
 I late put Urgent and Soon as UrgentOrSoon and like this in the Problem model: {type: String, enum: ['Urgent', 'Soon','N/A'], default: 'N/A'}, 
 
+![CN-deleteProblem-insomnia](./src/assets/CN-deleteProblem-insomnia.png)
+
 ![MongoDB-problems](./src/assets/MongoDB-problems.png)
 
 #### Notices:
@@ -88,6 +92,10 @@ I late put Urgent and Soon as UrgentOrSoon and like this in the Problem model: {
 
 ![CN-getOneNotice-insomnia](./src/assets/CN-getOneNotice-insomnia.png)
 
+![CN-getNotices-insomnia](./src/assets/CN-getNotices-insomnia.png)
+
+![CN-GetNotices-insomnia2](./src/assets/CN-GetNotices-insomnia2.png)
+
 ![CN-UserFullnameTest](./src/assets/CN-UserFullnameTest.png)
 
 ![CN-UserFullnameTest2](./src/assets/CN-UserFullnameTest2.png)
@@ -97,6 +105,10 @@ I late put Urgent and Soon as UrgentOrSoon and like this in the Problem model: {
 User fullname didn't show on this occasion when adding then getting a notice on Insomnia.
 
 ![CN-addCommentNoticesTest](./src/assets/CN-addCommentNoticesTest.png)
+
+![CN-updateNotice-insomnia2](./src/assets/CN-updateNotice-insomnia2.png)
+
+![CN-deleteNotice-insomnia](./src/assets/CN-deleteNotice-insomnia.png)
 
 ![MongoDB-notices](./src/assets/MongoDB-notices.png)
 
