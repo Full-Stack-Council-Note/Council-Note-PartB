@@ -172,6 +172,7 @@ const handleInputChange = (e) => {
            sx={{ bgcolor: '#fff', width: 500 }}
            onChange={handleInputChange}
            >
+           <MenuItem sx={{ color: '#FF0000' }} value={'N/A'}>N/A</MenuItem>
            <MenuItem sx={{ color: '#FF0000' }} value={'Urgent'}>Urgent  -<img src={UrgentSymbol} alt="UrgentSymbol" height={20} width={20} sx={{ flexGrow: 1 }}/></MenuItem>
            <MenuItem sx={{ color: '#FF0000' }} value={'Soon'}>Soon  -<img src={SoonSymbol} alt="SoonSymbol" height={20} width={20} sx={{ flexGrow: 1 }}/></MenuItem>
            

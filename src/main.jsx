@@ -6,6 +6,8 @@ import App from './App.jsx'
 import axios from 'axios';
 import.meta.env.VITE_PORT
 import.meta.env.REACT_APP_ENDPOINT
+
+axios.defaults.baseURL = 'http://localhost:8080';
 //axios.defaults.baseURL = "https://";
 
 //ReactDOM.createRoot(document.getElementById('root')).render(<App />);
