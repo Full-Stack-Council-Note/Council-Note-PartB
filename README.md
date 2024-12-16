@@ -44,9 +44,15 @@ I mainly used Insomnia, Jest and MongoDB Compass to test the backend, checking i
 
 ![CN-UserUpdate-insomnia](./src/assets/CN-UserUpdate-insomnia.png)
 
+Updating user profile info, such as the "about".
+
 ![CN-deleteUser-insomnia](./src/assets/CN-deleteUser-insomnia.png)
 
+Delete user is working. This might be for if a user closes their account, or if they're banned.
+
 ![MongoDB-users](./src/assets/MongoDB-users.png)
+
+Users data appearing in MongoDB Compass.
 
 #### Auth:
 
@@ -58,7 +64,7 @@ I mainly used Insomnia, Jest and MongoDB Compass to test the backend, checking i
 
 ![CN-authlogintoken](./src/assets/CN-authlogintoken.png)
 
-New token generated upon logging in
+New token generated upon logging in.
 
 ![CN-logout-insomnia](./src/assets/CN-logout-insomnia.png)
 
@@ -72,11 +78,11 @@ New token generated upon logging in
 
 ![CN-ProblemsFullnameTest1](./src/assets/CN-ProblemsFullnameTest1.png)
 
-Problem posts including User fullname displayed as intended, and the Problem comments
+Problem posts including User fullname displayed as intended, and the Problem comments.
 
 ![CN-GetProblems-insomnia](./src/assets/CN-GetProblems-insomnia.png)
 
-Problem posts including User fullname displayed, along with the comments added
+Problem posts including User fullname displayed, along with the comments added.
 
 ![CN-GetProblemComments](./src/assets/CN-GetProblemComments.png)
 
@@ -90,7 +96,7 @@ Adding problem comments
 
 ![CN-Getproblemswithcomments](./src/assets/CN-Getproblemswithcomments.png)
 
-Getting problems with comments, including the just-added comment
+Getting problems with comments, including the just-added comment.
 
 ![CN-updateproblem-insomnia](./src/assets/CN-updateproblem-insomnia.png)
 
@@ -98,7 +104,11 @@ Problem post updated. I later put Urgent and Soon as UrgentOrSoon and like this 
 
 ![CN-deleteProblem-insomnia](./src/assets/CN-deleteProblem-insomnia.png)
 
+Problem post being deleted
+
 ![MongoDB-problems](./src/assets/MongoDB-problems.png)
+
+Problems data appearing in MongoDB Compass. There is also a "problemcomments" schema but these are populated within the Problem post as intended.
 
 #### Notices:
 
@@ -110,7 +120,7 @@ Problem post updated. I later put Urgent and Soon as UrgentOrSoon and like this 
 
 ![CN-getOneNotice-insomnia](./src/assets/CN-getOneNotice-insomnia.png)
 
-Getting one notice, including user fullname displayed
+Getting one notice, including user fullname displayed.
 
 ![CN-getNotices-insomnia](./src/assets/CN-getNotices-insomnia.png)
 
@@ -118,7 +128,7 @@ Getting one notice, including user fullname displayed
 
 ![CN-UserFullnameTest](./src/assets/CN-UserFullnameTest.png)
 
-Getting notices, including notice comments, and user fullname diplayed as intended
+Getting notices, including notice comments, and user fullname displayed as intended.
 
 ![CN-UserFullnameTest2](./src/assets/CN-UserFullnameTest2.png)
 
@@ -138,5 +148,9 @@ Updating a notice
 
 ![CN-deleteNotice-insomnia](./src/assets/CN-deleteNotice-insomnia.png)
 
+Notice being deleted
+
 ![MongoDB-notices](./src/assets/MongoDB-notices.png)
+
+Notices data appearing in MongoDB Compass. There is also a "noticecomments" schema but these are populated within the Notice post as intended.
 
