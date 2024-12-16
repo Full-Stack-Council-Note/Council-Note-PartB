@@ -56,9 +56,7 @@ I mainly used Insomnia, Jest and MongoDB Compass to test the backend, checking i
 
 ![Auth-routes](./src/assets/Auth-routes.png)
 
-![CN-login-insomnia](./src/assets/CN-login-insomnia.png)
-
-I later on renamed "access_token" as "token" in the AuthCtrl so it might match/work better in the frontend for the "token" in localStorage.setItem("token", response.data.token); for instance. 
+![CN-authlogintoken](./src/assets/CN-authlogintoken.png)
 
 ![CN-logout-insomnia](./src/assets/CN-logout-insomnia.png)
 
@@ -73,6 +71,14 @@ I later on renamed "access_token" as "token" in the AuthCtrl so it might match/w
 ![CN-ProblemsFullnameTest1](./src/assets/CN-ProblemsFullnameTest1.png)
 
 ![CN-GetProblems-insomnia](./src/assets/CN-GetProblems-insomnia.png)
+
+![CN-GetProblemComments](./src/assets/CN-GetProblemComments.png)
+
+![CN-addProblem-insomnia](./src/assets/CN-addProblem-insomnia.png)
+
+![CN-addingProblemComment](./src/assets/CN-addingProblemComment.png)
+
+![CN-Getproblemswithcomments](./src/assets/CN-Getproblemswithcomments.png)
 
 ![CN-updateproblem-insomnia](./src/assets/CN-updateproblem-insomnia.png)
 
