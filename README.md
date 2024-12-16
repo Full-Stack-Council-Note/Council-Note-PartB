@@ -94,7 +94,7 @@ Getting problems with comments, including the just-added comment
 
 ![CN-updateproblem-insomnia](./src/assets/CN-updateproblem-insomnia.png)
 
-I later put Urgent and Soon as UrgentOrSoon and like this in the Problem model: {type: String, enum: ['Urgent', 'Soon','N/A'], default: 'N/A'}, 
+Problem post updated. I later put Urgent and Soon as UrgentOrSoon and like this in the Problem model: {type: String, enum: ['Urgent', 'Soon','N/A'], default: 'N/A'}, 
 
 ![CN-deleteProblem-insomnia](./src/assets/CN-deleteProblem-insomnia.png)
 
@@ -110,11 +110,15 @@ I later put Urgent and Soon as UrgentOrSoon and like this in the Problem model: 
 
 ![CN-getOneNotice-insomnia](./src/assets/CN-getOneNotice-insomnia.png)
 
+Getting one notice, including user fullname displayed
+
 ![CN-getNotices-insomnia](./src/assets/CN-getNotices-insomnia.png)
 
 ![CN-GetNotices-insomnia2](./src/assets/CN-GetNotices-insomnia2.png)
 
 ![CN-UserFullnameTest](./src/assets/CN-UserFullnameTest.png)
+
+Getting notices, including notice comments, and user fullname diplayed as intended
 
 ![CN-UserFullnameTest2](./src/assets/CN-UserFullnameTest2.png)
 
@@ -126,7 +130,11 @@ User fullname didn't show on this occasion when adding then getting a notice on 
 
 ![CN-addCommentNoticesTest](./src/assets/CN-addCommentNoticesTest.png)
 
+Adding a comment to a notice
+
 ![CN-updateNotice-insomnia2](./src/assets/CN-updateNotice-insomnia2.png)
+
+Updating a notice
 
 ![CN-deleteNotice-insomnia](./src/assets/CN-deleteNotice-insomnia.png)
 
