@@ -108,7 +108,7 @@ Problem post being deleted
 
 ![MongoDB-problems](./src/assets/MongoDB-problems.png)
 
-Problems data appearing in MongoDB Compass. There is also a "problemcomments" schema but these are populated within the Problem post as intended.
+Problems data appearing in MongoDB Compass. There is also a "problemcomments" schema but these are populated within the Problem post as intended. Earlier on, I initiated a schema just called "comments" because I wasn't sure if all comments would be under the same schema/collection, but later changed to "noticecomments" and "problemcomments" to perhaps avoid confusion. 
 
 #### Notices:
 
