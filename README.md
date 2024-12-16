@@ -58,6 +58,8 @@ I mainly used Insomnia, Jest and MongoDB Compass to test the backend, checking i
 
 ![CN-authlogintoken](./src/assets/CN-authlogintoken.png)
 
+New token generated upon logging in
+
 ![CN-logout-insomnia](./src/assets/CN-logout-insomnia.png)
 
 #### Problems:
@@ -70,15 +72,25 @@ I mainly used Insomnia, Jest and MongoDB Compass to test the backend, checking i
 
 ![CN-ProblemsFullnameTest1](./src/assets/CN-ProblemsFullnameTest1.png)
 
+Problem posts including User fullname displayed as intended, and the Problem comments
+
 ![CN-GetProblems-insomnia](./src/assets/CN-GetProblems-insomnia.png)
 
+Problem posts including User fullname displayed, along with the comments added
+
 ![CN-GetProblemComments](./src/assets/CN-GetProblemComments.png)
+
+Getting problem comments
 
 ![CN-addProblem-insomnia](./src/assets/CN-addProblem-insomnia.png)
 
 ![CN-addingProblemComment](./src/assets/CN-addingProblemComment.png)
 
+Adding problem comments
+
 ![CN-Getproblemswithcomments](./src/assets/CN-Getproblemswithcomments.png)
+
+Getting problems with comments, including the just-added comment
 
 ![CN-updateproblem-insomnia](./src/assets/CN-updateproblem-insomnia.png)
 
