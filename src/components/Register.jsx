@@ -8,32 +8,33 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import.meta.env.REACT_APP_ENDPOINT
 
 const Register = () => {
-  const [data, setData] = useState({
+  const [formData, setformData] = useState({
     fullname: '',
     email: '',
     password: '',
   });
   const [error, setError] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const token = localStorage.getItem("token");
+  //const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setData({ ...data, [name]: value });
+    setformData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = axios.post('http://localhost:8080/auth/register', data);
-      localStorage.setItem("token", response.data.token);
+      const response = axios.post(`https://council-note-backend-5cf218cede7a.herokuapp.com/auth/register`, formData);
+      const token = response.data.token;
+      localStorage.setItem('token', token);
       console.log('User account created successfully', response.data);
-      navigate("auth/login");
+      navigate("/problems");
       setOpenSnackbar(true);
     } catch (err) {
-      setError(err.response ? err.response.data.message : 'Server Error');
+      setError(err.response ? err.response.data.message : 'An Error occurred creating account');
     }
   };
 
@@ -46,7 +47,7 @@ const Register = () => {
         <TextField
           label="Fullname"
           name="fullname"
-          value={data.fullname}
+          value={formData.fullname}
           onChange={handleChange}
           fullWidth
           margin="normal"
@@ -56,7 +57,7 @@ const Register = () => {
         <TextField
           label="Email"
           name="email"
-          value={data.email}
+          value={formData.email}
           onChange={handleChange}
           fullWidth
           margin="normal"
@@ -67,7 +68,7 @@ const Register = () => {
           label="Password"
           type="password"
           name="password"
-          value={data.password}
+          value={formData.password}
           onChange={handleChange}
           fullWidth
           margin="normal"

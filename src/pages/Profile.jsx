@@ -13,6 +13,7 @@ import {
     Grid,
     IconButton,
     Paper,
+    Container,
     Typography,
     CircularProgress
 } from "@mui/material";
@@ -21,15 +22,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const ProfileContainer = styled(Box)(
-    ({ theme }) => ({
-        maxWidth: "800px",
-        margin: "20px auto",
-        padding: theme.spacing(3),
-        backgroundcolor: "#fff",
-        borderRadius: theme.shape.borderRadius,
-        boxShadow: theme.shadows[3],
-    }));
+//const ProfileContainer = styled(Box)(
+    //({ theme }) => ({
+    //    maxWidth: "800px",
+    //    margin: "20px auto",
+    //    padding: theme.spacing(3),
+    //    backgroundcolor: "#fff",
+    //    borderRadius: theme.shape.borderRadius,
+   //     boxShadow: theme.shadows[3],
+   // }));
 
 const Profile = () => {
     const { _id } = useParams();
@@ -43,8 +44,8 @@ const Profile = () => {
         const fetchUser = async () => {
             try {
                 const res = await axios.get(
-                                             //or id ?
-                    `http://localhost:8080/users/${_id}/profile`,
+                                                                        //or id ?  user?._id
+                    `https://council-note-backend-5cf218cede7a.herokuapp.com/users/${_id}/profile`,
                     {
                         headers: {
                             Authorization:
@@ -66,7 +67,7 @@ const Profile = () => {
                         = JSON.parse(
                             localStorage.getItem("notices"))
                             ?._id;
-                            setproblemslist(
+                            setnoticeslist(
                         res.data.user?.notices.includes(
                             NoticeTitle));
                 } catch (error) {
@@ -93,7 +94,7 @@ const Profile = () => {
             try {    
                 const res = await axios.patch(
                                              //or id ? /:id/profile/updateUser                       
-                    `http://localhost:8080/users/${_id}/profile/updateUser`,
+                    `https://council-note-backend-5cf218cede7a.herokuapp.com/users/${_id}/profile/updateUser`,
                     {
                         headers: {
                             Authorization:
@@ -130,12 +131,14 @@ const Profile = () => {
     if (loading) return (<CircularProgress />);
 
     return user ? (
-        <ProfileContainer>
+        <Container>
             {/* Profile Header */}
-            <Grid container spacing={2} alignItems="center">
-                <Grid item>
+            <Grid container sx={{ bgcolor: '#DCDCDC', borderRadius: 3, justifyContent: "center",  alignItems: "center" }}>
+            <Typography color="secondary" variant="h4" sx={{ mx: 1 }} gutterBottom>
+               My Profile
+            </Typography>
+                <Grid item key={user?._id}>
                     <Typography variant="h5"><People /> {user?.fullname}</Typography>
-    
                 </Grid>
             </Grid>
 
@@ -209,7 +212,7 @@ const Profile = () => {
             <Divider sx={{ my: 3 }} />
 
   
-        </ProfileContainer>
+        </Container>
                 ) : (
         <Typography>Loading...</Typography>);
     };

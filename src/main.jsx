@@ -3,12 +3,14 @@ import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.jsx'
-import axios from 'axios';
+//import axios from 'axios';
 import.meta.env.VITE_PORT
-import.meta.env.REACT_APP_ENDPOINT
+//import.meta.env.REACT_APP_ENDPOINT
+                        
+//axios.defaults.baseURL = 'http://localhost:8080';
+//axios.defaults.REACT_APP_ENDPOINT = 'https://council-note-backend-5cf218cede7a.herokuapp.com/';
 
-axios.defaults.baseURL = 'http://localhost:8080';
-//axios.defaults.baseURL = "https://";
+//axios.defaults.baseURL = "https://"; change to netlify URL
 
 //ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 

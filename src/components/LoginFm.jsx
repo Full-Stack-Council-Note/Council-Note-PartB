@@ -8,32 +8,39 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 //import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import.meta.env.REACT_APP_ENDPOINT
 //import { Container } from "@mui/system";
-
+//const url = process.env.REACT_APP_ENDPOINT
 //http://localhost:5173/auth/login
 // Custom hook to manage error state
 const LoginFm = () => {
-  const [data, setData] = useState({ email: '', password: '' });
+  const [formData, setformData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
   //const [token, setToken] = useState(true);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  ///const handleChange = (e) => {
+   // const { name, value } = e.target;
+   // setData({ ...data, [name]: value });
+  //};
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/auth/loginfm', data);
-      //setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
+      const response = await axios.post(`https://council-note-backend-5cf218cede7a.herokuapp.com/auth/loginfm`, formData);
+      const token = response.data.token;
+      localStorage.setItem('token', token);
       navigate("/problems");
       setOpenSnackbar(true);
     } catch (err) {
-      setError(err.response ? err.response.data.message : 'Server Error');
+      setError(err.response ? err.response.data.message : 'An error occurred during login');
     }
   };
 
@@ -46,7 +53,7 @@ const LoginFm = () => {
         <TextField
           label="Email"
           name="email"
-          value={data.email}
+          value={formData.email}
           onChange={handleChange}
           fullWidth
           color="secondary"
@@ -57,7 +64,7 @@ const LoginFm = () => {
           label="Password"
           type="password"
           name="password"
-          value={data.password}
+          value={formData.password}
           onChange={handleChange}
           fullWidth
           color="secondary"

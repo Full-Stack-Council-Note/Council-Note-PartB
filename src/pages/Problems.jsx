@@ -8,6 +8,7 @@ import {
     useParams
 } from "react-router-dom";
 import.meta.env.REACT_APP_ENDPOINT
+//const url = process.env.REACT_APP_ENDPOINT
 
 import UrgentSymbol from '../assets/URGENT-red-dot.svg';
 import SoonSymbol from '../assets/SOON-yellow-dot.svg';
@@ -35,42 +36,46 @@ export default function Problems() {
     const [totalPosts, setTotalPosts] = useState(0);
     const postsPerPage = 10;
     const problemsSearch = new URLSearchParams(search).get("problems/filter");
-    
-    //const Problems = ({ problems }) => {
-      // Ensure problems is always an array (even if it’s empty)
-    const safeProblems = problems || [];
+
+// Ensure problems is always an array (even if it’s empty). I put this in because I was getting error messages in the console log something like "properties of problems map not recognised"
+// and putting this in made that error message go away for now. Not needed now I think
+    //const Problems = problems || [];
   // Fetch posts with pagination and search
-    const fetchPosts = async (page, search) => {
-    setLoading(true);
-    try {
-      const response = await axios.get('http://localhost:8080/problems', {
-        params: { page, limit: postsPerPage, search }
-      });
-      
+    const fetchPosts = (page, postsPerPage, search) => {
+      //e.preventDefault();
+      setLoading(true);
+    
+      axios.get(`https://council-note-backend-5cf218cede7a.herokuapp.com/problems`, {
+        params: { page, postsPerPage, search }
+      })
+      .then((response) => {
       //setUrgentOrSoon(response.data.UrgentOrSoon);
 
-      setProblems(response.data.problems);
-      setProblemComments(response.data.ProblemComments)
+      setProblems([...problems, response.data]);
+      setProblemComments([...ProblemComments, response.data])
+      setUser( response.data.user)
+      setDateAdded(response.data.DateAdded)
+      setproblemhoto(response.data.problemphoto)
       // or? setNoticeComments(response.data.notices.NoticeComments)
-      setTotalPosts(response.data.totalPosts);
+      setTotalPosts( response.data.totalPosts);
       setTotalPages(response.data.totalPages);
       setLoading(false);
-    
-    } catch (error) {
+    })
+      .catch((error) => {
       console.error('Error fetching problem posts:', error);
-    }
+    });
   };
 
   useEffect(() => {
-    fetchPosts(page, search);
-  }, [page, search]);
+    fetchPosts(page, postsPerPage, search);
+  }, [page, postsPerPage, search ]);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
     setPage(1);  // Reset to the first page whenever search term changes
   };
 
-const handleInputChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewProblem({ ...newProblem, [name]: value });
     setIsResolved(e.target.checked);
@@ -80,10 +85,10 @@ const handleInputChange = (e) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    axios.post('http://localhost:8080/problems/addProblem', newProblem)
+    axios.post(`https://council-note-backend-5cf218cede7a.herokuapp.com/problems/addProblem`, newProblem)
       .then((response) => {
         setProblems([...problems, response.data]);
-        setNewProblem({ problemtitle: '', problemdescription: '', UrgentOrSoon: '', IsResolved, problemphoto });
+        setNewProblem({ problemtitle: '', problemdescription: '', user, DateAdded, UrgentOrSoon: '', IsResolved, problemphoto, ProblemComments });
         setIsSubmitting(false);
       })
       .catch((error) => {
@@ -95,22 +100,22 @@ const handleInputChange = (e) => {
   if (loading) return (<CircularProgress />);
 
   return (
-    <Container>
-      <Typography variant="h3" gutterBottom>
+    <Container >
+
+      {/* Display all problem posts */}
+      <Grid container mt={9} rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}  sx={{ bgcolor: '#DCDCDC', borderRadius: 3, justifyContent: "center",  alignItems: "center" }}>
+      <Typography color="secondary" variant="h4" sx={{ mx: 1 }} gutterBottom>
        Problems:
       </Typography>
-
-      {/* Display all blog posts */}
-      <Grid container spacing={3}>
-        {safeProblems.map((problems) => (
-          <Grid item xs={12} sm={6} md={4} key={problems._id}>
+       {/*needed? {Problems.map((problems) => ( */}
+          <Grid item xs={12} key={problems._id}>
             <Paper elevation={3} sx={{ padding: 2 }}>
               <Typography variant="h5">{problems.problemtitle}</Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
                 {problems.problemdescription}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.user._id}
+                {problems.user}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
                 {problems.DateAdded}
@@ -129,11 +134,11 @@ const handleInputChange = (e) => {
               </Typography>
             </Paper>
           </Grid>
-        ))}
+        
       </Grid>
 
-      {/* Form to create new post */}
-      <Box mt={5} sx={{ bgcolor: '#DCDCDC', borderRadius: 3 }}>
+      {/* Form to add new problem post */}
+      <Box mt={2} sx={{ bgcolor: '#DCDCDC', borderRadius: 3 }}>
         <Typography variant="h4"  color="secondary" textAlign= "center" gutterBottom>
           Add a Problem
         </Typography>

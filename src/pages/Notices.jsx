@@ -8,7 +8,7 @@ import {
     useParams
 } from "react-router-dom";
 import.meta.env.REACT_APP_ENDPOINT
-
+//const url = process.env.REACT_APP_ENDPOINT
 
 export default function Problems() {
     const { _id } = useParams();
@@ -32,41 +32,45 @@ export default function Problems() {
     const postsPerPage = 10;
     const noticesSearch = new URLSearchParams(search).get("notices/filter");
     
-    
-
-    //const Problems = ({ problems }) => {
-      // Ensure problems is always an array (even if it’s empty)
-    const safeNotices = notices || [];
+// Ensure notices is always an array (even if it’s empty). I put this in because I was getting error messages in the console log something like "properties of notices map not recognised"
+// and putting this in made that error message go away for now. Not needed now I think
+    //const Notices = notices || [];
   // Fetch posts with pagination and search
-    const fetchPosts = async (page, search) => {
+  const fetchPosts = (page, postsPerPage, search) => {
+    //e.preventDefault();
     setLoading(true);
-    try {
-      const response = await axios.get('http://localhost:8080/notices', {
-        params: { page, limit: postsPerPage, search }
-      });
+  
+    axios.get(`https://council-note-backend-5cf218cede7a.herokuapp.com/notices`, {
+      params: { page, postsPerPage, search }
+    })
+    .then((response) => {
+    //setUrgentOrSoon(response.data.UrgentOrSoon);
 
-      setNotices(response.data.notices);
-      setNoticeComments(response.data.NoticeComments)
-      // or? setNoticeComments(response.data.notices.NoticeComments)
-      setTotalPosts(response.data.totalPosts);
-      setTotalPages(response.data.totalPages);
-      setLoading(false);
-    
-    } catch (error) {
-      console.error('Error fetching notices:', error);
-    }
-  };
+    setNotices([...notices, response.data]);
+    setNoticeComments([...NoticeComments, response.data])
+    // or? setNoticeComments(response.data.notices.NoticeComments)
+    setUser( response.data.user)
+    setDateAdded(response.data.DateAdded)
+    setNoticePhoto(response.data.NoticePhoto)
+    setTotalPosts( response.data.totalPosts);
+    setTotalPages(response.data.totalPages);
+    setLoading(false);
+  })
+    .catch((error) => {
+    console.error('Error fetching notices:', error);
+  });
+};
 
   useEffect(() => {
-    fetchPosts(page, search);
-  }, [page, search]);
+    fetchPosts(page, postsPerPage, search);
+  }, [page, postsPerPage, search]);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
     setPage(1);  // Reset to the first page whenever search term changes
   };
 
-const handleInputChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewNotice({ ...newNotice, [name]: value });
     setNewNoticeComments({ ... newNoticeComments, [name]: value });                         
@@ -75,10 +79,10 @@ const handleInputChange = (e) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    axios.post('http://localhost:8080/notices/addNotice', newNotice)
+    axios.post(`https://council-note-backend-5cf218cede7a.herokuapp.com/notices/addNotice`, newNotice)
       .then((response) => {
         setNotices([...notices, response.data]);
-        setNewNotice({ NoticeTitle: '', NoticeDescription: '', NoticePhoto });
+        setNewNotice({ NoticeTitle: '', NoticeDescription: '', user, DateAdded, NoticePhoto, NoticeComments });
         setIsSubmitting(false);
       })
       .catch((error) => {
@@ -90,22 +94,22 @@ const handleInputChange = (e) => {
   if (loading) return (<CircularProgress />);
 
   return (
-    <Container>
-      <Typography variant="h3" gutterBottom>
-       Notices:
-      </Typography>
+    <Container >
 
-      {/* Display all blog posts */}
-      <Grid container spacing={3}>
-        {safeNotices.map((notices) => (
-          <Grid item xs={12} sm={6} md={4} key={notices._id}>
+      {/* Display all notices posts */}
+      <Grid container mt={9} rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}  sx={{ bgcolor: '#DCDCDC', borderRadius: 3, justifyContent: "center",  alignItems: "center" }}>
+        <Typography color="secondary" variant="h4" sx={{ mx: 1 }} gutterBottom>
+               Notices:
+          </Typography>
+      {/*needed? {Notices.map((notices) => ( */}          
+          <Grid item xs={12} key={notices._id}>
             <Paper elevation={3} sx={{ padding: 2 }}>
               <Typography variant="h5">{notices.NoticeTitle}</Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
                 {notices.NoticeDescription}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {notices.user._id}
+                {notices.user}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
                 {notices.DateAdded}
@@ -118,11 +122,11 @@ const handleInputChange = (e) => {
               </Typography>
             </Paper>
           </Grid>
-        ))}
+        
       </Grid>
 
-      {/* Form to create new post */}
-      <Box mt={5} sx={{ bgcolor: '#DCDCDC', borderRadius: 3 }}>
+      {/* Form to add new notice */}
+      <Box mt={2} sx={{ bgcolor: '#DCDCDC', borderRadius: 3 }}>
         <Typography variant="h4"  color="secondary" textAlign= "center" gutterBottom>
           Add a Notice
         </Typography>
