@@ -14,16 +14,19 @@ import UrgentSymbol from '../assets/URGENT-red-dot.svg';
 import SoonSymbol from '../assets/SOON-yellow-dot.svg';
 
 export default function Problems() {
-    const { _id } = useParams();
+   const [error, setError] = useState(null);
+    const { _id  } = useParams();
     //const { search } = useLocation();
-   
-    const [problems, setProblems] = useState([]);
-    //const [UrgentOrSoon, setUrgentOrSoon] = useState('Urgent', 'Soon');
+          //or problemData, setProblemData
+    const [UrgentOrSoon, setUrgentOrSoon] = useState('Urgent', 'Soon', 'N/A');
     const [DateAdded, setDateAdded]= useState(true)
     const [user, setUser] = useState(true);
     const [IsResolved, setIsResolved]= useState(false);
     const [problemphoto, setproblemhoto] = useState(true)
     const [ProblemComments, setProblemComments] = useState([]);
+    const [problems, setProblems] = useState([]);
+    //const [problemtitle, setProblemTitle] = useState('');
+   
     const [newProblem, setNewProblem] = useState({ problemtitle: '', problemdescription: '', user, DateAdded, UrgentOrSoon: '', IsResolved, problemphoto, ProblemComments });
    
     const [newProblemComments, setNewProblemComments] = useState({content:"", user, DateAdded});
@@ -41,34 +44,35 @@ export default function Problems() {
 // and putting this in made that error message go away for now. Not needed now I think
     //const Problems = problems || [];
   // Fetch posts with pagination and search
-    const fetchPosts = (page, postsPerPage, search) => {
-      //e.preventDefault();
-      setLoading(true);
-    
-      axios.get(`https://council-note-backend-5cf218cede7a.herokuapp.com/problems`, {
-        params: { page, postsPerPage, search }
-      })
-      .then((response) => {
+    useEffect(() => {
+      //e.preventDefault();   
+      fetch('https://council-note-backend-5cf218cede7a.herokuapp.com/problems', problems)
+      .then(response => response.json())
+      .then((data) => {
       //setUrgentOrSoon(response.data.UrgentOrSoon);
 
-      setProblems([...problems, response.data]);
-      setProblemComments([...ProblemComments, response.data])
-      setUser( response.data.user)
-      setDateAdded(response.data.DateAdded)
-      setproblemhoto(response.data.problemphoto)
-      // or? setNoticeComments(response.data.notices.NoticeComments)
-      setTotalPosts( response.data.totalPosts);
-      setTotalPages(response.data.totalPages);
+      setProblems( data.problems || []);
+      //setProblemTitle( data.problemtitle);
+      //setProblemComments(data.ProblemComments)
+      //setProblemComments([...ProblemComments, data])
+      //setUser( data.user)
+      //setDateAdded(data.DateAdded)
+      //setproblemhoto(data.problemphoto)     
+      setPage(data.problems)
+      setTotalPosts( data.problems);
+      setTotalPages(data.problems);
       setLoading(false);
     })
-      .catch((error) => {
-      console.error('Error fetching problem posts:', error);
-    });
-  };
+    .catch(error => {
+      console.log('error fetching problem posts', error)
+      // update the error state
+      setError(error)
+    })
+  }, []);
 
-  useEffect(() => {
-    fetchPosts(page, postsPerPage, search);
-  }, [page, postsPerPage, search ]);
+  //useEffect(() => {
+    //fetchPosts(page, postsPerPage, search);
+  //}, [page, postsPerPage, search ]);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -107,34 +111,40 @@ export default function Problems() {
       <Typography color="secondary" variant="h4" sx={{ mx: 1 }} gutterBottom>
        Problems:
       </Typography>
-       {/*needed? {Problems.map((problems) => ( */}
-          <Grid item xs={12} key={problems._id}>
+      {/* Check if problems is an array before calling .map */}
+      {Array.isArray(problems) && problems.length > 0 ? (
+       problems.map((problem) => (
+          <Grid item xs={12} key={problem._id }>
             <Paper elevation={3} sx={{ padding: 2 }}>
-              <Typography variant="h5">{problems.problemtitle}</Typography>
+              <Typography variant="h5">{problem.problemtitle}</Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.problemdescription}
+                {problem.problemdescription}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.user}
+                {problem.user}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.DateAdded}
+                {problem.DateAdded}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.UrgentOrSoon}
+                {problem.UrgentOrSoon}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.IsResolved}
+                {problem.IsResolved}
               </Typography>
               <Box mt={1} sx={{ bgcolor: '#DCDCDC', borderRadius: 3 }}>
-                {problems.problemphoto}
+                {problem.problemphoto}
               </Box>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.ProblemComments}
+                {problem.ProblemComments}
               </Typography>
             </Paper>
           </Grid>
-        
+        ))
+      ) : (
+        <Typography>No problems available.</Typography>
+      )
+      }
       </Grid>
 
       {/* Form to add new problem post */}
