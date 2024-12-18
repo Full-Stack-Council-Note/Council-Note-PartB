@@ -40,9 +40,22 @@ Frontend as of 18 Dec 2024, empty problems list.
 
 Frontend as of 18 Dec 2024, empty notices list.
 
+![CN-NoProblemsAvailable](./src/assets/CN-NoProblemsAvailable.png)
+
+"No Problems Available" on 18 Dec 2024
+
 ## Testing Backend
 
 I mainly used Insomnia, Jest and MongoDB Compass to test the backend, checking if certain routes, functions and features were working.
+
+The backend was deployed successfully on 18 Dec 2024.
+
+As of 18 Dec 2024, I can get Problems and Notices data from the backend URL (with Auth disabled for this), but was still having trouble displaying and using this data in the frontend.
+
+![Get-problems-backend-URL](./src/assets/Get-problems-backend-URL.png)
+
+![Get-notices-backend-URL](./src/assets/Get-notices-backend-URL.png)
+
 
 #### Users:
 
