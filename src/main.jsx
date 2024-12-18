@@ -1,8 +1,8 @@
-//import 'bootstrap/dist/css/bootstrap.css';
-import './index.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App.jsx'
+import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx';
+import './index.css';
 //import axios from 'axios';
 import.meta.env.VITE_PORT
 //import.meta.env.REACT_APP_ENDPOINT
@@ -20,7 +20,7 @@ import.meta.env.VITE_PORT
  //</React.StrictMode>
 //)
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
