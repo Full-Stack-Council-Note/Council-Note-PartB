@@ -56,8 +56,26 @@ As of 18 Dec 2024, I can get Problems and Notices data from the backend URL (wit
 
 ![Get-notices-backend-URL](./src/assets/Get-notices-backend-URL.png)
 
+An earlier server test with Jest:
+
+![server-test-pass](./src/assets/server-test-pass.png)
+
 
 #### Users:
+
+#### Tests with Jest:
+
+Users and auth tests:
+
+![CN-jest-user](./src/assets/CN-jest-user.png)
+
+![CN-jest-userlogin](./src/assets/CN-jest-userlogin.png)
+
+![CN-jest-userLoginRegister](./src/assets/CN-jest-userLoginRegister.png)
+
+![CN-jest-4usertests](./src/assets/CN-jest-4usertests.png)
+
+#### Tests with Insomnia and MongoDB Compass:
 
 ![CN-SearchUsers-insomnia](./src/assets/CN-SearchUsers-insomnia.png)
 
@@ -79,6 +97,8 @@ Users data appearing in MongoDB Compass.
 
 #### Auth:
 
+#### Tests with Insomnia and MongoDB Compass:
+
 ![CN-authlogintoken](./src/assets/CN-authlogintoken.png)
 
 New token generated upon logging in.
@@ -88,6 +108,14 @@ New token generated upon logging in.
 Logout successful
 
 #### Problems:
+
+#### Tests with Jest:
+
+![CN-jest-addproblem](./src/assets/CN-jest-addproblem.png)
+
+![CN-jest-4problemtests](./src/assets/CN-jest-4problemtests.png)
+
+#### Tests with Insomnia and MongoDB Compass:
 
 ![CN-ProblemsFullnameTest1](./src/assets/CN-ProblemsFullnameTest1.png)
 
@@ -126,6 +154,14 @@ Problem post being deleted
 Problems data appearing in MongoDB Compass. There is also a "problemcomments" schema but these are populated within the Problem post as intended. Earlier on, I initiated a schema just called "comments" because I wasn't sure if all comments would be under the same schema/collection, but later changed to "noticecomments" and "problemcomments" to perhaps avoid confusion. 
 
 #### Notices:
+
+#### Tests with Jest:
+
+![CN-jest-addnotice](./src/assets/CN-jest-addnotice.png)
+
+![CN-jest-4noticetests](./src/assets/CN-jest-4noticetests.png)
+
+#### Tests with Insomnia and MongoDB Compass:
 
 ![CN-getOneNotice-insomnia](./src/assets/CN-getOneNotice-insomnia.png)
 
@@ -203,31 +239,31 @@ Below are some examples of the Urgent and Soon symbols I intend to try out and i
 
 #### Yellow Square symbol
 
-![Yellow Square](./docs/yellow-square.svg)
+![Yellow Square](./src/assets/yellow-square.svg)
 
 #### Red Square symbol
 
-![Red Square](./docs/Red-Square.svg)
+![Red Square](./src/assets//Red-Square.svg)
 
 #### Red Dot symbol
 
-![Red Dot](./docs/Red-Dot.svg)
+![Red Dot](./src/assets/Red-Dot.svg)
 
 #### Yellow Dot SOON symbol
 
-![Yellow Dot SOON](./docs/SOON-yellow-dot.svg)
+![Yellow Dot SOON](./src/assets/SOON-yellow-dot.svg)
 
 #### Yellow Square SOON symbol
 
-![Yellow Square SOON](./docs/SOON-yellow-square.svg)
+![Yellow Square SOON](./src/assets/SOON-yellow-square.svg)
 
 #### Red Dot URGENT symbol
 
-![Red Dot URGENT](./docs/URGENT-red-dot.svg)
+![Red Dot URGENT](./src/assets/URGENT-red-dot.svg)
 
 #### Red Square URGENT symbol
 
-![Red Square URGENT](./docs/URGENT-red-square.svg)
+![Red Square URGENT](./src/assets/URGENT-red-square.svg)
 
 ### Target audience
 
@@ -235,19 +271,45 @@ The target audience of CouncilNote is anyone who lives and works in a particular
 
 ### Tech stack
 
-- Front-end: React is used to faciliate the client-side logic of the application, including the  components which handle the sending and retrieval of data to and from the back-end. HTML, CSS Bootstrap, and Javascript are implemented to facilitate responsive designs and features for the users.
+#### Front-end: 
 
-- Back-end: Express.js, Mongoose and Node.js are used to handle the server-side logic of the application.
+React is used to faciliate the client-side logic of the application, including the  components which handle the sending and retrieval of data to and from the back-end. HTML, MUI, and Javascript are implemented to facilitate responsive designs and features for the users.
 
-- Database: MongoDB is used to store data of Users, including their login and profile information, Problems, Notices, and Comments.
+Earlier on, I was weighing up either Bootstrap or MUI for the CSS. I like some of the features provided by Bootstrap, but I went with MUI materials for its navbar setup and the theme setup, such as for the green, yellow-orange and dark blue colours of the CouncilNote app.
 
-- Testing: Insomnia and Jest
+#### Back-end: 
 
-- Project Management: Trello, Notepad file
+Express.js, Node.js and Mongoose are used to handle the server-side logic of the application, such as for configuring the app for usage, such as with "app.use()", for starting operation of the server, and connecting to MongoDB.
 
-- Source Control: Git, Github
+#### Database: 
 
-- Deployment: Netlify or Heroku
+MongoDB is used to store data of Users, including their login and profile information, Problems, Notices, and Problem Comments and Notice Comments. Earlier on, I initiated a schema just called "comments" because I wasn't sure if all comments would be under the same schema/collection, but later changed to "noticecomments" and "problemcomments" to perhaps avoid confusion. 
+
+#### Testing: 
+
+Particularly for the backend, I used Jest early on to check successful responses to functions and routes, and the server itself. I then mainly used Insomnia and MongoDB Compass, to further check successful responses to the functions and routes, and to check the data being stored in MongoDB.
+
+I also seeded some data for Users, Problems and Notices, particularly earlier on when 'add' for Problems and Notices still wasn't working yet. As I mentioned in my presentation, and in some other screenshots in this readme, I was intending for the User fullname to appear in each Problem and Notice post, and in the comments for these. This was partly successful from the seeded data, as displayed in Insomnia, but not when "adding" itself on Insomnia. For instance, in the seeded data, I included under the "Problems" and "Notices": 
+
+"user":users.find(obj => obj.fullname === 'Robert Bailey'), 
+
+I wasn't entirely sure how to format this or get the User fullname working/displaying fully successfully, but this was an example I saw and followed, and I think depending on/guided by certain error messages I encountered during this phase.
+
+For the frontend so far, I have mainly used the Console log and user testing to improve the frontend pages and components. For instance, I have tried out the register and login pages and components, using different fullname, email and password details. But the frontend is unlikely to be 100% ready by 22nd Dec 2024. But I might continue working on this app beyond 22nd Dec 2024, and achieve some more of the intended features from the wireframes.
+
+#### Project Management: 
+
+Trello, and a Notepad file where I kept segments and examples of code to try out, certain passwords and login info such as when testing register and login, and some links to articles and tutorials I referred to during development of this app, such as for how to set up user login and register in MERN.
+
+#### Source Control: 
+
+Git and Github
+
+#### Deployment: 
+
+Netlify 
+
+I deployed the backend to Heroku on 18 Dec 2024.
 
 ## Dataflow Diagram
 
@@ -255,15 +317,21 @@ When drawing up this dataflow diagram, I endeavoured to follow the conventions o
 
 Earlier on, I thought User and UserProfile would be separate models/schemas, but upon figuring out the backend some more and getting it working without errors on 29 Nov 2024, it looks like User profiles/ the MyProfile page will be populated from a User schema, which includes "about" and "profilephoto".
 
-![Dataflow Diagram2](./docs/dataflow-diagramEdit3.png)
+![Dataflow Diagram2](./src/assets/dataflow-diagramEdit3.png)
 
 Earlier version of the dataflow diagram prior to 29 Nov 2024, with separate User and Userprofile schemas:
 
-![Dataflow Diagram](./docs/dataflow-diagramEdit1.png)
+![Dataflow Diagram](./src/assets/dataflow-diagramEdit1.png)
+
+The updated dataflow diagram as on 19 Dec 2024, to reflect the Problem Comments and Notice Comments schemas instead of Comments, and MyProfile page being change to Profile: 
+
+![dataflow-diagramUpdated](./src/assets/dataflow-diagramUpdated.png)
+
+I changed MyProfile to Profile to match the routes and paths a bit better, such as by having "/users/:id/profile" because the intention is to enable users to look up (or Get) other users' profiles with this "getUser" route.
 
 ## Application Architecture Diagram
 
-![Application Architecture](./docs/Application-architecture1.png)
+![Application Architecture](./src/assets/Application-architecture1.png)
 
 ## User Stories
 
@@ -302,49 +370,51 @@ The designs of the Problems, Notices, and MyProfile pages, as displayed in the W
 
 The green, blue and orange-yellow colours for CouncilNote, and the CN logo, are based on colours regularly seen in council logos, with green representing land or vegetation, blue representing rivers or the sea, eg. if it's a seaside council, and orange-yellow representing sand or soil.
 
+By 22 Dec 2024, the Council Note frontend might not be as whiz-bang as intended in these wireframes, but I might continue improving this app beyond 22 Dec 2024.
+
 #### Mobile: Login, Create Account, Problems
 
-![Mobile1](./docs/CN-mobile1a.jpg)
+![Mobile1](./src/assets/CN-mobile1a.jpg)
 
 #### Mobile: Nav Hamburger, Problem Form, Notices
 
-![Mobile5](./docs/CN-mobile5.jpg)
+![Mobile5](./src/assets/CN-mobile5.jpg)
 
 #### Mobile: View UserProfile, Notice Form, Notices Comments
 
-![Mobile6](./docs/CN-mobile6.jpg)
+![Mobile6](./src/assets/CN-mobile6.jpg)
 
 #### Tablet: Login
 
-![Tablet Login](./docs/CN-TabletLogin.jpg)
+![Tablet Login](./src/assets/CN-TabletLogin.jpg)
 
 #### Tablet: Problems
 
-![Tablet Problems](./docs/CN-TabletProblems.jpg)
+![Tablet Problems](./src/assets/CN-TabletProblems.jpg)
 
 #### Tablet: Notices
 
-![Tablet Notices](./docs/CN-TabletNotices.jpg)
+![Tablet Notices](./src/assets/CN-TabletNotices.jpg)
 
 #### Desktop: Login
 
-![Desktop Login](./docs/CN-desktopLogin.jpg)
+![Desktop Login](./src/assets/CN-desktopLogin.jpg)
 
 #### Desktop: MyProfile
 
-![Desktop MyProfile](./docs/CN-desktopMyProfile2.jpg)
+![Desktop MyProfile](./src/assets/CN-desktopMyProfile2.jpg)
 
 #### Desktop: Problems page with comments
 
-![Desktop Problems Comments](./docs/CN-desktopProblemComments.jpg)
+![Desktop Problems Comments](./src/assets/CN-desktopProblemComments.jpg)
 
 #### Desktop: Problems Form
 
-![Desktop Problems Form](./docs/CN-desktopProblemForm.jpg)
+![Desktop Problems Form](./src/assets/CN-desktopProblemForm.jpg)
 
 #### Desktop: Problems page
 
-![Desktop Problems](./docs/CN-desktopProblems2.jpg)
+![Desktop Problems](./src/assets/CN-desktopProblems2.jpg)
 
 
 ## Screenshots of Trello board
@@ -355,7 +425,7 @@ I have used Trello to plan and keep track of the stages of development of this a
 
 The CouncilNote Trello board as on 1 Dec 2024:
 
-![Trello7](./docs/Trello-CN7.png)
+![Trello7](./src/assets/Trello-CN7.png)
 
 I started one of the tests successfully on 30 Nov 2024.
 
@@ -363,26 +433,26 @@ https://trello.com/b/IhyWrrV7/council-note
 
 #### Trello Dataflow Diagram
 
-![Trello2](./docs/Trello-CN2.png)
+![Trello2](./src/assets/Trello-CN2.png)
 
 #### Trello Application Architecture Diagram
 
-![Trello3](./docs/Trello-CN3.png)
+![Trello3](./src/assets/Trello-CN3.png)
 
 #### Trello Wireframes
 
-![Trello4](./docs/Trello-CN4.png)
+![Trello4](./src/assets/Trello-CN4.png)
 
 #### Trello Starting Coding
 
 During the week of 17 Nov to 24 Nov 2024, I started some coding, at least trialling, of the frontend and backend to see how this MERN app will piece together and work, and to have some ideas for the Dataflow Diagram, Application Architecture Diagram and Wireframes.
 
-![Trello5a](./docs/Trello-CN5a.png)
+![Trello5a](./src/assets/Trello-CN5a.png)
 
-![Trello5b](./docs/Trello-CN5b.png)
+![Trello5b](./src/assets/Trello-CN5b.png)
 
-![Trello5c](./docs/Trello-CN5c.png)
+![Trello5c](./src/assets/Trello-CN5c.png)
 
 #### Trello Successful Deployment
 
-![Trello6](./docs/Trello-CN6.png)
+![Trello6](./src/assets/Trello-CN6.png)
