@@ -11,7 +11,7 @@ import Home from './pages/Home';
 import Login  from './pages/Login';
 //import LoginFm from './components/LoginFm';
 import Profile from './pages/Profile';
-import SearchPeoplePg from './pages/SearchPeoplePg';
+import SearchPeople from './pages/SearchPeople';
 import Problems from './pages/Problems';
 import Notices from './pages/Notices';
 //import Redirect from './components/Redirect';
@@ -39,7 +39,7 @@ const App = () => {
           <Route path="/problems" element={<Problems />} />
           <Route path="/notices" element={<Notices />} />
           <Route path="/users/:id/profile" element={<Profile />} />
-          <Route path="/users/searchpeoplepg" element={<SearchPeoplePg />} />
+          <Route path="/users/searchpeoplepg" element={<SearchPeople />} />
         </Routes>
         </ThemeProvider>
       

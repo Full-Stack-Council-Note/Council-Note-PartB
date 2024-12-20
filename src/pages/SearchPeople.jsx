@@ -13,7 +13,7 @@ import.meta.env.REACT_APP_ENDPOINT
 import CNtheme from '../styles/theme';
 import SearchPeopleFunction from "../components/SearchPeopleFunction"
 
-const SearchPeoplePg = () => {
+const SearchPeople = () => {
     return (
   
       <ThemeProvider theme={CNtheme}>
@@ -31,4 +31,4 @@ const SearchPeoplePg = () => {
     );
   };
   
-  export default SearchPeoplePg;
+  export default SearchPeople;

@@ -159,7 +159,7 @@ export default function Navbar() {
           variant="h6"
           noWrap
           component={Link}
-          to="/users/:id/cnprofile"
+          to="/users/:id/profile"
           sx={{
             mr: 2,
             display: { xs: 'none', md: 'flex' },

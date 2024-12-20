@@ -1,109 +1,114 @@
-import { useState, useEffect } from 'react'
-import { Container, Typography, TextField, Button, Grid, Paper, Box, Select, InputLabel, MenuItem, CircularProgress, Pagination } from '@mui/material';
-import.meta.env.REACT_APP_ENDPOINT
+import { useState, useEffect } from 'react';
+import { Container, Typography, TextField, Button, Box } from '@mui/material';
+import axios from "axios";
 
-const SearchPeopleFunction = ({onChangeCallback }) => {
- const [users, setUsers] = useState([])
- const [apiUsers,  setApiUsers] = useState([]);
- const [loading, setLoading] = useState(true);
- const [error, setError] = useState(null);
- const [filteredUsers, setFilteredUsers] = useState([]);
- const [searchUser, setSearchUser] = useState("");
- const [searchShow, setSearchShow] = useState(false);
+const SearchPeopleFunction = ({ onChangeCallback }) => {
+  const [users, setUsers] = useState([]);
+  const [apiUsers, setApiUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [searchUser, setSearchUser] = useState("");
+  const [searchShow, setSearchShow] = useState(false);
 
-const handleSubmit = (e) => {
-    e.preventDefault();
+  // Define handleSubmit outside of useEffect
+  const handleSubmit = async (event) => {
+    event.preventDefault();  // Prevent the default form submission behavior
+    
 
- useEffect(() => {
-  fetch('https://council-note-backend-5cf218cede7a.herokuapp.com/users/searchpeople', users)
-    .then(response => response.json())
-    .then(data => {
-      setApiUsers(data.users)
-      setFilteredUsers(data.users)
-    })
-    .catch(err => {
-      console.log(err)
-      // update the error state
-      setError(err)
-    })
-    .finally(() => {
-      // wether we sucessfully get the users or not, 
-      // we update the loading state
-      setLoading(false)
-    })
-}, [])
-}
+    try {
+      const response = await axios.get('https://council-note-backend-5cf218cede7a.herokuapp.com/users/searchpeople', {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ searchUser }) // Send the search query as part of the request
+      });
 
-const handleInputChange = e => {
-  const searchTerm = e.target.value;
-  setSearchItem(searchTerm)
-  onChangeCallback && onChangeCallback(inputValue)
+      const data = await response.json();
+      setApiUsers(data.users);
+      setFilteredUsers(data.users);
+    } catch (err) {
+      console.error(err);
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  if(e.target.value===""){
-    setSearchShow(false);
-  }
-  else {
-    setSearchShow(true);
-  }
+  useEffect(() => {
+    // Optionally load users on component mount
+     handleSubmit(); 
+  }, []); // Empty dependency array means this effect runs once after initial render
 
- 
-    const filteredUsers = apiUsers.filter((users) =>
-        users.fullname.toLowerCase().includes(searchTerm.toLowerCase())
-      
+  const handleInputChange = (e) => {
+    const searchTerm = e.target.value;
+    setSearchUser(searchTerm);
+
+    onChangeCallback && onChangeCallback(searchTerm);
+
+    if (searchTerm === "") {
+      setSearchShow(false);
+    } else {
+      setSearchShow(true);
+    }
+
+    const filteredUsers = apiUsers.filter((user) =>
+      user.fullname.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  
+
     setFilteredUsers(filteredUsers);
+  };
+
+  function searchList() {
+    if (searchShow) {
+      return (
+        <>
+          {loading && <p>Loading...</p>}
+          {error && <p>*An error occurred loading users*</p>}
+          {!loading && !error && filteredUsers.length === 0
+            ? <p>*User profiles unavailable*</p>
+            : <ul>
+                {filteredUsers.map(user => (
+                  <li key={user._id}>
+                    {user.fullname}: Email: {user.email} About: {user.about}
+                  </li>
+                ))}
+              </ul>
+          }
+        </>
+      );
+    }
   }
 
-
-function searchList() {
-  if (searchShow) {
-    return (
-      <>
-        {loading && <p>Loading...</p>}
-        {error && <p>There was an error loading the items</p>}
-        {!loading && !error && filteredUsers.length === 0
-          ? <p>No products found</p>
-          : <ul>
-            {filteredUsers.map(user => <li key={user.id}>{user.fullname}: Email: {user.email} About: {user.about}</li>)}
-          </ul>
-        }
-      </>
-                                             //or _id?
-    )
-  }
-}
-
-return (
-<Container margin="normal" sx={{  bgcolor: '#DCDCDC', borderRadius: 3 }}>
-<Box mt={5} sx={{ mx:15, bgcolor: '#DCDCDC', borderRadius: 3 }}>
-    <form onSubmit={handleSubmit}>
+  return (
+    <Container margin="normal" sx={{ bgcolor: '#DCDCDC', borderRadius: 3 }}>
+      <Box mt={5} sx={{ mx: 15, bgcolor: '#DCDCDC', borderRadius: 3 }}>
+        <form onSubmit={handleSubmit}>
           <TextField
             label="Type a full name to search..."
             name="searchUser"
             value={searchUser}
             onChange={handleInputChange}
-            sx={{ bgcolor: '#fff', mt:1, mr: 3, width:380}}           
+            sx={{ bgcolor: '#fff', mt: 1, mr: 3, width: 380 }}
             color="secondary"
-  
           />
-            <Button
+          <Button
             type="submit"
             variant="contained"
             color="secondary"
-            sx={{ width: 200, height: 62, mx:8 }}
+            sx={{ width: 200, height: 62, mx: 8 }}
           >
-         <Typography color="primary">
-           Search People
-          </Typography> 
+            <Typography color="primary">
+              Search People
+            </Typography>
           </Button>
         </form>
         <Box mt={4} sx={{ bgcolor: '#DCDCDC', borderRadius: 3, justifyContent: "center", alignItems: "center" }}>
-    {searchList()}
-    </Box>
-  </Box>
-</Container>
- );
+          {searchList()}
+        </Box>
+      </Box>
+    </Container>
+  );
 }
 
-export default SearchPeopleFunction
+export default SearchPeopleFunction;
