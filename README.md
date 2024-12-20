@@ -275,7 +275,7 @@ The target audience of CouncilNote is anyone who lives and works in a particular
 
 React is used to faciliate the client-side logic of the application, including the  components which handle the sending and retrieval of data to and from the back-end. HTML, MUI, and Javascript are implemented to facilitate responsive designs and features for the users.
 
-Earlier on, I was weighing up either Bootstrap or MUI for the CSS. I like some of the features provided by Bootstrap, but I went with MUI materials for its navbar setup and the theme setup, such as for the green, yellow-orange and dark blue colours of the CouncilNote app.
+Earlier on, I was weighing up either Bootstrap or MUI for the CSS. I like some of the features provided by Bootstrap, but I went with MUI materials for its navbar setup and the theme setup, such as for the green, yellow-orange and dark blue colours of the CouncilNote app. But MUI does seem a bit less flexible sometimes, such as when trying to adjust the colours on the drop-down menu on the navbar, or adjusting margins of items. The Search People page and function is a bit off-center, for instance.
 
 #### Back-end: 
 

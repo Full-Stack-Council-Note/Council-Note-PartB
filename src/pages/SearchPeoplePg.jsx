@@ -11,19 +11,24 @@ import {
 } from "react-router-dom";
 import.meta.env.REACT_APP_ENDPOINT
 import CNtheme from '../styles/theme';
-const SearchPeople = () => {
+import SearchPeopleFunction from "../components/SearchPeopleFunction"
+
+const SearchPeoplePg = () => {
     return (
   
       <ThemeProvider theme={CNtheme}>
        <CssBaseline />
-        <Container>
+        <Container >
         <Typography variant="h4" textAlign= "center" color="secondary" paddingTop="90px">
         Search People:
         </Typography>
-    
+        <Typography variant="h5" textAlign= "center" paddingTop="10px">
+        Search people on CouncilNote 
+        </Typography>
+        <SearchPeopleFunction />
         </Container>  
       </ThemeProvider>
     );
   };
   
-  export default SearchPeople;
+  export default SearchPeoplePg;

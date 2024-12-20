@@ -46,8 +46,8 @@ export default function Problems() {
     .then((response) => {
     //setUrgentOrSoon(response.data.UrgentOrSoon);
 
-    setNotices([...notices, response.data]);
-    setNoticeComments([...NoticeComments, response.data])
+    setNotices( response.data.notices);
+    setNoticeComments( response.data.NoticeComments)
     // or? setNoticeComments(response.data.notices.NoticeComments)
     setUser( response.data.user)
     setDateAdded(response.data.DateAdded)
@@ -101,7 +101,9 @@ export default function Problems() {
         <Typography color="secondary" variant="h4" sx={{ mx: 1 }} gutterBottom>
                Notices:
           </Typography>
-      {/*needed? {Notices.map((notices) => ( */}          
+      {/* Check if notices is an array before calling .map */}
+      {Array.isArray(notices) && notices.length > 0 ? (
+       notices.map((notices) => (         
           <Grid item xs={12} key={notices._id}>
             <Paper elevation={3} sx={{ padding: 2 }}>
               <Typography variant="h5">{notices.NoticeTitle}</Typography>
@@ -122,7 +124,11 @@ export default function Problems() {
               </Typography>
             </Paper>
           </Grid>
-        
+        ))
+      ) : (
+        <Typography>No notices available.</Typography>
+      )
+      }        
       </Grid>
 
       {/* Form to add new notice */}
