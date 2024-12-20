@@ -28,7 +28,7 @@ Backend: https://github.com/Full-Stack-Council-Note/Council-Note-PartB-backend
 
 ![CN-SearchPeople](./src/assets/CN-SearchPeople.png)
 
-For some reason the "SearchPeople" navbar button won't highlight in green when on this page, like with Problems and Notices, and tried rerranging the name and path of "SearchPeople", and in Navbar component.
+For some reason the "SearchPeople" navbar button won't highlight in green when on this page, like with Problems and Notices, and tried rerranging the name and path of "SearchPeople", and in Navbar component, to see if it will.
 
 ## Testing Frontend
 
