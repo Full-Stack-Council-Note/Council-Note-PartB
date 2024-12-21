@@ -13,7 +13,9 @@ const SearchPeopleFunction = ({ onChangeCallback }) => {
 
   // Define handleSubmit outside of useEffect
   const handleSubmit = async (event) => {
-    event.preventDefault();  // Prevent the default form submission behavior
+    if (event) {
+      event.preventDefault();  
+    }  // Prevent the default form submission behavior
     
 
     try {
@@ -21,10 +23,10 @@ const SearchPeopleFunction = ({ onChangeCallback }) => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ searchUser }) // Send the search query as part of the request
+        params: { searchUser }, // Send the search query as part of the request
       });
 
-      const data = await response.json();
+      const data = response.data;
       setApiUsers(data.users);
       setFilteredUsers(data.users);
     } catch (err) {

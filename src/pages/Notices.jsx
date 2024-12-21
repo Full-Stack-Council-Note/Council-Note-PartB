@@ -13,15 +13,22 @@ import.meta.env.REACT_APP_ENDPOINT
 export default function Problems() {
     const { _id } = useParams();
     //const { search } = useLocation();
-   
-    const [notices, setNotices] = useState([]);
+   //not sure if I need to define or "set" these here also, was giving me "undefined" in console log for a while
     const [DateAdded, setDateAdded]= useState(true)
     const [user, setUser] = useState(true);
     const [NoticePhoto, setNoticePhoto] = useState(true)
     const [NoticeComments, setNoticeComments] = useState([]);
-    const [newNotice, setNewNotice] = useState({ NoticeTitle: '', NoticeDescription: '', user, DateAdded, NoticePhoto, NoticeComments });
+    const [notices, setNotices] = useState([]);
+    const [newNotice, setNewNotice] = useState({
+      NoticeTitle: '',
+      NoticeDescription: '',
+      user: true,
+      DateAdded: true,
+      NoticePhoto: true,
+      NoticeComments: []
+    });
 
-    const [newNoticeComments, setNewNoticeComments] = useState({content:"", user, DateAdded});
+    const [newNoticeComments, setNewNoticeComments] = useState({content:"", user: true, DateAdded: true});
     
     const [loading, setLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,38 +39,28 @@ export default function Problems() {
     const postsPerPage = 10;
     const noticesSearch = new URLSearchParams(search).get("notices/filter");
     
-// Ensure notices is always an array (even if it’s empty). I put this in because I was getting error messages in the console log something like "properties of notices map not recognised"
-// and putting this in made that error message go away for now. Not needed now I think
-    //const Notices = notices || [];
-  // Fetch posts with pagination and search
-  const fetchPosts = (page, postsPerPage, search) => {
-    //e.preventDefault();
-    setLoading(true);
-  
-    axios.get(`https://council-note-backend-5cf218cede7a.herokuapp.com/notices`, {
-      params: { page, postsPerPage, search }
-    })
-    .then((response) => {
-    //setUrgentOrSoon(response.data.UrgentOrSoon);
-
-    setNotices( response.data.notices);
-    setNoticeComments( response.data.NoticeComments)
-    // or? setNoticeComments(response.data.notices.NoticeComments)
-    setUser( response.data.user)
-    setDateAdded(response.data.DateAdded)
-    setNoticePhoto(response.data.NoticePhoto)
-    setTotalPosts( response.data.totalPosts);
-    setTotalPages(response.data.totalPages);
-    setLoading(false);
-  })
-    .catch((error) => {
-    console.error('Error fetching notices:', error);
-  });
-};
-
+  // Fetch posts with pagination and search (potentially those also)
   useEffect(() => {
-    fetchPosts(page, postsPerPage, search);
-  }, [page, postsPerPage, search]);
+    const fetchNotices = async () => {
+
+        try {    
+          const response = await axios.get('https://council-note-backend-5cf218cede7a.herokuapp.com/notices', {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+            
+           const data = response.data;
+           setNotices( response.data.notices || []);
+
+            } catch (error) {
+             console.error('An error occurred fetching notices', error);
+            }
+            setLoading(false);
+    };
+
+     fetchNotices();
+    }, [notices]);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -82,7 +79,7 @@ export default function Problems() {
     axios.post(`https://council-note-backend-5cf218cede7a.herokuapp.com/notices/addNotice`, newNotice)
       .then((response) => {
         setNotices([...notices, response.data]);
-        setNewNotice({ NoticeTitle: '', NoticeDescription: '', user, DateAdded, NoticePhoto, NoticeComments });
+        setNewNotice({ NoticeTitle: '', NoticeDescription: '', user: true, DateAdded: true, NoticePhoto: true, NoticeComments: [] });
         setIsSubmitting(false);
       })
       .catch((error) => {
@@ -168,6 +165,7 @@ export default function Problems() {
           </Typography>
             <TextField
             type="file"
+            name="NoticePhoto"
             variant="outlined"
             color="secondary"
             inputProps={{ accept: 'image/jpeg'|| 'image/jpg'|| 'image/png' }}
@@ -179,6 +177,7 @@ export default function Problems() {
           variant="contained" 
           color="primary" 
           type="submit"
+          name="NoticePhoto"
           value={newNotice.NoticePhoto}
           onChange={handleInputChange}
           >
@@ -190,6 +189,7 @@ export default function Problems() {
 
           <Button
             type="submit"
+            name="submitNotice"
             variant="contained"
             color="secondary"
             disabled={isSubmitting}

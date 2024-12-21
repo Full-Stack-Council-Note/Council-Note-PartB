@@ -18,6 +18,7 @@ export default function Problems() {
     const { _id  } = useParams();
     //const { search } = useLocation();
           //or problemData, setProblemData
+   //not sure if I need to define or "set" these here also, was giving me "undefined" in console log for a while
     const [UrgentOrSoon, setUrgentOrSoon] = useState('Urgent', 'Soon', 'N/A');
     const [DateAdded, setDateAdded]= useState(true)
     const [user, setUser] = useState(true);
@@ -27,9 +28,18 @@ export default function Problems() {
     const [problems, setProblems] = useState([]);
     //const [problemtitle, setProblemTitle] = useState('');
    
-    const [newProblem, setNewProblem] = useState({ problemtitle: '', problemdescription: '', user, DateAdded, UrgentOrSoon: '', IsResolved, problemphoto, ProblemComments });
+    const [newProblem, setNewProblem] = useState({
+      problemtitle: '',
+      problemdescription: '',
+      user: true,
+      DateAdded: true,
+      UrgentOrSoon: '',
+      IsResolved: false,
+      problemphoto: true,
+      ProblemComments: []
+    });
    
-    const [newProblemComments, setNewProblemComments] = useState({content:"", user, DateAdded});
+    const [newProblemComments, setNewProblemComments] = useState({content:"", user: true, DateAdded: true});
 
     const [loading, setLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,35 +50,29 @@ export default function Problems() {
     const postsPerPage = 10;
     const problemsSearch = new URLSearchParams(search).get("problems/filter");
 
-// Ensure problems is always an array (even if it’s empty). I put this in because I was getting error messages in the console log something like "properties of problems map not recognised"
-// and putting this in made that error message go away for now. Not needed now I think
-    //const Problems = problems || [];
-  // Fetch posts with pagination and search
-    useEffect(() => {
-      //e.preventDefault();   
-      fetch('https://council-note-backend-5cf218cede7a.herokuapp.com/problems', problems)
-      .then(response => response.json())
-      .then((data) => {
-      //setUrgentOrSoon(response.data.UrgentOrSoon);
+ // Fetch posts with pagination and search (potentially those also)
+  useEffect(() => {
+    const fetchProblems = async () => {
 
-      setProblems( data.problems || []);
-      //setProblemTitle( data.problemtitle);
-      //setProblemComments(data.ProblemComments)
-      //setProblemComments([...ProblemComments, data])
-      //setUser( data.user)
-      //setDateAdded(data.DateAdded)
-      //setproblemhoto(data.problemphoto)     
-      setPage(data.problems)
-      setTotalPosts( data.problems);
-      setTotalPages(data.problems);
-      setLoading(false);
-    })
-    .catch(error => {
-      console.log('error fetching problem posts', error)
-      // update the error state
-      setError(error)
-    })
-  }, []);
+        try {    
+          const response = await axios.get('https://council-note-backend-5cf218cede7a.herokuapp.com/problems', {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+            
+           const data = response.data;
+           setProblems( response.data.problems || []);
+
+            } catch (error) {
+             console.error('An error occurred fetching problems', error);
+            }
+            setLoading(false);
+    };
+
+     fetchProblems();
+    }, [problems]);
+
 
   //useEffect(() => {
     //fetchPosts(page, postsPerPage, search);
@@ -92,7 +96,7 @@ export default function Problems() {
     axios.post(`https://council-note-backend-5cf218cede7a.herokuapp.com/problems/addProblem`, newProblem)
       .then((response) => {
         setProblems([...problems, response.data]);
-        setNewProblem({ problemtitle: '', problemdescription: '', user, DateAdded, UrgentOrSoon: '', IsResolved, problemphoto, ProblemComments });
+        setNewProblem({ problemtitle: '', problemdescription: '', user: true, DateAdded: true, UrgentOrSoon: '', IsResolved: false, problemphoto: true, ProblemComments: [] });
         setIsSubmitting(false);
       })
       .catch((error) => {
@@ -149,99 +153,107 @@ export default function Problems() {
 
       {/* Form to add new problem post */}
       <Box mt={2} sx={{ bgcolor: '#DCDCDC', borderRadius: 3 }}>
-        <Typography variant="h4"  color="secondary" textAlign= "center" gutterBottom>
-          Add a Problem
-        </Typography>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            label="Enter a title for the Problem"
-            name="problemtitle"
-            value={newProblem.problemtitle}
-            onChange={handleInputChange}
-            fullWidth
-            margin="normal"
-            sx={{ bgcolor: '#fff'}}           
-            color="secondary"
-            required
-          />
-          <TextField
-            label="Enter a description of Problem"
-            name="problemdescription"
-            value={newProblem.problemdescription}
-            onChange={handleInputChange}
-            fullWidth
-            margin="normal"
-            sx={{ bgcolor: '#fff' }}          
-            color="secondary"
-            multiline
-            rows={4}
-            required
-          />
-          <FormControl color="secondary" sx={{ mr: 1, mx: 1, bgcolor: '#fff', width: 500 }}>
-          <InputLabel sx={{ bgcolor: '#fff'}} id="demo-simple-select-label">Please select if the problem is Urgent or needs attention Soon:</InputLabel>
-          <Select
-           labelId="demo-simple-select-label"
-           id="demo-simple-select"
-           value={newProblem.UrgentOrSoon}
-           label="UrgentOrSoon"
-           sx={{ bgcolor: '#fff', width: 500 }}
-           onChange={handleInputChange}
-           >
-           <MenuItem sx={{ color: '#FF0000' }} value={'N/A'}>N/A</MenuItem>
-           <MenuItem sx={{ color: '#FF0000' }} value={'Urgent'}>Urgent  -<img src={UrgentSymbol} alt="UrgentSymbol" height={20} width={20} sx={{ flexGrow: 1 }}/></MenuItem>
-           <MenuItem sx={{ color: '#FF0000' }} value={'Soon'}>Soon  -<img src={SoonSymbol} alt="SoonSymbol" height={20} width={20} sx={{ flexGrow: 1 }}/></MenuItem>
-           
-           </Select>
-           </FormControl>
-           <Box mt={2} sx={{ mx: 1, bgcolor: '#DCDCDC'}}>
-            <Typography sx={{ mx: 1 }} color="secondary" variant="h6" gutterBottom>
-            Select if the problem is resolved:
-           </Typography>
-            <FormControlLabel
-            value={newProblem.IsResolved}
-            control={<Checkbox sx={{ mx: 1 }} color="secondary" checked={true} onChange={handleInputChange} />}
-            
-             />
-              </Box>
-            <Box mt={1} sx={{ bgcolor: '#DCDCDC' }}>
-            <Typography mb={2} sx={{ mx: 1 }} color="secondary" variant="h6">
-             Upload a photo of the problem - JPG, JPEG and PNG accepted:
-          </Typography>
-            <TextField
-            type="file"
-            variant="outlined"
-            color="secondary"
-            inputProps={{ accept: 'image/jpeg'|| 'image/jpg'|| 'image/png' }}
-            sx={{ mx: 1, bgcolor: '#fff', width: 400 }}
-            margin="normal"
-            />
-          <Button 
-           sx={{ mr: 1, mx: 1, height: 65, width: 400 }} 
-           variant="contained" 
-           color="primary" 
-           type="submit"
-           value={newProblem.problemphoto}
-           onChange={handleInputChange}
-           >
-          <Typography color="secondary">
-           Upload Photo
-          </Typography>          
-          </Button>
-           </Box>
-
-          <Button
-            type="submit"
-            variant="contained"
-            color="secondary"
-            disabled={isSubmitting}
-            mt={3}
-            sx={{ height: 60, mx: 2 }}
-          >
-            {isSubmitting ? 'Submitting...' : 'Submit Problem'}
-          </Button>
-        </form>
+       <Typography variant="h4" color="secondary" textAlign="center" gutterBottom>
+        Add a Problem
+       </Typography>
+     <form onSubmit={handleSubmit}>
+      <TextField
+      label="Enter a title for the Problem"
+      name="problemtitle"
+      value={newProblem.problemtitle}
+      onChange={handleInputChange}
+      fullWidth
+      margin="normal"
+      sx={{ bgcolor: '#fff'}}
+      color="secondary"
+      required
+       
+      />
+      <TextField
+      label="Enter a description of Problem"
+      name="problemdescription"
+      value={newProblem.problemdescription}
+      onChange={handleInputChange}
+      fullWidth
+      margin="normal"
+      sx={{ bgcolor: '#fff' }}
+      color="secondary"
+      multiline
+      rows={4}
+      required
+      
+      />
+      <FormControl color="secondary" name="UrgentOrSoon" sx={{ mr: 1, mx: 1, bgcolor: '#fff', width: 500 }}>
+      <InputLabel sx={{ bgcolor: '#fff'}} name="UrgentOrSoon" label="Please select if the problem is Urgent or needs attention Soon:">
+      Please select if the problem is Urgent or needs attention Soon:
+      </InputLabel> 
+      <Select
+        name="UrgentOrSoon"
+        value={newProblem.UrgentOrSoon}
+        label="Select Urgent or Soon"
+        sx={{ bgcolor: '#fff', width: 500 }}
+        onChange={handleInputChange}
+       
+       >
+        <MenuItem sx={{ color: '#FF0000' }} value={'N/A'}>N/A</MenuItem>
+        <MenuItem sx={{ color: '#FF0000' }} value={'Urgent'}>Urgent  -<img src={UrgentSymbol} alt="UrgentSymbol" height={20} width={20} sx={{ flexGrow: 1 }}/></MenuItem>
+        <MenuItem sx={{ color: '#FF0000' }} value={'Soon'}>Soon  -<img src={SoonSymbol} alt="SoonSymbol" height={20} width={20} sx={{ flexGrow: 1 }}/></MenuItem>
+       </Select>
+       </FormControl>
+      <Box mt={2} sx={{ mx: 1, bgcolor: '#DCDCDC'}}>
+      <Typography sx={{ mx: 1 }} color="secondary" variant="h6" gutterBottom>
+        Select if the problem is resolved:
+      </Typography>
+      <FormControlLabel
+        name="IsResolved"
+        value={newProblem.IsResolved}
+        control={<Checkbox sx={{ mx: 1 }} color="secondary" checked={true} onChange={handleInputChange} />}
+        label="Is Now Resolved" // Add label here if needed
+       />
       </Box>
-    </Container>
+      <Box mt={1} sx={{ bgcolor: '#DCDCDC' }}>
+      <Typography mb={2} sx={{ mx: 1 }} color="secondary" variant="h6">
+        Upload a photo of the problem - JPG, JPEG and PNG accepted:
+      </Typography>
+       <TextField
+        type="file"
+        name="problemphoto"
+        variant="outlined"
+        color="secondary"
+        inputProps={{ accept: 'image/jpeg, image/jpg, image/png' }} // Fixed the accept attribute
+        sx={{ mx: 1, bgcolor: '#fff', width: 400 }}
+        margin="normal"
+        
+       />
+       <Button 
+        sx={{ mr: 1, mx: 1, height: 65, width: 400 }} 
+        variant="contained" 
+        color="primary" 
+        type="submit"
+        name="problemphoto"
+        value={newProblem.problemphoto}
+        onChange={handleInputChange}
+        >
+        <Typography color="secondary">
+          Upload Photo
+        </Typography>          
+        </Button>
+      </Box>
+
+      <Button
+      type="submit"
+      name="submitProblem"
+      variant="contained"
+      color="secondary"
+      disabled={isSubmitting}
+      mt={3}
+      sx={{ height: 60, mx: 2 }}
+      >
+      {isSubmitting ? 'Submitting...' : 'Submit Problem'}
+      </Button>
+     </form>
+    </Box>
+  </Container>
   );
 };
 
