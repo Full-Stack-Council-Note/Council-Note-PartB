@@ -2,11 +2,15 @@
 
 ### Deployed Frontend:
 
+https://councilnote.netlify.app/
+
 ### Deployed Backend:
 
 https://council-note-backend-5cf218cede7a.herokuapp.com/
 
 ### GitHub Repositories:
+
+CouncilNote Part A: https://github.com/Full-Stack-Council-Note/Council-Note-PartA
 
 Frontend: https://github.com/Full-Stack-Council-Note/Council-Note-PartB
 
@@ -14,21 +18,41 @@ Backend: https://github.com/Full-Stack-Council-Note/Council-Note-PartB-backend
 
 ## CouncilNote Frontend
 
+Home page:
+
 ![CN-home](./src/assets/CN-home.png)
+
+Home page with drop-down menu:
 
 ![CN-home-dropdown](./src/assets/CN-home-dropdown.png)
 
+Login page - mobile:
+
 ![CN-Login-mobile](./src/assets/CN-Login-mobile.png)
+
+Problems page - mobile:
 
 ![CN-problemForm-mobile1](./src/assets/CN-problemForm-mobile1.png)
 
+Problems page - desktop:
+
 ![CN-problemForm-desktop2](./src/assets/CN-problemForm-desktop2.png)
 
+Notices page - mobile:
+
 ![CN-noticeForm-mobile](./src/assets/CN-noticeForm-mobile.png)
+
+Notices page:
+
+![CN-notices-desktop](./src/assets/CN-notices-desktop.png)
+
+SearchPeople page:
 
 ![CN-SearchPeople](./src/assets/CN-SearchPeople.png)
 
 For some reason the "SearchPeople" navbar button won't highlight in green when on this page, like with Problems and Notices, and tried rearranging the name and path of "SearchPeople", and in Navbar component, to see if it will.
+
+The Profile page appears mainly blank still unfortunately. 
 
 ## Testing Frontend
 
@@ -47,6 +71,14 @@ Frontend as of 18 Dec 2024, empty notices list.
 ![CN-NoProblemsAvailable](./src/assets/CN-NoProblemsAvailable.png)
 
 "No Problems Available" on 18 Dec 2024
+
+![ProblemsPg-Issues1](./src/assets/ProblemsPg-Issues1.png)
+
+The Problems page as of 21 Dec 2024. No major issues or errors appear in the console log but still no data appearing in frontend. A couple of more minor issues apparently about form field names and labels, which I attempted to resolve also, but wasn't entirely sure where or how.
+
+And similarly for Notices:
+
+![NoticesPg-issues](./src/assets/NoticesPg-issues.png)
 
 ## Testing Backend
 
@@ -85,7 +117,7 @@ Users and auth tests:
 
 ![CN-searchUsers2](./src/assets/CN-searchUsers2.png)
 
-![CN-searchUsers2](./src/assets/CN-searchUsers2.png)
+SearchUsers route. I have since changed this to "/searchpeople" to match with frontend routes and pages a bit more.
 
 ![CN-UserUpdate-insomnia](./src/assets/CN-UserUpdate-insomnia.png)
 
@@ -173,7 +205,11 @@ Getting one notice, including user fullname displayed.
 
 ![CN-getNotices-insomnia](./src/assets/CN-getNotices-insomnia.png)
 
+Getting all notices.
+
 ![CN-GetNotices-insomnia2](./src/assets/CN-GetNotices-insomnia2.png)
+
+Getting all notices.
 
 ![CN-UserFullnameTest](./src/assets/CN-UserFullnameTest.png)
 
@@ -311,9 +347,9 @@ Git and Github
 
 #### Deployment: 
 
-Netlify 
+I deployed the frontend to Netlify on 21 Dec 2024. Though, this is not really finished as of 21 Dec, but I might continue working on this app beyond this course, in the next few weeks, eg. try and get the data to work in frontend.
 
-I deployed the backend to Heroku on 18 Dec 2024.
+I deployed the backend to Heroku on 18 Dec 2024. This was maybe 70% completed as of 21 Dec 2024, a few routes and functions not fully acheived, but I might work on this some more beyond this course.
 
 ## Dataflow Diagram
 
@@ -427,6 +463,10 @@ I have used Trello to plan and keep track of the stages of development of this a
 
 #### Trello Overall
 
+The CouncilNote Trello board as on 22 Dec 2024:
+
+![Trello-Overall2](./src/assets/Trello-Overall2.png)
+
 The CouncilNote Trello board as on 1 Dec 2024:
 
 ![Trello7](./src/assets/Trello-CN7.png)
@@ -457,6 +497,36 @@ During the week of 17 Nov to 24 Nov 2024, I started some coding, at least triall
 
 ![Trello5c](./src/assets/Trello-CN5c.png)
 
+![Trello-9](./src/assets/Trello-9.png)
+
+#### Continuing and completing coding/filling out of files
+
+![Trello-10](./src/assets/Trello-10.png)
+
+![Trello-11](./src/assets/Trello-11.png)
+
+![Trello-12](./src/assets/Trello-12.png)
+
+#### Testing of Application
+
+![Trello-17](./src/assets/Trello-17.png)
+
+![Trello-18](./src/assets/Trello-18.png)
+
+![Trello-16](./src/assets/Trello-16.png)
+
+![Trello-13](./src/assets/Trello-13.png)
+
+![Trello-14](./src/assets/Trello-14.png)
+
+![Trello-15](./src/assets/Trello-15.png)
+
+![Trello-BlackoutDelay5Dec](./src/assets/Trello-BlackoutDelay5Dec.png)
+
+I was delayed some hours by a blackout on 5 Dec 2024.
+
 #### Trello Successful Deployment
 
-![Trello6](./src/assets/Trello-CN6.png)
+![Trello-19](./src/assets/Trello-19.png)
+
+![Trello-20](./src/assets/Trello-20.png)
