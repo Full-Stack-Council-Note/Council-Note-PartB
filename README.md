@@ -363,7 +363,7 @@ Earlier version of the dataflow diagram prior to 29 Nov 2024, with separate User
 
 ![Dataflow Diagram](./src/assets/dataflow-diagramEdit1.png)
 
-The updated dataflow diagram as on 19 Dec 2024, to reflect the Problem Comments and Notice Comments schemas instead of Comments, and MyProfile page being change to Profile: 
+The updated dataflow diagram as on 19 Dec 2024, to reflect the Problem Comments and Notice Comments schemas instead of Comments, and MyProfile page being changed to Profile: 
 
 ![dataflow-diagramUpdated](./src/assets/dataflow-diagramUpdated.png)
 
@@ -459,7 +459,7 @@ By 22 Dec 2024, the Council Note frontend might not be as whiz-bang as intended 
 
 ## Screenshots of Trello board
 
-I have used Trello to plan and keep track of the stages of development of this app in the coming weeks, such as when certain stages should be achieved and completed by.
+I have used Trello to plan and keep track of the stages of development of this app over the weeks, such as when certain stages should be achieved and completed by.
 
 #### Trello Overall
 
