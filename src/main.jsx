@@ -7,8 +7,8 @@ import './index.css';
 import.meta.env.VITE_PORT
 //import.meta.env.REACT_APP_ENDPOINT
                         
-axios.defaults.baseURL = 'https://councilnote.netlify.app/';
-//axios.defaults.REACT_APP_ENDPOINT = 'https://council-note-backend-5cf218cede7a.herokuapp.com/';
+//axios.defaults.baseURL = 'https://councilnote.netlify.app/';
+axios.defaults.REACT_APP_ENDPOINT = 'https://council-note-backend-5cf218cede7a.herokuapp.com/';
 
 //axios.defaults.baseURL = "https://"; change to netlify URL
 
