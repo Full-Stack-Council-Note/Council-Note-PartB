@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Container, Typography, TextField, Button, Box } from '@mui/material';
 import axios from "axios";
+import.meta.env.REACT_APP_ENDPOINT
 
 const SearchPeopleFunction = ({ onChangeCallback }) => {
   const [users, setUsers] = useState([]);
@@ -66,7 +67,7 @@ const SearchPeopleFunction = ({ onChangeCallback }) => {
       return (
         <>
           {loading && <p>Loading...</p>}
-          {error && <p>*An error occurred loading users*</p>}
+          {error && <p>*User profiles unavailable*</p>}
           {!loading && !error && filteredUsers.length === 0
             ? <p>*User profiles unavailable*</p>
             : <ul>

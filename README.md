@@ -46,13 +46,16 @@ Notices page:
 
 ![CN-notices-desktop](./docs/CN-notices-desktop.png)
 
+Profile page:
+
+![CN-ProfilePg](./docs/CN-ProfilePg.png)
+
+The Profile page appears mainly blank still but might flash up briefly. 
+
 SearchPeople page:
 
-![CN-SearchPeople](./docs/CN-SearchPeople.png)
+![CN-SearchPeople2](./docs/CN-SearchPeople2.png)
 
-For some reason the "SearchPeople" navbar button won't highlight in green when on this page, like with Problems and Notices, and tried rearranging the name and path of "SearchPeople", and in Navbar component, to see if it will.
-
-The Profile page appears mainly blank still unfortunately. 
 
 ## Testing Frontend
 

@@ -38,8 +38,8 @@ const App = () => {
           <Route path="/auth/login" element={<Login />} />
           <Route path="/problems" element={<Problems />} />
           <Route path="/notices" element={<Notices />} />
-          <Route path="/users/:id/profile" element={<Profile />} />
-          <Route path="/users/searchpeoplepg" element={<SearchPeople />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/searchpeople" element={<SearchPeople />} />
         </Routes>
         </ThemeProvider>
       

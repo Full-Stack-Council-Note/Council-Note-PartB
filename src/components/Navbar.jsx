@@ -39,10 +39,10 @@ export default function Navbar() {
       navigate('/'); 
     }
     else if (page === 'Profile') {
-      navigate('/users/:id/profile'); 
+      navigate('/profile'); 
     }
     else if (page === 'SearchPeople') {
-      navigate('/users/searchpeoplepg'); 
+      navigate('/searchpeople'); 
     }
     else {
       navigate('/' + page.toLowerCase().replace('é', 'e')); 
@@ -159,7 +159,7 @@ export default function Navbar() {
           variant="h6"
           noWrap
           component={Link}
-          to="/users/:id/profile"
+          to="/profile"
           sx={{
             mr: 2,
             display: { xs: 'none', md: 'flex' },
@@ -179,7 +179,7 @@ export default function Navbar() {
           variant="h6"
           noWrap
           component={Link}
-          to="/users/searchpeoplepg"
+          to="/searchpeople"
           sx={{
             mr: 2,
             display: { xs: 'none', md: 'flex' },
