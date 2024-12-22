@@ -20,35 +20,35 @@ Backend: https://github.com/Full-Stack-Council-Note/Council-Note-PartB-backend
 
 Home page:
 
-![CN-home](./src/assets/CN-home.png)
+![CN-home](./docs/CN-home.png)
 
 Home page with drop-down menu:
 
-![CN-home-dropdown](./src/assets/CN-home-dropdown.png)
+![CN-home-dropdown](./docs/CN-home-dropdown.png)
 
 Login page - mobile:
 
-![CN-Login-mobile](./src/assets/CN-Login-mobile.png)
+![CN-Login-mobile](./docs/CN-Login-mobile.png)
 
 Problems page - mobile:
 
-![CN-problemForm-mobile1](./src/assets/CN-problemForm-mobile1.png)
+![CN-problemForm-mobile1](./docs/CN-problemForm-mobile1.png)
 
 Problems page - desktop:
 
-![CN-problemForm-desktop2](./src/assets/CN-problemForm-desktop2.png)
+![CN-problemForm-desktop2](./docs/CN-problemForm-desktop2.png)
 
 Notices page - mobile:
 
-![CN-noticeForm-mobile](./src/assets/CN-noticeForm-mobile.png)
+![CN-noticeForm-mobile](./docs/CN-noticeForm-mobile.png)
 
 Notices page:
 
-![CN-notices-desktop](./src/assets/CN-notices-desktop.png)
+![CN-notices-desktop](./docs/CN-notices-desktop.png)
 
 SearchPeople page:
 
-![CN-SearchPeople](./src/assets/CN-SearchPeople.png)
+![CN-SearchPeople](./docs/CN-SearchPeople.png)
 
 For some reason the "SearchPeople" navbar button won't highlight in green when on this page, like with Problems and Notices, and tried rearranging the name and path of "SearchPeople", and in Navbar component, to see if it will.
 
@@ -58,27 +58,27 @@ The Profile page appears mainly blank still unfortunately.
 
 User account created successfully but undefined, and navigated to login page upon submit, as intended.
 
-![CNregistertest-frontend](./src/assets/CNregistertest-frontend.png)
+![CNregistertest-frontend](./docs/CNregistertest-frontend.png)
 
-![CN-problems-empty](./src/assets/CN-problems-empty.png)
+![CN-problems-empty](./docs/CN-problems-empty.png)
 
 Frontend as of 18 Dec 2024, empty problems list.
 
-![CN-notices-empty1](./src/assets/CN-notices-empty1.png)
+![CN-notices-empty1](./docs/CN-notices-empty1.png)
 
 Frontend as of 18 Dec 2024, empty notices list.
 
-![CN-NoProblemsAvailable](./src/assets/CN-NoProblemsAvailable.png)
+![CN-NoProblemsAvailable](./docs/CN-NoProblemsAvailable.png)
 
 "No Problems Available" on 18 Dec 2024
 
-![ProblemsPg-Issues1](./src/assets/ProblemsPg-Issues1.png)
+![ProblemsPg-Issues1](./docs/ProblemsPg-Issues1.png)
 
 The Problems page as of 21 Dec 2024. No major issues or errors appear in the console log but still no data appearing in frontend. A couple of more minor issues apparently about form field names and labels, which I attempted to resolve also, but wasn't entirely sure where or how.
 
 And similarly for Notices:
 
-![NoticesPg-issues](./src/assets/NoticesPg-issues.png)
+![NoticesPg-issues](./docs/NoticesPg-issues.png)
 
 ## Testing Backend
 
@@ -88,13 +88,13 @@ The backend was deployed successfully on 18 Dec 2024.
 
 As of 18 Dec 2024, I can get Problems and Notices data from the backend URL (with Auth disabled for this), but was still having trouble displaying and using this data in the frontend.
 
-![Get-problems-backend-URL](./src/assets/Get-problems-backend-URL.png)
+![Get-problems-backend-URL](./docs/Get-problems-backend-URL.png)
 
-![Get-notices-backend-URL](./src/assets/Get-notices-backend-URL.png)
+![Get-notices-backend-URL](./docs/Get-notices-backend-URL.png)
 
 An earlier server test with Jest:
 
-![server-test-pass](./src/assets/server-test-pass.png)
+![server-test-pass](./docs/server-test-pass.png)
 
 
 #### Users:
@@ -103,31 +103,31 @@ An earlier server test with Jest:
 
 Users and auth tests:
 
-![CN-jest-user](./src/assets/CN-jest-user.png)
+![CN-jest-user](./docs/CN-jest-user.png)
 
-![CN-jest-userlogin](./src/assets/CN-jest-userlogin.png)
+![CN-jest-userlogin](./docs/CN-jest-userlogin.png)
 
-![CN-jest-userLoginRegister](./src/assets/CN-jest-userLoginRegister.png)
+![CN-jest-userLoginRegister](./docs/CN-jest-userLoginRegister.png)
 
-![CN-jest-4usertests](./src/assets/CN-jest-4usertests.png)
+![CN-jest-4usertests](./docs/CN-jest-4usertests.png)
 
 #### Tests with Insomnia and MongoDB Compass:
 
-![CN-SearchUsers-insomnia](./src/assets/CN-SearchUsers-insomnia.png)
+![CN-SearchUsers-insomnia](./docs/CN-SearchUsers-insomnia.png)
 
-![CN-searchUsers2](./src/assets/CN-searchUsers2.png)
+![CN-searchUsers2](./docs/CN-searchUsers2.png)
 
 SearchUsers route. I have since changed this to "/searchpeople" to match with frontend routes and pages a bit more.
 
-![CN-UserUpdate-insomnia](./src/assets/CN-UserUpdate-insomnia.png)
+![CN-UserUpdate-insomnia](./docs/CN-UserUpdate-insomnia.png)
 
 Updating user profile info, such as the "about".
 
-![CN-deleteUser-insomnia](./src/assets/CN-deleteUser-insomnia.png)
+![CN-deleteUser-insomnia](./docs/CN-deleteUser-insomnia.png)
 
 Delete user is working. This might be for if a user closes their account, or if they're banned.
 
-![MongoDB-users](./src/assets/MongoDB-users.png)
+![MongoDB-users](./docs/MongoDB-users.png)
 
 Users data appearing in MongoDB Compass.
 
@@ -135,11 +135,11 @@ Users data appearing in MongoDB Compass.
 
 #### Tests with Insomnia and MongoDB Compass:
 
-![CN-authlogintoken](./src/assets/CN-authlogintoken.png)
+![CN-authlogintoken](./docs/CN-authlogintoken.png)
 
 New token generated upon logging in.
 
-![CN-logout-insomnia](./src/assets/CN-logout-insomnia.png)
+![CN-logout-insomnia](./docs/CN-logout-insomnia.png)
 
 Logout successful
 
@@ -147,45 +147,45 @@ Logout successful
 
 #### Tests with Jest:
 
-![CN-jest-addproblem](./src/assets/CN-jest-addproblem.png)
+![CN-jest-addproblem](./docs/CN-jest-addproblem.png)
 
-![CN-jest-4problemtests](./src/assets/CN-jest-4problemtests.png)
+![CN-jest-4problemtests](./docs/CN-jest-4problemtests.png)
 
 #### Tests with Insomnia and MongoDB Compass:
 
-![CN-ProblemsFullnameTest1](./src/assets/CN-ProblemsFullnameTest1.png)
+![CN-ProblemsFullnameTest1](./docs/CN-ProblemsFullnameTest1.png)
 
 Problem posts including User fullname displayed as intended, and the Problem comments.
 
-![CN-GetProblems-insomnia](./src/assets/CN-GetProblems-insomnia.png)
+![CN-GetProblems-insomnia](./docs/CN-GetProblems-insomnia.png)
 
 Problem posts including User fullname displayed, along with the comments added.
 
-![CN-GetProblemComments](./src/assets/CN-GetProblemComments.png)
+![CN-GetProblemComments](./docs/CN-GetProblemComments.png)
 
 Getting problem comments
 
-![CN-addProblem-insomnia](./src/assets/CN-addProblem-insomnia.png)
+![CN-addProblem-insomnia](./docs/CN-addProblem-insomnia.png)
 
 Adding a problem
 
-![CN-addingProblemComment](./src/assets/CN-addingProblemComment.png)
+![CN-addingProblemComment](./docs/CN-addingProblemComment.png)
 
 Adding problem comments
 
-![CN-Getproblemswithcomments](./src/assets/CN-Getproblemswithcomments.png)
+![CN-Getproblemswithcomments](./docs/CN-Getproblemswithcomments.png)
 
 Getting problems with comments, including the just-added comment.
 
-![CN-updateproblem-insomnia](./src/assets/CN-updateproblem-insomnia.png)
+![CN-updateproblem-insomnia](./docs/CN-updateproblem-insomnia.png)
 
 Problem post updated. I later put Urgent and Soon as UrgentOrSoon and like this in the Problem model: {type: String, enum: ['Urgent', 'Soon','N/A'], default: 'N/A'}, 
 
-![CN-deleteProblem-insomnia](./src/assets/CN-deleteProblem-insomnia.png)
+![CN-deleteProblem-insomnia](./docs/CN-deleteProblem-insomnia.png)
 
 Problem post being deleted
 
-![MongoDB-problems](./src/assets/MongoDB-problems.png)
+![MongoDB-problems](./docs/MongoDB-problems.png)
 
 Problems data appearing in MongoDB Compass. There is also a "problemcomments" schema but these are populated within the Problem post as intended. Earlier on, I initiated a schema just called "comments" because I wasn't sure if all comments would be under the same schema/collection, but later changed to "noticecomments" and "problemcomments" to perhaps avoid confusion. 
 
@@ -193,51 +193,51 @@ Problems data appearing in MongoDB Compass. There is also a "problemcomments" sc
 
 #### Tests with Jest:
 
-![CN-jest-addnotice](./src/assets/CN-jest-addnotice.png)
+![CN-jest-addnotice](./docs/CN-jest-addnotice.png)
 
-![CN-jest-4noticetests](./src/assets/CN-jest-4noticetests.png)
+![CN-jest-4noticetests](./docs/CN-jest-4noticetests.png)
 
 #### Tests with Insomnia and MongoDB Compass:
 
-![CN-getOneNotice-insomnia](./src/assets/CN-getOneNotice-insomnia.png)
+![CN-getOneNotice-insomnia](./docs/CN-getOneNotice-insomnia.png)
 
 Getting one notice, including user fullname displayed.
 
-![CN-getNotices-insomnia](./src/assets/CN-getNotices-insomnia.png)
+![CN-getNotices-insomnia](./docs/CN-getNotices-insomnia.png)
 
 Getting all notices.
 
-![CN-GetNotices-insomnia2](./src/assets/CN-GetNotices-insomnia2.png)
+![CN-GetNotices-insomnia2](./docs/CN-GetNotices-insomnia2.png)
 
 Getting all notices.
 
-![CN-UserFullnameTest](./src/assets/CN-UserFullnameTest.png)
+![CN-UserFullnameTest](./docs/CN-UserFullnameTest.png)
 
 Getting notices, including notice comments, and user fullname displayed as intended.
 
-![CN-UserFullnameTest2](./src/assets/CN-UserFullnameTest2.png)
+![CN-UserFullnameTest2](./docs/CN-UserFullnameTest2.png)
 
-![CN-UserFullnameTest3](./src/assets/CN-UserFullnameTest3.png)
+![CN-UserFullnameTest3](./docs/CN-UserFullnameTest3.png)
 
 User fullname didn't show on this occasion when adding then getting a notice on Insomnia.
 
-![CN-noticeAdded-test](./src/assets/CN-noticeAdded-test.png)
+![CN-noticeAdded-test](./docs/CN-noticeAdded-test.png)
 
 Adding a notice
 
-![CN-addCommentNoticesTest](./src/assets/CN-addCommentNoticesTest.png)
+![CN-addCommentNoticesTest](./docs/CN-addCommentNoticesTest.png)
 
 Adding a comment to a notice
 
-![CN-updateNotice-insomnia2](./src/assets/CN-updateNotice-insomnia2.png)
+![CN-updateNotice-insomnia2](./docs/CN-updateNotice-insomnia2.png)
 
 Updating a notice
 
-![CN-deleteNotice-insomnia](./src/assets/CN-deleteNotice-insomnia.png)
+![CN-deleteNotice-insomnia](./docs/CN-deleteNotice-insomnia.png)
 
 Notice being deleted
 
-![MongoDB-notices](./src/assets/MongoDB-notices.png)
+![MongoDB-notices](./docs/MongoDB-notices.png)
 
 Notices data appearing in MongoDB Compass. There is also a "noticecomments" schema but these are populated within the Notice post as intended.
 
@@ -279,31 +279,31 @@ Below are some examples of the Urgent and Soon symbols I intend to try out and i
 
 #### Yellow Square symbol
 
-![Yellow Square](./src/assets/yellow-square.svg)
+![Yellow Square](./docs/yellow-square.svg)
 
 #### Red Square symbol
 
-![Red Square](./src/assets//Red-Square.svg)
+![Red Square](./docs/Red-Square.svg)
 
 #### Red Dot symbol
 
-![Red Dot](./src/assets/Red-Dot.svg)
+![Red Dot](./docs/Red-Dot.svg)
 
 #### Yellow Dot SOON symbol
 
-![Yellow Dot SOON](./src/assets/SOON-yellow-dot.svg)
+![Yellow Dot SOON](./docs/SOON-yellow-dot.svg)
 
 #### Yellow Square SOON symbol
 
-![Yellow Square SOON](./src/assets/SOON-yellow-square.svg)
+![Yellow Square SOON](./docs/SOON-yellow-square.svg)
 
 #### Red Dot URGENT symbol
 
-![Red Dot URGENT](./src/assets/URGENT-red-dot.svg)
+![Red Dot URGENT](./docs/URGENT-red-dot.svg)
 
 #### Red Square URGENT symbol
 
-![Red Square URGENT](./src/assets/URGENT-red-square.svg)
+![Red Square URGENT](./docs/URGENT-red-square.svg)
 
 ### Target audience
 
@@ -357,21 +357,21 @@ When drawing up this dataflow diagram, I endeavoured to follow the conventions o
 
 Earlier on, I thought User and UserProfile would be separate models/schemas, but upon figuring out the backend some more and getting it working without errors on 29 Nov 2024, it looks like User profiles/ the MyProfile page will be populated from a User schema, which includes "about" and "profilephoto".
 
-![Dataflow Diagram2](./src/assets/dataflow-diagramEdit3.png)
+![Dataflow Diagram2](./docs/dataflow-diagramEdit3.png)
 
 Earlier version of the dataflow diagram prior to 29 Nov 2024, with separate User and Userprofile schemas:
 
-![Dataflow Diagram](./src/assets/dataflow-diagramEdit1.png)
+![Dataflow Diagram](./docs/dataflow-diagramEdit1.png)
 
 The updated dataflow diagram as on 19 Dec 2024, to reflect the Problem Comments and Notice Comments schemas instead of Comments, and MyProfile page being changed to Profile: 
 
-![dataflow-diagramUpdated](./src/assets/dataflow-diagramUpdated.png)
+![dataflow-diagramUpdated](./docs/dataflow-diagramUpdated.png)
 
 I changed MyProfile to Profile to match the routes and paths a bit better, such as by having "/users/:id/profile" because the intention is to enable users to look up (or Get) other users' profiles with this "getUser" route.
 
 ## Application Architecture Diagram
 
-![Application Architecture](./src/assets/Application-architecture1.png)
+![Application Architecture](./docs/Application-architecture1.png)
 
 ## User Stories
 
@@ -414,47 +414,47 @@ By 22 Dec 2024, the Council Note frontend might not be as whiz-bang as intended 
 
 #### Mobile: Login, Create Account, Problems
 
-![Mobile1](./src/assets/CN-mobile1a.jpg)
+![Mobile1](./docs/CN-mobile1a.jpg)
 
 #### Mobile: Nav Hamburger, Problem Form, Notices
 
-![Mobile5](./src/assets/CN-mobile5.jpg)
+![Mobile5](./docs/CN-mobile5.jpg)
 
 #### Mobile: View UserProfile, Notice Form, Notices Comments
 
-![Mobile6](./src/assets/CN-mobile6.jpg)
+![Mobile6](./docs/CN-mobile6.jpg)
 
 #### Tablet: Login
 
-![Tablet Login](./src/assets/CN-TabletLogin.jpg)
+![Tablet Login](./docs/CN-TabletLogin.jpg)
 
 #### Tablet: Problems
 
-![Tablet Problems](./src/assets/CN-TabletProblems.jpg)
+![Tablet Problems](./docs/CN-TabletProblems.jpg)
 
 #### Tablet: Notices
 
-![Tablet Notices](./src/assets/CN-TabletNotices.jpg)
+![Tablet Notices](./docs/CN-TabletNotices.jpg)
 
 #### Desktop: Login
 
-![Desktop Login](./src/assets/CN-desktopLogin.jpg)
+![Desktop Login](./docs/CN-desktopLogin.jpg)
 
 #### Desktop: MyProfile
 
-![Desktop MyProfile](./src/assets/CN-desktopMyProfile2.jpg)
+![Desktop MyProfile](./docs/CN-desktopMyProfile2.jpg)
 
 #### Desktop: Problems page with comments
 
-![Desktop Problems Comments](./src/assets/CN-desktopProblemComments.jpg)
+![Desktop Problems Comments](./docs/CN-desktopProblemComments.jpg)
 
 #### Desktop: Problems Form
 
-![Desktop Problems Form](./src/assets/CN-desktopProblemForm.jpg)
+![Desktop Problems Form](./docs/CN-desktopProblemForm.jpg)
 
 #### Desktop: Problems page
 
-![Desktop Problems](./src/assets/CN-desktopProblems2.jpg)
+![Desktop Problems](./docs/CN-desktopProblems2.jpg)
 
 
 ## Screenshots of Trello board
@@ -465,11 +465,11 @@ I have used Trello to plan and keep track of the stages of development of this a
 
 The CouncilNote Trello board as on 22 Dec 2024:
 
-![Trello-Overall2](./src/assets/Trello-Overall2.png)
+![Trello-Overall2](./docs/Trello-Overall2.png)
 
 The CouncilNote Trello board as on 1 Dec 2024:
 
-![Trello7](./src/assets/Trello-CN7.png)
+![Trello7](./docs/Trello-CN7.png)
 
 I started one of the tests successfully on 30 Nov 2024.
 
@@ -477,56 +477,56 @@ https://trello.com/b/IhyWrrV7/council-note
 
 #### Trello Dataflow Diagram
 
-![Trello2](./src/assets/Trello-CN2.png)
+![Trello2](./docs/Trello-CN2.png)
 
 #### Trello Application Architecture Diagram
 
-![Trello3](./src/assets/Trello-CN3.png)
+![Trello3](./docs/Trello-CN3.png)
 
 #### Trello Wireframes
 
-![Trello4](./src/assets/Trello-CN4.png)
+![Trello4](./docs/Trello-CN4.png)
 
 #### Trello Starting Coding
 
 During the week of 17 Nov to 24 Nov 2024, I started some coding, at least trialling, of the frontend and backend to see how this MERN app will piece together and work, and to have some ideas for the Dataflow Diagram, Application Architecture Diagram and Wireframes.
 
-![Trello5a](./src/assets/Trello-CN5a.png)
+![Trello5a](./docs/Trello-CN5a.png)
 
-![Trello5b](./src/assets/Trello-CN5b.png)
+![Trello5b](./docs/Trello-CN5b.png)
 
-![Trello5c](./src/assets/Trello-CN5c.png)
+![Trello5c](./docs/Trello-CN5c.png)
 
-![Trello-9](./src/assets/Trello-9.png)
+![Trello-9](./docs/Trello-9.png)
 
 #### Continuing and completing coding/filling out of files
 
-![Trello-10](./src/assets/Trello-10.png)
+![Trello-10](./docs/Trello-10.png)
 
-![Trello-11](./src/assets/Trello-11.png)
+![Trello-11](./docs/Trello-11.png)
 
-![Trello-12](./src/assets/Trello-12.png)
+![Trello-12](./docs/Trello-12.png)
 
 #### Testing of Application
 
-![Trello-17](./src/assets/Trello-17.png)
+![Trello-17](./docs/Trello-17.png)
 
-![Trello-18](./src/assets/Trello-18.png)
+![Trello-18](./docs/Trello-18.png)
 
-![Trello-16](./src/assets/Trello-16.png)
+![Trello-16](./docs/Trello-16.png)
 
-![Trello-13](./src/assets/Trello-13.png)
+![Trello-13](./docs/Trello-13.png)
 
-![Trello-14](./src/assets/Trello-14.png)
+![Trello-14](./docs/Trello-14.png)
 
-![Trello-15](./src/assets/Trello-15.png)
+![Trello-15](./docs/Trello-15.png)
 
-![Trello-BlackoutDelay5Dec](./src/assets/Trello-BlackoutDelay5Dec.png)
+![Trello-BlackoutDelay5Dec](./docs/Trello-BlackoutDelay5Dec.png)
 
 I was delayed some hours by a blackout on 5 Dec 2024.
 
 #### Trello Successful Deployment
 
-![Trello-19](./src/assets/Trello-19.png)
+![Trello-19](./docs/Trello-19.png)
 
-![Trello-20](./src/assets/Trello-20.png)
+![Trello-20](./docs/Trello-20.png)

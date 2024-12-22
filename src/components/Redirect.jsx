@@ -19,6 +19,6 @@ return (
     <p>Redirecting... Please wait..</p>
   </div>
 );
-};
+
 
 export default Redirect;
