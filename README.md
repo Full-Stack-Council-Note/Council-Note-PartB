@@ -1,5 +1,8 @@
 # CouncilNote Part B
 
+To run the frontend locally, VITE_PORT=8080 is used in the .env file.
+PORT=5000 is used in the backend .env 
+
 ### Deployed Frontend:
 
 https://councilnote.netlify.app/
