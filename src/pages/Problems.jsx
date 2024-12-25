@@ -15,7 +15,7 @@ import SoonSymbol from '../assets/SOON-yellow-dot.svg';
 
 export default function Problems() {
    const [error, setError] = useState(null);
-    const { _id  } = useParams();
+    //const { _id  } = useParams();
     //const { search } = useLocation();
           //or problemData, setProblemData
    //not sure if I need to define or "set" these here also, was giving me "undefined" in console log for a while
@@ -25,7 +25,8 @@ export default function Problems() {
     const [IsResolved, setIsResolved]= useState(false);
     const [problemphoto, setproblemhoto] = useState(true)
     const [ProblemComments, setProblemComments] = useState([]);
-    const [problems, setProblems] = useState([]);
+    const [data, setData] = useState([]);
+    //const [problems, setProblems] = useState([]);
     //const [problemtitle, setProblemTitle] = useState('');
    
     const [newProblem, setNewProblem] = useState({
@@ -51,27 +52,16 @@ export default function Problems() {
     const problemsSearch = new URLSearchParams(search).get("problems/filter");
 
  // Fetch posts with pagination and search (potentially those also)
-  useEffect(() => {
-    const fetchProblems = async () => {
-
-        try {    
-          const response = await axios.get('https://council-note-backend-5cf218cede7a.herokuapp.com/problems', {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-            
-           const data = response.data;
-           setProblems( response.data.problems || []);
-
-            } catch (error) {
-             console.error('An error occurred fetching problems', error);
-            }
-            setLoading(false);
-    };
-
-     fetchProblems();
-    }, [problems]);
+ useEffect(() => {
+    
+  fetch('https://council-note-backend-5cf218cede7a.herokuapp.com/problems')
+  .then((response) => response.json())
+  .then(data => {
+    console.log(data)
+    setData(data)
+  })
+ 
+  }, []);
 
 
   //useEffect(() => {
@@ -95,7 +85,7 @@ export default function Problems() {
     setIsSubmitting(true);
     axios.post(`https://council-note-backend-5cf218cede7a.herokuapp.com/problems/addProblem`, newProblem)
       .then((response) => {
-        setProblems([...problems, response.data]);
+        setData([response.data])
         setNewProblem({ problemtitle: '', problemdescription: '', user: true, DateAdded: true, UrgentOrSoon: '', IsResolved: false, problemphoto: true, ProblemComments: [] });
         setIsSubmitting(false);
       })
@@ -116,32 +106,30 @@ export default function Problems() {
        Problems:
       </Typography>
       {/* Check if problems is an array before calling .map */}
-      {Array.isArray(problems) && problems.length > 0 ? (
-       problems.map((problem) => (
-          <Grid item xs={12} key={problem._id }>
+      {Array.isArray(data) && data.length > 0 ? (
+        data.map((problems) => (
+          <Grid item xs={12} key={problems._id }>
             <Paper elevation={3} sx={{ padding: 2 }}>
-              <Typography variant="h5">{problem.problemtitle}</Typography>
+            <Typography variant="body1" sx={{ marginTop: 1 }}>
+                {problems.user}
+              </Typography>
+              <Typography variant="h5">{problems.problemtitle}</Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problem.problemdescription}
+                {problems.problemdescription}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problem.user}
+                {problems.UrgentOrSoon}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problem.DateAdded}
+                {problems.ProblemComments}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problem.UrgentOrSoon}
+                {problems.IsResolved}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problem.IsResolved}
+                {problems.DateAdded}
               </Typography>
-              <Box mt={1} sx={{ bgcolor: '#DCDCDC', borderRadius: 3 }}>
-                {problem.problemphoto}
-              </Box>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problem.ProblemComments}
-              </Typography>
+
             </Paper>
           </Grid>
         ))

@@ -18,7 +18,7 @@ export default function Problems() {
     const [user, setUser] = useState(true);
     const [NoticePhoto, setNoticePhoto] = useState(true)
     const [NoticeComments, setNoticeComments] = useState([]);
-    const [notices, setNotices] = useState([]);
+    const [data, setData] = useState([]);
     const [newNotice, setNewNotice] = useState({
       NoticeTitle: '',
       NoticeDescription: '',
@@ -41,26 +41,14 @@ export default function Problems() {
     
   // Fetch posts with pagination and search (potentially those also)
   useEffect(() => {
-    const fetchNotices = async () => {
-
-        try {    
-          const response = await axios.get('https://council-note-backend-5cf218cede7a.herokuapp.com/notices', {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-            
-           const data = response.data;
-           setNotices( response.data.notices || []);
-
-            } catch (error) {
-             console.error('An error occurred fetching notices', error);
-            }
-            setLoading(false);
-    };
-
-     fetchNotices();
-    }, [notices]);
+    
+    fetch('https://council-note-backend-5cf218cede7a.herokuapp.com/notices')
+    .then((response) => response.json())
+    .then(data => {
+      console.log(data)
+      setData(data)
+    })
+    }, []);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -78,7 +66,7 @@ export default function Problems() {
     setIsSubmitting(true);
     axios.post(`https://council-note-backend-5cf218cede7a.herokuapp.com/notices/addNotice`, newNotice)
       .then((response) => {
-        setNotices([...notices, response.data]);
+        setData([response.data]);
         setNewNotice({ NoticeTitle: '', NoticeDescription: '', user: true, DateAdded: true, NoticePhoto: true, NoticeComments: [] });
         setIsSubmitting(false);
       })
@@ -99,25 +87,25 @@ export default function Problems() {
                Notices:
           </Typography>
       {/* Check if notices is an array before calling .map */}
-      {Array.isArray(notices) && notices.length > 0 ? (
-       notices.map((notices) => (         
-          <Grid item xs={12} key={notices._id}>
+      {Array.isArray(data) && data.length > 0 ? (
+       data.map((notice) => (         
+          <Grid item xs={12} key={notice._id}>
             <Paper elevation={3} sx={{ padding: 2 }}>
-              <Typography variant="h5">{notices.NoticeTitle}</Typography>
+              <Typography variant="h5">{notice.NoticeTitle}</Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {notices.NoticeDescription}
+                {notice.NoticeDescription}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {notices.user}
+                {notice.user}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {notices.DateAdded}
+                {notice.DateAdded}
               </Typography>
               <Box mt={1} sx={{ bgcolor: '#DCDCDC', borderRadius: 3 }}>
-                {notices.NoticePhoto}
+                {notice.NoticePhoto}
               </Box>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {notices.NoticeComments}
+                {notice.NoticeComments}
               </Typography>
             </Paper>
           </Grid>
