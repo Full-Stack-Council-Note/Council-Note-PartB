@@ -86,6 +86,14 @@ And similarly for Notices:
 
 ![NoticesPg-issues](./docs/NoticesPg-issues.png)
 
+### Beyond 22 Dec 2024:
+
+Beyond 22 Dec 2024, I have attempted some more to get Problems and Notices data to work and display. This data can display in the console log but still not on the page, and the page can be blank but with no errors in the console log.
+
+![ProblemsDataConsoleLog](./docs/ProblemsDataConsoleLog.png)
+
+![NoticeDataConsoleLog](./docs/NoticeDataConsoleLog.png)
+
 ## Testing Backend
 
 I mainly used Insomnia, Jest and MongoDB Compass to test the backend, checking if certain routes, functions and features were working.
