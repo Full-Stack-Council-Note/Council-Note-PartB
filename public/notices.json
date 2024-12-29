@@ -1,0 +1,120 @@
+{
+    "notices": [
+    {
+      "_id": "6752b4495d3a46c468f95a1d",
+      "NoticeTitle": "one more notice title test",
+      "NoticeDescription": "this is a test notice description again now",
+      "user": null,
+      "DateAdded": "2024-12-06T08:22:33.504Z",
+      "NoticeComments": [
+        {
+          "content": "And another notice comment hello",
+          "user": "674d539c67f52034dc022e9e",
+          "DateAdded": "2024-12-06T08:22:33.504Z",
+          "_id": "6752b4495d3a46c468f95a1e"
+        },
+        {
+          "content": "testing notice comments more again2",
+          "user": "674f55cee92e5b3ef9462ad9",
+          "DateAdded": "2024-12-06T08:22:33.504Z",
+          "_id": "6752b4495d3a46c468f95a1f"
+        }
+      ],
+      "__v": 0
+    },
+    {
+      "_id": "6752b4495d3a46c468f95a18",
+      "NoticeTitle": "new notice title67",
+      "NoticeDescription": "test notice description 576",
+      "user": null,
+      "DateAdded": "2024-12-06T08:22:33.504Z",
+      "NoticeComments": [
+        {
+          "content": "this is an interesting notice comment test again",
+          "user": "674f52dda4cdf7786a1f45d3",
+          "DateAdded": "2024-12-06T08:22:33.504Z",
+          "_id": "6752b4495d3a46c468f95a19"
+        }
+      ],
+      "__v": 0
+    },
+    {
+      "_id": "6752b4495d3a46c468f95a1a",
+      "NoticeTitle": "test notice again today467",
+      "NoticeDescription": "this is a test notice description65",
+      "user": null,
+      "DateAdded": "2024-12-06T08:22:33.504Z",
+      "NoticeComments": [
+        {
+          "content": "this is a new notice comment hello",
+          "user": "674d539c67f52034dc022e9e",
+          "DateAdded": "2024-12-06T08:22:33.504Z",
+          "_id": "6752b4495d3a46c468f95a1b"
+        },
+        {
+          "content": "testing notice comments more again",
+          "user": "674f52dda4cdf7786a1f45d3",
+          "DateAdded": "2024-12-06T08:22:33.504Z",
+          "_id": "6752b4495d3a46c468f95a1c"
+        }
+      ],
+      "__v": 0
+    },
+    {
+      "_id": "6752b68e93e18ca91f86607c",
+      "NoticeTitle": "Ronson Yipp's notice title testing name info",
+      "NoticeDescription": "test notice  for name",
+      "DateAdded": "2024-12-06T08:32:14.904Z",
+      "NoticeComments": [],
+      "__v": 0
+    },
+    {
+      "_id": "6752b79793e18ca91f866089",
+      "NoticeTitle": "Ronson Yipp's notice title testing name info2",
+      "NoticeDescription": "test notice for name2",
+      "DateAdded": "2024-12-06T08:36:39.207Z",
+      "NoticeComments": [],
+      "__v": 0
+    },
+    {
+      "_id": "675399321560f97b528239d6",
+      "NoticeTitle": "test notice title 7-12",
+      "NoticeDescription": "test notice description 7-12",
+      "DateAdded": "2024-12-07T00:39:14.264Z",
+      "NoticeComments": [],
+      "__v": 0
+    },
+    {
+      "_id": "67552e6a6777e373f74c74dd",
+      "NoticeTitle": "Notice title test 8-12-24",
+      "NoticeDescription": "notice description test 8-12-24",
+      "DateAdded": "2024-12-08T05:28:10.657Z",
+      "NoticeComments": [],
+      "__v": 0
+    },
+    {
+      "_id": "675a61a322372a8529be80a5",
+      "NoticeTitle": "Dimsim Jacobs's notice title1",
+      "NoticeDescription": "Community fair on saturday",
+      "DateAdded": "2024-12-12T04:08:03.903Z",
+      "NoticeComments": [],
+      "__v": 0
+    },
+    {
+      "_id": "675a61eb22372a8529be80a8",
+      "NoticeTitle": "Dimsim Jacobs's notice title2",
+      "NoticeDescription": "Car meet at Pooraka car park",
+      "DateAdded": "2024-12-12T04:09:15.015Z",
+      "NoticeComments": [],
+      "__v": 0
+    },
+    {
+      "_id": "675a620322372a8529be80ab",
+      "NoticeTitle": "Dimsim Jacobs's notice title3",
+      "NoticeDescription": "Lost dog outside library",
+      "DateAdded": "2024-12-12T04:09:39.502Z",
+      "NoticeComments": [],
+      "__v": 0
+    }
+  ]
+}

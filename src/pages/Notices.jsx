@@ -10,7 +10,7 @@ import {
 import.meta.env.REACT_APP_ENDPOINT
 //const url = process.env.REACT_APP_ENDPOINT
 
-export default function Problems() {
+export default function Notices() {
     const { _id } = useParams();
     //const { search } = useLocation();
    //not sure if I need to define or "set" these here also, was giving me "undefined" in console log for a while
@@ -31,7 +31,7 @@ export default function Problems() {
 
     const [newNoticeComments, setNewNoticeComments] = useState({content:"", user: true, DateAdded: true});
     
-    const [loading, setLoading] = useState(true);
+    //const [loading, setLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
@@ -42,11 +42,7 @@ export default function Problems() {
     
   // Fetch posts with pagination and search (potentially those also)
   useEffect(() => {
-    fetch('https://council-note-backend-5cf218cede7a.herokuapp.com/notices', {
-      headers: {
-        'Content-Type': 'application/json'
-      } 
-    })
+    fetch('/notices.json')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch notices');
@@ -88,7 +84,7 @@ export default function Problems() {
       });
   };
 
-  if (loading) return (<CircularProgress />);
+  //if (loading) return (<CircularProgress />);
 
   return (
     <Container >
@@ -99,8 +95,8 @@ export default function Problems() {
                Notices:
           </Typography>
       {/* Check if notices is an array before calling .map */}
-      {Array.isArray(data) && data.length > 0 ? (
-       data.map((notice) => (         
+      {Array.isArray(notices) && notices.length > 0 ? (
+        notices.map((notice) => (         
           <Grid item xs={12} key={notice._id}>
             <Paper elevation={3} sx={{ padding: 2 }}>
               <Typography variant="h5">{notice.NoticeTitle}</Typography>
@@ -113,9 +109,6 @@ export default function Problems() {
               <Typography variant="body1" sx={{ marginTop: 1 }}>
                 {notice.DateAdded}
               </Typography>
-              <Box mt={1} sx={{ bgcolor: '#DCDCDC', borderRadius: 3 }}>
-                {notice.NoticePhoto}
-              </Box>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
                 {notice.NoticeComments}
               </Typography>

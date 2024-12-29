@@ -42,7 +42,7 @@ export default function Problems() {
    
     const [newProblemComments, setNewProblemComments] = useState({content:"", user: true, DateAdded: true});
 
-    const [loading, setLoading] = useState(true);
+   // const [loading, setLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
@@ -53,7 +53,7 @@ export default function Problems() {
 
  // Fetch posts with pagination and search (potentially those also)
  useEffect(() => {
-  fetch('https://council-note-backend-5cf218cede7a.herokuapp.com/problems', {
+  fetch('/problems.json', {
     headers: {
       'Content-Type': 'application/json'
     } // Send the search query as part of the request
@@ -105,7 +105,7 @@ export default function Problems() {
       });
   };
 
-  if (loading) return (<CircularProgress />);
+  //if (loading) return (<CircularProgress />);
 
   if (error) {
     return <Typography color="error">{error}</Typography>;
