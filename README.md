@@ -88,7 +88,7 @@ And similarly for Notices:
 
 ### Beyond 22 Dec 2024:
 
-Beyond 22 Dec 2024, I have attempted some more to get Problems and Notices data to work and display. This data can display in the console log but still not on the page, and the page can be blank but with no errors in the console log.
+In the last few days, I have attempted some more to get Problems and Notices data to work and display. This data can display in the console log but still not successfully on the page, and the page can be blank but with no errors in the console log.
 
 ![ProblemsDataConsoleLog](./docs/ProblemsDataConsoleLog.png)
 
