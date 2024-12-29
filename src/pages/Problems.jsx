@@ -15,7 +15,7 @@ import SoonSymbol from '../assets/SOON-yellow-dot.svg';
 
 export default function Problems() {
    const [error, setError] = useState(null);
-    //const { _id  } = useParams();
+    const { _id  } = useParams();
     //const { search } = useLocation();
           //or problemData, setProblemData
    //not sure if I need to define or "set" these here also, was giving me "undefined" in console log for a while
@@ -23,10 +23,10 @@ export default function Problems() {
     const [DateAdded, setDateAdded]= useState(true)
     const [user, setUser] = useState(true);
     const [IsResolved, setIsResolved]= useState(false);
-    const [problemphoto, setproblemhoto] = useState(true)
+    const [problemphoto, setProblemPhoto] = useState(true)
     const [ProblemComments, setProblemComments] = useState([]);
     const [data, setData] = useState([]);
-    //const [problems, setProblems] = useState([]);
+    const [problems, setProblems] = useState([]);
     //const [problemtitle, setProblemTitle] = useState('');
    
     const [newProblem, setNewProblem] = useState({
@@ -53,15 +53,25 @@ export default function Problems() {
 
  // Fetch posts with pagination and search (potentially those also)
  useEffect(() => {
-    
-  fetch('https://council-note-backend-5cf218cede7a.herokuapp.com/problems')
-  .then((response) => response.json())
-  .then(data => {
-    console.log(data)
-    setData(data)
+  fetch('https://council-note-backend-5cf218cede7a.herokuapp.com/problems', {
+    headers: {
+      'Content-Type': 'application/json'
+    } // Send the search query as part of the request
   })
- 
-  }, []);
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch problems');
+      }
+      return response.json();
+    })
+    .then((problems) => {
+      console.log('Fetched problems:', problems);
+      setProblems(problems);
+    })
+    .catch((err) => {
+      setError(err.message);
+    });
+}, []);
 
 
   //useEffect(() => {
@@ -97,6 +107,10 @@ export default function Problems() {
 
   if (loading) return (<CircularProgress />);
 
+  if (error) {
+    return <Typography color="error">{error}</Typography>;
+  }
+
   return (
     <Container >
 
@@ -106,28 +120,30 @@ export default function Problems() {
        Problems:
       </Typography>
       {/* Check if problems is an array before calling .map */}
-      {Array.isArray(data) && data.length > 0 ? (
-        data.map((problems) => (
-          <Grid item xs={12} key={problems._id }>
+      {Array.isArray(problems) && problems.length > 0 ? (
+        problems.map((problem) => (
+          <Grid xs={12} key={problem._id }>
             <Paper elevation={3} sx={{ padding: 2 }}>
-            <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.user}
-              </Typography>
-              <Typography variant="h5">{problems.problemtitle}</Typography>
+            <Typography variant="h5" sx={{ marginTop: 1 }}>
+              {problem.problemtitle || 'No Title'}
+            </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.problemdescription}
-              </Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.UrgentOrSoon}
+              {problem.problemdescription || 'No description'}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.ProblemComments}
+              {problem.user || 'N/A'}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.IsResolved}
+              {problem.UrgentOrSoon || 'N/A'}
               </Typography>
               <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {problems.DateAdded}
+              {problem.ProblemComments || 'No Comments'}
+              </Typography>
+              <Typography variant="body1" sx={{ marginTop: 1 }}>
+              {problem.IsResolved ? true: false}
+              </Typography>
+              <Typography variant="body1" sx={{ marginTop: 1 }}>
+              {problem.DateAdded || 'N/A'}
               </Typography>
 
             </Paper>

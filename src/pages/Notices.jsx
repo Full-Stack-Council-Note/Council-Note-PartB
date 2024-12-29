@@ -19,6 +19,7 @@ export default function Problems() {
     const [NoticePhoto, setNoticePhoto] = useState(true)
     const [NoticeComments, setNoticeComments] = useState([]);
     const [data, setData] = useState([]);
+    const [notices, setNotices] = useState([])
     const [newNotice, setNewNotice] = useState({
       NoticeTitle: '',
       NoticeDescription: '',
@@ -41,14 +42,25 @@ export default function Problems() {
     
   // Fetch posts with pagination and search (potentially those also)
   useEffect(() => {
-    
-    fetch('https://council-note-backend-5cf218cede7a.herokuapp.com/notices')
-    .then((response) => response.json())
-    .then(data => {
-      console.log(data)
-      setData(data)
+    fetch('https://council-note-backend-5cf218cede7a.herokuapp.com/notices', {
+      headers: {
+        'Content-Type': 'application/json'
+      } 
     })
-    }, []);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch notices');
+        }
+        return response.json();
+      })
+      .then((notices) => {
+        console.log('Fetched notices:', notices);
+        setNotices(notices);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
+  }, []);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
