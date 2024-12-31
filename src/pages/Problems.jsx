@@ -139,19 +139,19 @@ export default function Problems() {
             <strong>{problem.problemtitle}</strong>
             </Typography>
               <Typography variant="h5" sx={{ marginTop: 1 }}>
-              Description: {problem.problemdescription}
+              <strong>Description:</strong> {problem.problemdescription}
               </Typography>
               <Typography variant="h6" sx={{ marginTop: 1 }}>
-              Added By: {problem.user}
+              <strong>Added By:</strong> {problem.user}
               </Typography>
               <Typography variant="h6" sx={{ marginTop: 1 }}>
-              Urgency: {problem.UrgentOrSoon}
+              <strong>Urgency:</strong> {problem.UrgentOrSoon}
               </Typography>
               <Typography variant="h6" sx={{ marginTop: 1 }}>
-              Resolved Status: {problem.IsResolved ? true : false}
+              <strong>Resolved Status:</strong> {problem.IsResolved ? true : false}
               </Typography>
               <Typography variant="h6" sx={{ marginTop: 1 }}>
-              Added On: {new Date(problem.DateAdded).toLocaleString()}
+              <strong>Added On:</strong> {new Date(problem.DateAdded).toLocaleString()}
               </Typography>
               <Typography variant="h5" sx={{ marginTop: 1 }}>
               <strong>Comments:</strong>

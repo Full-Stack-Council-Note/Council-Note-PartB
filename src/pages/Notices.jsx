@@ -106,13 +106,13 @@ export default function Notices() {
             <strong>{notice.NoticeTitle}</strong>
             </Typography>
               <Typography variant="h5" sx={{ marginTop: 1 }}>
-              Description: {notice.NoticeDescription}
+              <strong>Description:</strong> {notice.NoticeDescription}
               </Typography>
               <Typography variant="h6" sx={{ marginTop: 1 }}>
-              Added By: {notice.user}
+              <strong>Added By:</strong> {notice.user}
               </Typography>
               <Typography variant="h6" sx={{ marginTop: 1 }}>
-              Added On: {new Date(notice.DateAdded).toLocaleString()}
+              <strong>Added On:</strong> {new Date(notice.DateAdded).toLocaleString()}
               </Typography>
               <Typography variant="h5" sx={{ marginTop: 1 }}>
               <strong>Comments:</strong>
