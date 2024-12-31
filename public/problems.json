@@ -42,8 +42,14 @@
         {
           "content": "this is a second problem comment",
           "user": "Ronson Yipp",
-          "DateAdded": "2024-12-06T08:18:46.910Z",
+          "DateAdded": "2024-12-06T08:20:46.910Z",
           "_id": "6752b366700c7da8a8a9a59b"
+        },
+        {
+          "content": "I agree this is a problem",
+          "user": "Paul Bailey",
+          "DateAdded": "2024-12-20T08:22:48.910Z",
+          "_id": "6752b366700c7da8a8a9a59c"
         }
       ],
       "__v": 0
@@ -108,7 +114,7 @@
       "problemtitle": "Fallen trees on road",
       "problemdescription": "Trees down on main north road since storm earlier",
       "user": "Carina Macolino",
-      "UrgentOrSoon": "Soon",
+      "UrgentOrSoon": "Urgent",
       "IsResolved": false,
       "DateAdded": "2024-12-12T04:00:19.379Z",
       "ProblemComments": [],
@@ -119,7 +125,7 @@
       "problemtitle": "Whopping wasps",
       "problemdescription": "Killer bees in shopping centre",
       "user": "Nev Davis",
-      "UrgentOrSoon": "Soon",
+      "UrgentOrSoon": "Urgent",
       "IsResolved": false,
       "DateAdded": "2024-12-12T04:01:05.825Z",
       "ProblemComments": [],
