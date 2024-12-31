@@ -96,6 +96,14 @@ In the last few days, I have attempted some more to get Problems and Notices dat
 
 Only just now noticed I had for some reason put "export default function Problems()" in Notices.jsx. Would've thought a big error message would show up for that, but didn't make a difference fixing that so far, data still only appears in console log.
 
+31 Dec 2024:
+
+![ProblemDataDisplay](./docs/ProblemDataDisplay.png)
+
+![NoticesDataDisplay](./docs/NoticesDataDisplay.png)
+
+I have now successfully gotten the Problems and Notices data to display on the page, but via edited json files, mainly as a demo a bit closer to what it should look like.
+
 ## Testing Backend
 
 I mainly used Insomnia, Jest and MongoDB Compass to test the backend, checking if certain routes, functions and features were working.
