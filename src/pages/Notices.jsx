@@ -31,37 +31,36 @@ export default function Notices() {
 
     const [newNoticeComments, setNewNoticeComments] = useState({content:"", user: true, DateAdded: true});
     
-    //const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [search, setSearch] = useState('');
+    //const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [totalPosts, setTotalPosts] = useState(0);
     const postsPerPage = 10;
-    const noticesSearch = new URLSearchParams(search).get("notices/filter");
+   // const noticesSearch = new URLSearchParams(search).get("notices/filter");
     
   // Fetch posts with pagination and search (potentially those also)
+ 
   useEffect(() => {
+    
     fetch('/notices.json')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch notices');
-        }
-        return response.json();
+      .then(response => response.json()) // Parse the JSON response
+      .then(data => {
+        setNotices(data.notices); // Set notices data to state
+        setLoading(false); // Set loading to false
       })
-      .then((notices) => {
-        console.log('Fetched notices:', notices);
-        setNotices(notices);
-      })
-      .catch((err) => {
-        setError(err.message);
+      .catch(error => {
+        setError('Error fetching notices');
+        setLoading(false);
       });
   }, []);
 
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-    setPage(1);  // Reset to the first page whenever search term changes
-  };
+ // const handleSearchChange = (e) => {
+  //  setSearch(e.target.value);
+   // setPage(1);  // Reset to the first page whenever search term changes
+  //};
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -84,7 +83,11 @@ export default function Notices() {
       });
   };
 
-  //if (loading) return (<CircularProgress />);
+  if (loading) return (<CircularProgress />);
+
+  if (error) {
+    return <Typography color="error">{error}</Typography>;
+  }
 
   return (
     <Container >
@@ -96,29 +99,44 @@ export default function Notices() {
           </Typography>
       {/* Check if notices is an array before calling .map */}
       {Array.isArray(notices) && notices.length > 0 ? (
-        notices.map((notice) => (         
-          <Grid item xs={12} key={notice._id}>
+        notices.map((notice) => (
+          <Grid xs={12} key={notice._id }>
             <Paper elevation={3} sx={{ padding: 2 }}>
-              <Typography variant="h5">{notice.NoticeTitle}</Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {notice.NoticeDescription}
+            <Typography color="secondary" variant="h5" sx={{ marginTop: 1 }}>
+            <strong>{notice.NoticeTitle}</strong>
+            </Typography>
+              <Typography variant="h5" sx={{ marginTop: 1 }}>
+              Description: {notice.NoticeDescription}
               </Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {notice.user}
+              <Typography variant="h6" sx={{ marginTop: 1 }}>
+              Added By: {notice.user}
               </Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {notice.DateAdded}
+              <Typography variant="h6" sx={{ marginTop: 1 }}>
+              Added On: {new Date(notice.DateAdded).toLocaleString()}
               </Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-                {notice.NoticeComments}
+              <Typography variant="h5" sx={{ marginTop: 1 }}>
+              <strong>Comments:</strong>
               </Typography>
+              {notice.NoticeComments.length > 0 ? (
+                <ul>
+                  {notice.NoticeComments.map(comment => (
+                    <li key={comment._id}>
+                    <Typography variant="h5" sx={{ marginTop: 1 }}><strong>{comment.user}:</strong> {comment.content}</Typography>
+                    <Typography variant="h6" sx={{ marginTop: 1 }}>Added on: {new Date(comment.DateAdded).toLocaleString()}</Typography>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <Typography variant="h5" sx={{ marginTop: 1 }}>No comments yet</Typography>
+              )}
+
             </Paper>
           </Grid>
         ))
       ) : (
         <Typography>No notices available.</Typography>
       )
-      }        
+      }
       </Grid>
 
       {/* Form to add new notice */}

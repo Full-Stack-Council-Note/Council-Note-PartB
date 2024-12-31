@@ -2,20 +2,20 @@
     "notices": [
     {
       "_id": "6752b4495d3a46c468f95a1d",
-      "NoticeTitle": "one more notice title test",
-      "NoticeDescription": "this is a test notice description again now",
-      "user": null,
+      "NoticeTitle": "Community skip bins now available",
+      "NoticeDescription": "Community skip bins for extra rubbish behind Smith Shopping centre, including Green and Recycle",
+      "user": "Robert Bailey",
       "DateAdded": "2024-12-06T08:22:33.504Z",
       "NoticeComments": [
         {
-          "content": "And another notice comment hello",
-          "user": "674d539c67f52034dc022e9e",
+          "content": "This sounds convenient, instead of driving longer to the dump",
+          "user": "Ronson Yipp",
           "DateAdded": "2024-12-06T08:22:33.504Z",
           "_id": "6752b4495d3a46c468f95a1e"
         },
         {
-          "content": "testing notice comments more again2",
-          "user": "674f55cee92e5b3ef9462ad9",
+          "content": "I agree, convenient idea, particularly for large postage boxes and shared houses where not everyone's rubbish can fit in the wheelie bin",
+          "user": "Serena K",
           "DateAdded": "2024-12-06T08:22:33.504Z",
           "_id": "6752b4495d3a46c468f95a1f"
         }
@@ -24,14 +24,14 @@
     },
     {
       "_id": "6752b4495d3a46c468f95a18",
-      "NoticeTitle": "new notice title67",
-      "NoticeDescription": "test notice description 576",
-      "user": null,
+      "NoticeTitle": "Art classes at Smith Hall",
+      "NoticeDescription": "Bring your friends, 7pm on Fridays",
+      "user": "Carina Macolino",
       "DateAdded": "2024-12-06T08:22:33.504Z",
       "NoticeComments": [
         {
-          "content": "this is an interesting notice comment test again",
-          "user": "674f52dda4cdf7786a1f45d3",
+          "content": "This sounds interesting. Is it BYO food and drinks?",
+          "user": "Kevin Crease",
           "DateAdded": "2024-12-06T08:22:33.504Z",
           "_id": "6752b4495d3a46c468f95a19"
         }
@@ -40,20 +40,20 @@
     },
     {
       "_id": "6752b4495d3a46c468f95a1a",
-      "NoticeTitle": "test notice again today467",
-      "NoticeDescription": "this is a test notice description65",
-      "user": null,
+      "NoticeTitle": "test notice again today",
+      "NoticeDescription": "this is a test notice description",
+      "user": "Trev Bronson",
       "DateAdded": "2024-12-06T08:22:33.504Z",
       "NoticeComments": [
         {
           "content": "this is a new notice comment hello",
-          "user": "674d539c67f52034dc022e9e",
+          "user": "Alice DJ",
           "DateAdded": "2024-12-06T08:22:33.504Z",
           "_id": "6752b4495d3a46c468f95a1b"
         },
         {
           "content": "testing notice comments more again",
-          "user": "674f52dda4cdf7786a1f45d3",
+          "user": "Pat Ahern",
           "DateAdded": "2024-12-06T08:22:33.504Z",
           "_id": "6752b4495d3a46c468f95a1c"
         }
@@ -63,7 +63,8 @@
     {
       "_id": "6752b68e93e18ca91f86607c",
       "NoticeTitle": "Ronson Yipp's notice title testing name info",
-      "NoticeDescription": "test notice  for name",
+      "NoticeDescription": "test notice for name",
+      "user": "Ronson Yipp",
       "DateAdded": "2024-12-06T08:32:14.904Z",
       "NoticeComments": [],
       "__v": 0
@@ -72,6 +73,7 @@
       "_id": "6752b79793e18ca91f866089",
       "NoticeTitle": "Ronson Yipp's notice title testing name info2",
       "NoticeDescription": "test notice for name2",
+      "user": "Ronson Yipp",
       "DateAdded": "2024-12-06T08:36:39.207Z",
       "NoticeComments": [],
       "__v": 0
@@ -80,6 +82,7 @@
       "_id": "675399321560f97b528239d6",
       "NoticeTitle": "test notice title 7-12",
       "NoticeDescription": "test notice description 7-12",
+      "user": "Ronson Yipp",
       "DateAdded": "2024-12-07T00:39:14.264Z",
       "NoticeComments": [],
       "__v": 0
@@ -88,30 +91,34 @@
       "_id": "67552e6a6777e373f74c74dd",
       "NoticeTitle": "Notice title test 8-12-24",
       "NoticeDescription": "notice description test 8-12-24",
+      "user": "Ronson Yipp",
       "DateAdded": "2024-12-08T05:28:10.657Z",
       "NoticeComments": [],
       "__v": 0
     },
     {
       "_id": "675a61a322372a8529be80a5",
-      "NoticeTitle": "Dimsim Jacobs's notice title1",
-      "NoticeDescription": "Community fair on saturday",
+      "NoticeTitle": "Community fair this Saturday",
+      "NoticeDescription": "Community fair on Saturday 14 Dec 10am to 4pm, Findon Park",
+      "user": "Ronson Yipp",
       "DateAdded": "2024-12-12T04:08:03.903Z",
       "NoticeComments": [],
       "__v": 0
     },
     {
       "_id": "675a61eb22372a8529be80a8",
-      "NoticeTitle": "Dimsim Jacobs's notice title2",
-      "NoticeDescription": "Car meet at Pooraka car park",
+      "NoticeTitle": "Car meet tonight",
+      "NoticeDescription": "Car meet at Pooraka car park tonight 10pm",
+      "user": "Dimsim Jacobs",
       "DateAdded": "2024-12-12T04:09:15.015Z",
       "NoticeComments": [],
       "__v": 0
     },
     {
       "_id": "675a620322372a8529be80ab",
-      "NoticeTitle": "Dimsim Jacobs's notice title3",
-      "NoticeDescription": "Lost dog outside library",
+      "NoticeTitle": "Segways available",
+      "NoticeDescription": "Segways available for use in Port District area, outside Port library",
+      "user": "Ronson Yipp",
       "DateAdded": "2024-12-12T04:09:39.502Z",
       "NoticeComments": [],
       "__v": 0

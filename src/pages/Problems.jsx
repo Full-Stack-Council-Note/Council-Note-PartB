@@ -14,7 +14,7 @@ import UrgentSymbol from '../assets/URGENT-red-dot.svg';
 import SoonSymbol from '../assets/SOON-yellow-dot.svg';
 
 export default function Problems() {
-   const [error, setError] = useState(null);
+  
     const { _id  } = useParams();
     //const { search } = useLocation();
           //or problemData, setProblemData
@@ -42,46 +42,57 @@ export default function Problems() {
    
     const [newProblemComments, setNewProblemComments] = useState({content:"", user: true, DateAdded: true});
 
-   // const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    //const [filteredProblems, setFilteredProblems] = useState([]);
+    //const [apiProblems, setApiProblems] = useState([]);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [totalPosts, setTotalPosts] = useState(0);
     const postsPerPage = 10;
-    const problemsSearch = new URLSearchParams(search).get("problems/filter");
+    //const problemsSearch = new URLSearchParams(search).get("problems/filter");
 
  // Fetch posts with pagination and search (potentially those also)
  useEffect(() => {
-  fetch('/problems.json', {
-    headers: {
-      'Content-Type': 'application/json'
-    } // Send the search query as part of the request
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Failed to fetch problems');
-      }
-      return response.json();
+  
+  fetch('/problems.json')
+    .then(response => response.json()) // Parse the JSON response
+    .then(data => {
+      setProblems(data.problems); // Set problems data to state
+      //setApiProducts(data.problems)
+      //setFilteredProducts(data.problems)
+      setLoading(false); // Set loading to false
     })
-    .then((problems) => {
-      console.log('Fetched problems:', problems);
-      setProblems(problems);
-    })
-    .catch((err) => {
-      setError(err.message);
+    .catch(error => {
+      setError('Error fetching problems');
+      setLoading(false);
     });
 }, []);
-
 
   //useEffect(() => {
     //fetchPosts(page, postsPerPage, search);
   //}, [page, postsPerPage, search ]);
-
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-    setPage(1);  // Reset to the first page whenever search term changes
-  };
+ // const handleSearchChange = (e) => {
+ //   const searchTerm = e.target.value;
+ //   setSearch(searchTerm)
+ //   onChangeCallback && onChangeCallback(inputValue)
+ //   if(e.target.value===""){
+ //     setSearchShow(false);
+ //   }
+  //  else {
+  //    setSearchShow(true);
+ ///   }
+   
+  //    const filteredItems = apiProblems.filter((problems) =>
+   //     problems.problemtitle.toLowerCase().includes(searchTerm.toLowerCase())
+        
+    //  );
+    
+   //   setFilteredProblems(filteredItems);
+    //  setPage(1);
+   // }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -105,7 +116,7 @@ export default function Problems() {
       });
   };
 
-  //if (loading) return (<CircularProgress />);
+  if (loading) return (<CircularProgress />);
 
   if (error) {
     return <Typography color="error">{error}</Typography>;
@@ -124,27 +135,39 @@ export default function Problems() {
         problems.map((problem) => (
           <Grid xs={12} key={problem._id }>
             <Paper elevation={3} sx={{ padding: 2 }}>
-            <Typography variant="h5" sx={{ marginTop: 1 }}>
-              {problem.problemtitle || 'No Title'}
+            <Typography color="secondary" variant="h5" sx={{ marginTop: 1 }}>
+            <strong>{problem.problemtitle}</strong>
             </Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-              {problem.problemdescription || 'No description'}
+              <Typography variant="h5" sx={{ marginTop: 1 }}>
+              Description: {problem.problemdescription}
               </Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-              {problem.user || 'N/A'}
+              <Typography variant="h6" sx={{ marginTop: 1 }}>
+              Added By: {problem.user}
               </Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-              {problem.UrgentOrSoon || 'N/A'}
+              <Typography variant="h6" sx={{ marginTop: 1 }}>
+              Urgency: {problem.UrgentOrSoon}
               </Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-              {problem.ProblemComments || 'No Comments'}
+              <Typography variant="h6" sx={{ marginTop: 1 }}>
+              Resolved Status: {problem.IsResolved ? true : false}
               </Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-              {problem.IsResolved ? true: false}
+              <Typography variant="h6" sx={{ marginTop: 1 }}>
+              Added On: {new Date(problem.DateAdded).toLocaleString()}
               </Typography>
-              <Typography variant="body1" sx={{ marginTop: 1 }}>
-              {problem.DateAdded || 'N/A'}
+              <Typography variant="h5" sx={{ marginTop: 1 }}>
+              <strong>Comments:</strong>
               </Typography>
+              {problem.ProblemComments.length > 0 ? (
+                <ul>
+                  {problem.ProblemComments.map(comment => (
+                    <li key={comment._id}>
+                    <Typography variant="h5" sx={{ marginTop: 1 }}><strong>{comment.user}:</strong> {comment.content}</Typography>
+                    <Typography variant="h6" sx={{ marginTop: 1 }}>Added on: {new Date(comment.DateAdded).toLocaleString()}</Typography>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <Typography variant="h5" sx={{ marginTop: 1 }}>No comments yet</Typography>
+              )}
 
             </Paper>
           </Grid>

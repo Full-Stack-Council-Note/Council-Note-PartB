@@ -2,26 +2,24 @@
     "problems": [
     {
       "_id": "6752b366700c7da8a8a9a597",
-      "problemtitle": "problem title testing",
-      "problemdescription": "test problem description860",
-      "user": {
-        "_id": "674d539c67f52034dc022e9e",
-        "fullname": "Robert Bailey"
-      },
+      "problemtitle": "problem title testing1",
+      "problemdescription": "test problem description1",
+      "user": "Paul Bailey",
       "DateAdded": "2024-12-06T08:18:46.909Z",
       "UrgentOrSoon": "Soon",
       "IsResolved": false,
       "ProblemComments": [
         {
-          "content": "this is a bad problem again99",
-          "user": "674f52dda4cdf7786a1f45d3",
+          "content": "this is a bad problem again",
+          "user": "Alan Keith",
           "DateAdded": "2024-12-06T08:18:46.909Z",
           "_id": "6752b366700c7da8a8a9a598"
         },
         {
           "content": "I agree this is a bad problem",
-          "_id": "675fdb7118c1ddddb9e24277",
-          "DateAdded": "2024-12-16T07:49:05.710Z"
+          "user": "Carina Macolino",
+          "DateAdded": "2024-12-16T07:49:05.710Z",
+          "_id": "675fdb7118c1ddddb9e24277"
         }
       ],
       "__v": 1
@@ -29,24 +27,21 @@
     {
       "_id": "6752b366700c7da8a8a9a599",
       "problemtitle": "this is a major problem",
-      "problemdescription": "test problem description140",
-      "user": {
-        "_id": "674d539c67f52034dc022e9e",
-        "fullname": "Robert Bailey"
-      },
+      "problemdescription": "test problem description2",
+      "user": "Robert Bailey",
       "DateAdded": "2024-12-06T08:18:46.909Z",
       "UrgentOrSoon": "N/A",
       "IsResolved": false,
       "ProblemComments": [
         {
-          "content": "this is a bad problem today again746",
-          "user": "674f52dda4cdf7786a1f45d3",
+          "content": "this is a bad problem today again",
+          "user": "Alan Keith",
           "DateAdded": "2024-12-06T08:18:46.909Z",
           "_id": "6752b366700c7da8a8a9a59a"
         },
         {
-          "content": "this is a second problem comment3576",
-          "user": "674f55cee92e5b3ef9462ad9",
+          "content": "this is a second problem comment",
+          "user": "Ronson Yipp",
           "DateAdded": "2024-12-06T08:18:46.910Z",
           "_id": "6752b366700c7da8a8a9a59b"
         }
@@ -55,8 +50,9 @@
     },
     {
       "_id": "6752c2c7fc27a8b6c4caa45c",
-      "problemtitle": "One more add problem test",
-      "problemdescription": "Ronson Yipp's problem description test again",
+      "problemtitle": "Dogs on loose in park",
+      "problemdescription": "Was almost bitten by German Shepherd this morning in Reid Park",
+      "user": "Ronson Yipp",
       "UrgentOrSoon": "Soon",
       "IsResolved": false,
       "DateAdded": "2024-12-06T09:24:23.083Z",
@@ -65,8 +61,9 @@
     },
     {
       "_id": "675395e35c8f42cc895122c7",
-      "problemtitle": "problem title test 7-12-24",
-      "problemdescription": "test problem description 7-12-24",
+      "problemtitle": "Low tree branches in street",
+      "problemdescription": "Tree branches in John Ave too low, have to swerve my truck out of the way so they won't crash into my windscreen",
+      "user": "Ronson Yipp",
       "UrgentOrSoon": "Soon",
       "IsResolved": false,
       "DateAdded": "2024-12-07T00:25:07.967Z",
@@ -77,6 +74,7 @@
       "_id": "675528f91d0355d49f8b121a",
       "problemtitle": "problem title test 8-12-24",
       "problemdescription": "test problem description 8-12-24",
+      "user": "Alan Keith",
       "UrgentOrSoon": "Soon",
       "IsResolved": false,
       "DateAdded": "2024-12-08T05:04:57.367Z",
@@ -85,8 +83,9 @@
     },
     {
       "_id": "675529571d0355d49f8b122d",
-      "problemtitle": "problem title test2 8-12-24",
-      "problemdescription": "test problem description2 8-12-24",
+      "problemtitle": "Lost cat found",
+      "problemdescription": "I found on footpath on Ryan Ave, tuxedo cat with pink collar",
+      "user": "Serena K",
       "UrgentOrSoon": "Soon",
       "IsResolved": false,
       "DateAdded": "2024-12-08T05:06:31.137Z",
@@ -95,8 +94,9 @@
     },
     {
       "_id": "67552d886777e373f74c74da",
-      "problemtitle": "problem title test3 8-12-24",
-      "problemdescription": "test problem update3 8-12-24",
+      "problemtitle": "problem title test3",
+      "problemdescription": "test problem update3",
+      "user": "Carina Macolino",
       "UrgentOrSoon": "Soon",
       "IsResolved": false,
       "DateAdded": "2024-12-08T05:24:24.841Z",
@@ -105,8 +105,9 @@
     },
     {
       "_id": "675a5fd322372a8529be8093",
-      "problemtitle": "Dimsim Jacobs's 1st problem",
-      "problemdescription": "Trees down on main road",
+      "problemtitle": "Fallen trees on road",
+      "problemdescription": "Trees down on main north road since storm earlier",
+      "user": "Carina Macolino",
       "UrgentOrSoon": "Soon",
       "IsResolved": false,
       "DateAdded": "2024-12-12T04:00:19.379Z",
@@ -115,8 +116,9 @@
     },
     {
       "_id": "675a600122372a8529be8096",
-      "problemtitle": "Dimsim Jacobs's 2nd problem",
+      "problemtitle": "Whopping wasps",
       "problemdescription": "Killer bees in shopping centre",
+      "user": "Nev Davis",
       "UrgentOrSoon": "Soon",
       "IsResolved": false,
       "DateAdded": "2024-12-12T04:01:05.825Z",
@@ -125,8 +127,9 @@
     },
     {
       "_id": "675a602a22372a8529be8099",
-      "problemtitle": "Dimsim Jacobs's 3rd problem",
+      "problemtitle": "Not enough bins",
       "problemdescription": "Lack of bins in Smith Park",
+      "user": "Dimsim Jacobs",
       "UrgentOrSoon": "Soon",
       "IsResolved": false,
       "DateAdded": "2024-12-12T04:01:46.305Z",
@@ -137,6 +140,7 @@
       "_id": "675fd9fb18c1ddddb9e24269",
       "problemtitle": "Rubbish dumping in street",
       "problemdescription": "messy curbside on Greg Ave",
+      "user": "Kevin Crease",
       "UrgentOrSoon": "Soon",
       "IsResolved": false,
       "DateAdded": "2024-12-16T07:42:52.424Z",
